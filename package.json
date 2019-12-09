@@ -25,7 +25,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack --watch --mode=development"
+    "webpack": "webpack --watch --mode=development",
+    "postinstall": "webpack"
   },
   "repository": {
     "type": "git",
@@ -37,5 +38,9 @@
   "bugs": {
     "url": "https://github.com/ezekielp/treebnb/issues"
   },
-  "homepage": "https://github.com/ezekielp/treebnb#readme"
+  "homepage": "https://github.com/ezekielp/treebnb#readme",
+  "engines": {
+    "node": "12.5.0",
+    "npm": "6.9.0"
+  }
 }
