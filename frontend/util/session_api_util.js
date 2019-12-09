@@ -14,9 +14,20 @@ export const loginUser = user => {
     })
 };
 
+export const loginDemoUser = () => {
+    return $.ajax({
+        method: "POST",
+        url: `/api/session`,
+        data: {
+            email: "annie_smith@magictreehouse.com",
+            password: "Merlin"
+        }
+    })
+}
+
 export const logoutUser = () => {
     return $.ajax({
         method: "DELETE",
         url: `/api/session`
     })
-}
+};
