@@ -17,8 +17,10 @@
 /storage/*
 !/storage/.keep
 
-/node_modules
+/node_modules/
 /yarn-error.log
+bundle.js
+bundle.js.map
 
 /public/assets
 .byebug_history
