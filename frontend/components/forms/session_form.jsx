@@ -14,6 +14,7 @@ class SessionForm extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
+        this.logInWithDemoUser = this.logInWithDemoUser.bind(this);
     }
 
     handleSubmit(e) {
@@ -31,11 +32,26 @@ class SessionForm extends React.Component {
         }
     }
 
+    logInWithDemoUser() {
+        this.props.loginDemoUser();
+    }
+
     render() {
 
-        // Ternary for the header
+        let { formType } = this.props;
 
-        // Ternary for the First / Last name fields
+        let nameFields;
+        // Conditional for the First / Last name fields
+        if (formType === 'Sign up') {
+            nameFields = 
+            <>
+                <input
+                    type="text"
+                    placeholder="First name"
+                     />
+                <input type="text" placeholder="Last name"/>
+            </>
+        }
 
         // Ternary for bottom message
         // "Already have a TreeBnB account? Log in"
@@ -43,7 +59,10 @@ class SessionForm extends React.Component {
 
         return (
             <div>
-
+                <button onClick={this.logInWithDemoUser}>
+                    Login with demo user
+                </button>
+                <p>or</p>
                 <form onSubmit={this.handleSubmit}>
                     <input
                         type="text"
@@ -56,7 +75,7 @@ class SessionForm extends React.Component {
                             value={this.state.password}
                             onChange={this.handleUpdate("password")}/>
                     </label>
-                    <input type="submit" value={this.props.formType}/>
+                    <input type="submit" value={formType}/>
                 </form>
             </div>
         )

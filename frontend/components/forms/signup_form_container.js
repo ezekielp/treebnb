@@ -9,6 +9,7 @@ const msp = state => {
 }
 
 const mdp = dispatch => ({
+    loginDemoUser: () => dispatch(loginDemoUser()),
     submitForm: user => dispatch(signupUser(user))
 })
 
