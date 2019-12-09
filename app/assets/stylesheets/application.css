@@ -13,3 +13,39 @@
  *= require_tree .
  *= require_self
  */
+
+html, body, section, article,
+h1, h2, p, strong, em, a {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: inherit;
+  font: inherit;
+  text-decoration: inherit;
+  text-align: inherit;
+  color: inherit;
+  background: transparent;
+}
+
+li {
+    list-style: none;
+}
+
+.nav-container {
+    display: flex;
+    width: 100%;
+    margin-top: 25px;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* .treebnb-symbol {
+    
+} */
+
+
+

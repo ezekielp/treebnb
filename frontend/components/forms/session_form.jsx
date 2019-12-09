@@ -40,17 +40,22 @@ class SessionForm extends React.Component {
 
         let { formType } = this.props;
 
-        let nameFields;
         // Conditional for the First / Last name fields
+        let nameFields;
         if (formType === 'Sign up') {
             nameFields = 
             <>
                 <input
                     type="text"
                     placeholder="First name"
-                     />
-                <input type="text" placeholder="Last name"/>
+                    value={this.state.firstName} />
+                <input
+                    type="text"
+                    placeholder="Last name"
+                    value={this.state.firstName} />
             </>
+        } else {
+            nameFields = <></>
         }
 
         // Ternary for bottom message
@@ -69,12 +74,12 @@ class SessionForm extends React.Component {
                         value={this.state.email}
                         placeholder="Email Address" 
                         onChange={this.handleUpdate("email")} />
-                    <label>
-                        <input
-                            type="password"
-                            value={this.state.password}
-                            onChange={this.handleUpdate("password")}/>
-                    </label>
+                    {nameFields}
+                    <input
+                        type="password"
+                        value={this.state.password}
+                        placeholder={}
+                        onChange={this.handleUpdate("password")}/>
                     <input type="submit" value={formType}/>
                 </form>
             </div>
