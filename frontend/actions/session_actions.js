@@ -36,6 +36,6 @@ export const loginUser = user => dispatch => {
 }
 
 export const logoutUser = () => dispatch => {
-    return SessionAPIUtil.logoutUser
+    return SessionAPIUtil.logoutUser()
         .then(() => dispatch(logout()));
 }

@@ -1,13 +1,16 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import Navbar from './navbar'; 
+import NavbarContainer from './navbar/navbar_container';
+import Modal from './modal';
 
 const App = (props) => {
     return (
-        <div>
+        <div className="app-container">
+            <Modal />
             <header>
-                <Navbar />
+                <NavbarContainer />
             </header>
+            <div className="splash-image-container">
+            </div>
         </div>
     )
 }

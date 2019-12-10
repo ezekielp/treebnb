@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
 
 class SessionForm extends React.Component {
     constructor(props) {
@@ -8,8 +6,8 @@ class SessionForm extends React.Component {
         this.state = {
             email: "",
             password: "",
-            firstName: "",
-            lastName: ""
+            first_name: "",
+            last_name: ""
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,9 +17,10 @@ class SessionForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        let { email, password, firstName, lastName } = this.state;
-        let userObject = this.props.formType === "Log in" ? { email, password } : { email, password, firstName, lastName };
-        this.props.submitForm(userObject);
+        let { email, password, first_name, last_name } = this.state;
+        let userObject = this.props.formType === "Log in" ? { email, password } : { email, password, first_name, last_name };
+        this.props.submitForm(userObject)
+            .then(() => this.props.closeModal());
     }
 
     handleUpdate(field) {
@@ -38,7 +37,7 @@ class SessionForm extends React.Component {
 
     render() {
 
-        let { formType } = this.props;
+        let { formType, openModal } = this.props;
 
         // Conditional for the First / Last name fields
         let nameFields;
@@ -46,42 +45,72 @@ class SessionForm extends React.Component {
             nameFields = 
             <>
                 <input
+                    className="session-form-input"
                     type="text"
                     placeholder="First name"
-                    value={this.state.firstName} />
+                    value={this.state.first_name} 
+                    onChange={this.handleUpdate("first_name")}/>
                 <input
+                    className="session-form-input"
                     type="text"
                     placeholder="Last name"
-                    value={this.state.firstName} />
+                    value={this.state.last_name}
+                    onChange={this.handleUpdate("last_name")}/>
             </>
         } else {
             nameFields = <></>
         }
 
-        // Ternary for bottom message
-        // "Already have a TreeBnB account? Log in"
-        // "Don't have an account? Sign up"
+        // Conditional for bottom message
+        let bottomMessage;
+        if (formType === 'Sign up') {
+            bottomMessage = (
+                <div className="session-message">
+                    Already have a Treebnb account?
+                    <span onClick={() => openModal('Log in')}> Log in</span>
+                </div>
+            )
+        } else {
+            bottomMessage = (
+                <div className="session-message">
+                    Don't have an account?
+                    <span onClick={() => openModal('Sign up')}> Sign up</span>
+                </div>
+            )
+        }
 
         return (
-            <div>
-                <button onClick={this.logInWithDemoUser}>
+            <div className="session-container">
+                <button
+                    onClick={this.logInWithDemoUser}
+                    className="session-form-demo-btn">
                     Login with demo user
                 </button>
-                <p>or</p>
+                <div className="session-form-or-container">
+                    <hr/>
+                </div>
                 <form onSubmit={this.handleSubmit}>
                     <input
-                        type="text"
+                        className="session-form-input"
+                        type="email"
                         value={this.state.email}
                         placeholder="Email Address" 
                         onChange={this.handleUpdate("email")} />
                     {nameFields}
                     <input
+                        className="session-form-input"
                         type="password"
                         value={this.state.password}
-                        placeholder={}
+                        placeholder={"Password"}
                         onChange={this.handleUpdate("password")}/>
-                    <input type="submit" value={formType}/>
+                    <input
+                        className="session-form-submit-btn" 
+                        type="submit"
+                        value={formType}/>
                 </form>
+                <div className="bottom-message">
+                    {bottomMessage}
+                </div>
             </div>
         )
     }
