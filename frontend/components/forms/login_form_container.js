@@ -1,9 +1,11 @@
 import { connect } from 'react-redux';
 import SessionForm from './session_form';
 import { loginUser, loginDemoUser } from '../../actions/session_actions';
+import { closeModal, openModal } from '../../actions/modal_actions';
 
 const msp = state => {
     return {
+        errors: state.errors,
         formType: 'Log in'
     }
 }
@@ -11,7 +13,13 @@ const msp = state => {
 const mdp = dispatch => {
     return {
         loginDemoUser: () => dispatch(loginDemoUser()),
-        submitForm: user => dispatch(loginUser(user))
+        submitForm: user => dispatch(loginUser(user)),
+        closeModal: () => dispatch(closeModal()),
+        switchForm: (
+            <button onClick={() => dispatch(openModal('Sign up'))}>
+                Sign up
+            </button>
+        )
     }
 }
 
