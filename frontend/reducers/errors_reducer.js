@@ -5,7 +5,12 @@ const ErrorsReducer = (state = {}, action) => {
     Object.freeze(state);
     switch(action.type) {
         case RECEIVE_SESSION_ERRORS:
-            return { "login" : action.errors };
+            let sessionErrors = {};
+            action.errors.forEach(err => {
+                let key = err.split(" ")[0].toLowerCase();
+                sessionErrors[key] = err
+            });
+            return { "session" : sessionErrors };
         default:
             return state;
     }

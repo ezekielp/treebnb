@@ -6,7 +6,7 @@ import { closeModal, openModal } from '../../actions/modal_actions';
 
 const msp = state => {
     return {
-        errors: state.errors,
+        errors: state.errors.session,
         formType: 'Log in'
     }
 }

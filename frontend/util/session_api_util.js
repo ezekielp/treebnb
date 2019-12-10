@@ -19,8 +19,10 @@ export const loginDemoUser = () => {
         method: "POST",
         url: `/api/session`,
         data: {
-            email: "annie_smith@magictreehouse.com",
-            password: "Merlin"
+            user: {
+                email: "annie_smith@magictreehouse.com",
+                password: "Merlin"
+            }
         }
     })
 }

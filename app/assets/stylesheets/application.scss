@@ -14,6 +14,9 @@
  *= require_self
  */
 
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
 html, body, section, article,
 h1, h2, p, strong, em, a, button,
 input {
@@ -97,11 +100,12 @@ header {
     position: absolute;
     background-color: white;
     width: 540px;
-    height: 370px;
+    height: auto;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 25px;
+    box-sizing: border-box;
 }
 
 .session-container {
@@ -119,41 +123,87 @@ header {
     border-radius: 50%;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 25px;
-    color: rgba($color: #4e4e4e, $alpha: 1.0);
+    color: darkgray;
     text-align: center;
     vertical-align: middle;
     line-height: 40px;
     cursor: pointer;
 }
 
-.session-form-or-container {
-    border-width: 1px solid lightgray;
+.session-form-or-container hr {
+    border: none;
+    border-top: 1px solid lightgray;
+    overflow: visible;
+    text-align: center;
+    height: 0px;
+    margin: 10px 0;
 }
 
-.session-form-or-container:after {
+.session-form-or-container hr:after {
     content: 'or';
+    padding: 0 15px;
     position: relative;
+    top: -11px;
+    background: #fff;
+    color: gray;
 }
 
 .session-form-input, .session-form-submit-btn, .session-form-demo-btn {
     width: 100%;
     height: 50px;
-    text-align: center;
+    margin-top: 15px;
+}
+
+.email-input, .password-input {
+    display: flex;
+    justify-content: space-between;
+}
+
+.fa-envelope, .fa-lock {
+    margin-right: 15px;
+    margin-top: 17px;
+}
+
+.fa-envelope:before, .fa-lock:before {
+    color: darkgray;
 }
 
 .session-form-demo-btn {
     border: 2px solid #767676;
     color: #767676;
+    text-align: center;
+    margin-bottom: 15px;
+    cursor: pointer;
 }
 
 .session-form-input {
     border: 1px solid lightgray;
+    padding-left: 10px;
 }
 
 .session-form-submit-btn {
     background-color: #FF5A5F;
+    text-align: center;
+    color: white;
+    margin-bottom: 15px;
+    cursor: pointer;
 }
 
 .session-message {
     font-size: 14px;
+}
+
+.blue-link-text {
+    color: #008489;
+    cursor: pointer;
+    margin-left: 7px;
+}
+
+.blue-link-text:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    color: #E57751;
+    margin-top: 7px;
 }
