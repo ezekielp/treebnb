@@ -87,7 +87,7 @@ class SessionForm extends React.Component {
             bottomMessage = (
                 <div className="session-message">
                     Already have a Treebnb account?
-                    <span className="blue-link-text" onClick={() => openModal('Log in')}> Log in</span>
+                    <span className="blue-link-text" onClick={() => openModal('Log in')}>Log in</span>
                 </div>
             )
         } else {

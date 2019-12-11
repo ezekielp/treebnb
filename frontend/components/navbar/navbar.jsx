@@ -17,7 +17,8 @@ const Navbar = ({currentUser, openModal, logoutUser}) => {
         <ul className="nav-links">
             <li>Trips</li>
             <li onClick={() => logoutUser()} >Log Out</li>
-            <li className="profile-image-circle"></li>
+            <li id="profile-image-circle">
+            </li>
         </ul>
     );
     const linksToRender = currentUser.id ? loggedInLinks : sessionLinks;

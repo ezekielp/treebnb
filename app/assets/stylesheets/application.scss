@@ -69,6 +69,9 @@ header {
     position: relative;
 }
 
+
+// Navbar
+
 .nav-container {
     display: flex;
     justify-content: flex-end;
@@ -87,7 +90,7 @@ header {
     margin-left: 10px;
     font-size: 12px;
     cursor: pointer;
-    height: 40px;
+    // height: 40px;
     font-weight: 600;
 }
 
@@ -100,9 +103,31 @@ header {
     margin-right: 20px;
 }
 
+#profile-image-circle {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color: #F2F2F2;
+    border: 2px solid black;
+    align-self: center;
+}
+
+#profile-image-circle:hover {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color: #F2F2F2;
+    border: 2px solid black;
+    align-self: center;
+}
+
+// Navbar dropdown
+
 /* .treebnb-symbol {
     
 } */
+
+// Modal
 
 .modal-background {
     position: fixed;
@@ -125,6 +150,9 @@ header {
     padding: 25px;
     box-sizing: border-box;
 }
+
+
+// Session form
 
 .session-container {
     display: flex;
