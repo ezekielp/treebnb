@@ -55,6 +55,10 @@ li {
     list-style: none;
 }
 
+input {
+    border-radius: 4px;
+}
+
 header {
     max-width: 100%;
     height: 100%;
@@ -62,6 +66,7 @@ header {
     z-index: 1;
     overflow: scroll;
     background-size: cover;
+    position: relative;
 }
 
 .nav-container {
@@ -69,6 +74,7 @@ header {
     justify-content: flex-end;
     width: 100%;
     height: 50px;
+    position: absolute;
 }
 
 .nav-links {
@@ -79,8 +85,15 @@ header {
 
 .nav-links li {
     margin-left: 10px;
-    font-size: 14px;
+    font-size: 12px;
     cursor: pointer;
+    height: 40px;
+    font-weight: 600;
+}
+
+.nav-links li:hover {
+    height: 40px;
+    border-bottom: 3px solid black;
 }
 
 .nav-links li:last-child {
@@ -124,7 +137,7 @@ header {
 .close-x {
     height: 40px;
     width: 40px;
-    border: 1px solid lightgray;
+    box-shadow: 0 0 5px 3px #E2E2E2;
     border-radius: 50%;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 25px;
@@ -186,6 +199,10 @@ header {
     padding-left: 10px;
 }
 
+.session-form-input input {
+    width: 100%;
+}
+
 .session-form-submit-btn {
     background-color: #FF5A5F;
     text-align: center;
@@ -202,6 +219,7 @@ header {
     color: #008489;
     cursor: pointer;
     margin-left: 5px;
+    font-weight: 600;
 }
 
 .blue-link-text:hover {
@@ -211,4 +229,87 @@ header {
 .error-message {
     color: #E57751;
     margin-top: 7px;
+}
+
+
+// Search Box (on homepage)
+
+.search-box-container {
+    width: 440px;
+    height: 480px;
+    background-color: white;
+    margin-top: 100px;
+    margin-left: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+    padding: 35px;
+    border-radius: 4px;
+}
+
+.search-box-header h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #484848;
+    margin-bottom: 15px;
+}
+
+.search-box-label {
+    font-size: 12px;
+    color: #484848;
+    font-weight: 600;
+}
+
+.search-box-input {
+    width: 100%;
+    border: 1px solid lightgray;
+    height: 50px;
+    color: lightgray;
+    margin-bottom: 13px;
+    margin-top: 8px;
+    padding-left: 10px;
+    font-size: 15px;
+    border-radius: 4px;
+}
+
+.check_-labels-container {
+    display: flex;
+}
+
+.checkout-label {
+    margin-left: 125px;
+}
+
+.check_-inputs-container {
+    display: flex;
+    width: 381px;
+}
+
+.check_-input {
+    width: 50%;
+}
+
+.checkin-input {
+    border-radius: 4px 0 0 4px;
+}
+
+.checkout-input {
+    border-radius: 0 4px 4px 0;
+    border-left: none;
+}
+
+.search-box-submit-btn {
+    background-color: #FF5A5F;
+    color: white;
+    text-align: center;
+    height: 50px;
+    font-weight: 600;
+    width: 100px;
+    border-radius: 4px;
+    font-size: 15px;
+    margin-top: 9px;
+    margin-left: 282px;
+    cursor: pointer;
 }

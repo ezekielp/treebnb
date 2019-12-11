@@ -1,6 +1,7 @@
 import React from 'react';
 import NavbarContainer from './navbar/navbar_container';
 import Modal from './modal';
+import SearchBox from './forms/search_box';
 
 const App = (props) => {
     return (
@@ -8,9 +9,8 @@ const App = (props) => {
             <Modal />
             <header>
                 <NavbarContainer />
+                <SearchBox />
             </header>
-            <div className="splash-image-container">
-            </div>
         </div>
     )
 }
