@@ -87,6 +87,7 @@ header {
 }
 
 .nav-links li {
+    color: #484848;
     margin-left: 10px;
     font-size: 12px;
     cursor: pointer;
@@ -94,32 +95,73 @@ header {
     font-weight: 600;
 }
 
-.nav-links li:hover {
+.signup-li:hover, .login-li:hover {
     height: 40px;
-    border-bottom: 3px solid black;
+    border-bottom: 3px solid #484848;
 }
+// .nav-links li:hover {
+//     height: 40px;
+//     border-bottom: 3px solid black;
+// }
 
 .nav-links li:last-child {
     margin-right: 20px;
 }
 
-#profile-image-circle {
+#profile-image-circle, #profile-image-circle:hover {
     height: 25px;
     width: 25px;
     border-radius: 50%;
     background-color: #F2F2F2;
-    border: 2px solid black;
+    border: 2px solid #484848;
     align-self: center;
 }
 
-#profile-image-circle:hover {
-    height: 25px;
-    width: 25px;
-    border-radius: 50%;
-    background-color: #F2F2F2;
-    border: 2px solid black;
-    align-self: center;
+
+// Profile dropdown (on homepage)
+
+#profile-image-circle:focus {
+    outline: 0;
 }
+
+.profile-dropdown-container {
+    width: 280px;
+    height: auto;
+    background-color: white;
+    z-index: 1000;
+    box-sizing: border-box;
+    margin-left: -238px;
+    margin-top: 35px;
+    box-shadow: 0 0 5px 2px darkgrey;
+}
+
+.profile-dropdown-container ul {
+    padding: 0 0 0 15px;
+}
+
+.profile-dropdown-container ul li {
+    color: #757575;
+    padding: 18px 0;
+    border-bottom: 1px solid #ededed;
+    margin-right: 15px;
+}
+
+.profile-dropdown-container ul li:hover {
+    border-bottom: 1px solid #424242;
+}
+
+// .profile-dropdown-container ul li:hover {
+//     border-bottom: 1px solid #292929;
+// }
+
+// .profile-dropdown-container ul hr {
+//     border-top: 1px solid #f5f5f5;
+//     border-left: none;
+//     padding: 0;
+//     width: 90%;
+//     margin: 0 0 0 7px;
+// }
+
 
 // Navbar dropdown
 
@@ -200,9 +242,19 @@ header {
     margin-top: 15px;
 }
 
+
 .email-input, .password-input {
     display: flex;
     justify-content: space-between;
+    border-radius: 4px;
+}
+
+.session-form-input:focus {
+    border: 1px solid #008489;
+}
+
+#input-outline-blue {
+    border: 1px solid #008489;
 }
 
 .fa-envelope, .fa-lock {

@@ -7,12 +7,16 @@ class SessionForm extends React.Component {
             email: "",
             password: "",
             first_name: "",
-            last_name: ""
+            last_name: "",
+            emailInputBorderFocused: false,
+            passwordInputBorderFocused: false
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
         this.logInWithDemoUser = this.logInWithDemoUser.bind(this);
+        this.toggleEmailInputBorderColor = this.toggleEmailInputBorderColor.bind(this);
+        this.togglePasswordInputBorderColor = this.togglePasswordInputBorderColor.bind(this);
     }
 
     handleSubmit(e) {
@@ -34,6 +38,14 @@ class SessionForm extends React.Component {
     logInWithDemoUser() {
         this.props.loginDemoUser()
             .then(() => this.props.closeModal());
+    }
+
+    toggleEmailInputBorderColor() {
+        this.setState({ emailInputBorderFocused: !this.state.emailInputBorderFocused });
+    }
+
+    togglePasswordInputBorderColor() {
+        this.setState({ passwordInputBorderFocused: !this.state.passwordInputBorderFocused });
     }
 
     render() {
@@ -99,6 +111,10 @@ class SessionForm extends React.Component {
             )
         }
 
+        // Conditionals for input container border color class
+        let emailInputBorderColorClass = this.state.emailInputBorderFocused ? "input-outline-blue" : "";
+        let passwordInputBorderColorClass = this.state.passwordInputBorderFocused ? "input-outline-blue" : "";
+
         return (
             <div className="session-container">
                 <button
@@ -110,24 +126,33 @@ class SessionForm extends React.Component {
                     <hr/>
                 </div>
                 <form onSubmit={this.handleSubmit}>
-                    <div className="session-form-input email-input">
+                    <div 
+                        id={`${emailInputBorderColorClass}`}
+                        className={`session-form-input email-input`}
+                        >
                         <input
                             type="email"
                             value={this.state.email}
                             placeholder="Email Address" 
-                            onChange={this.handleUpdate("email")} />
+                            onChange={this.handleUpdate("email")} 
+                            onFocus={() => this.toggleEmailInputBorderColor()}
+                            onBlur={() => this.toggleEmailInputBorderColor()}/>
                         <i className="far fa-envelope"></i>
                     </div>
                     <div className="error-message">
                         {emailErrors}
                     </div>
                     {nameFields}
-                    <div className="session-form-input password-input">
+                    <div
+                        id={`${passwordInputBorderColorClass}`}    
+                        className={`session-form-input email-input`}>
                         <input
                             type="password"
                             value={this.state.password}
                             placeholder={"Password"}
-                            onChange={this.handleUpdate("password")}/>
+                            onChange={this.handleUpdate("password")}
+                            onFocus={() => this.togglePasswordInputBorderColor()}
+                            onBlur={() => this.togglePasswordInputBorderColor()}/>
                         <i className="fas fa-lock"></i>
                     </div>
                     <div className="error-message">
