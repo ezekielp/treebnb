@@ -10,7 +10,7 @@ class Api::SessionsController < ApplicationController
             login_user(@user)
             render :show
         else
-            render json: ["Invalid email or password"], status: 422
+            render json: ["Invalid email and/or password"], status: 422
         end
     end
 

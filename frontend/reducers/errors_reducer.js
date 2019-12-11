@@ -12,7 +12,7 @@ const ErrorsReducer = (state = {}, action) => {
             });
             return { "session" : sessionErrors };
         default:
-            return state;
+            return {};
     }
 }
 

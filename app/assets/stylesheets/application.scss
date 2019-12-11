@@ -58,21 +58,22 @@ li {
 header {
     max-width: 100%;
     height: 100%;
-    background-image: asset-data-url("treebnb-homepage-image-1600-cropped-compressed.jpg");
+    background-image: asset-data-url("treebnb-homepage-image.jpg");
     z-index: 1;
     overflow: scroll;
+    background-size: cover;
 }
 
 .nav-container {
     display: flex;
     justify-content: flex-end;
     width: 100%;
-    margin-top: 25px;
     height: 50px;
 }
 
 .nav-links {
     display: flex;
+    justify-content: flex-end;
     width: 100%;
 }
 
@@ -80,6 +81,10 @@ header {
     margin-left: 10px;
     font-size: 14px;
     cursor: pointer;
+}
+
+.nav-links li:last-child {
+    margin-right: 20px;
 }
 
 /* .treebnb-symbol {
@@ -196,7 +201,7 @@ header {
 .blue-link-text {
     color: #008489;
     cursor: pointer;
-    margin-left: 7px;
+    margin-left: 5px;
 }
 
 .blue-link-text:hover {

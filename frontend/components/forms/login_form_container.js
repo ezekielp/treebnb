@@ -5,6 +5,12 @@ import { loginUser, loginDemoUser } from '../../actions/session_actions';
 import { closeModal, openModal } from '../../actions/modal_actions';
 
 const msp = state => {
+    // let errors = {};
+    // if (state.errors.session) {
+    //     let { session } = state.errors;
+    //     errors.email = session.email ? session.email : "";
+    //     errors.password = session.password ? session.password : "";
+    // }
     return {
         errors: state.errors.session,
         formType: 'Log in'
