@@ -12,9 +12,3 @@ export const fetchTreehouse = treehouseId => {
     })
 }
 
-
-
-
-
-
-
