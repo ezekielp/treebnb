@@ -13,7 +13,7 @@ class Api::SessionsController < ApplicationController
             if User.find_by(email: params[:user][:email])
                 render json: ["Password invalid"], status: 422
             elsif
-                render json: ["Email can't be found"], status: 422
+                render json: ["Email can't be found", "Password invalid"], status: 422
             end
         end
     end

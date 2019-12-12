@@ -12,7 +12,7 @@ const App = (props) => {
                 <SearchBox />
             </header>
         </div>
-    )
+    );
 }
 
 export default App;
