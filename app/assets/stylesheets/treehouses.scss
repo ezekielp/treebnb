@@ -1,0 +1,67 @@
+// Index page
+
+.treehouses-idx-container {
+    padding: 0 80px;
+}
+
+.treehouses-idx-header {
+    font-size: 24px;
+    font-weight: bold;
+    color: #484848;
+    margin-top: 45px;
+    margin-bottom: 7px;
+}
+
+.treehouses-idx-subhead {
+    color: #484848;
+    font-weight: 400;
+    margin: 0;
+    font-size: 16px;
+}
+
+.treehouses-ul {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+}
+
+.treehouse-li {
+    margin: 8px 16px 8px 0;
+}
+
+.treehouse-li:last-child {
+    margin: 8px 0 8px 0;
+}
+
+.treehouse-idx-photo-standin {
+    background-color: #484848;
+    color: white;
+    text-align: center;
+    width: 20vw;
+    height: 199px;
+    border-radius: 2px;
+}
+
+.treehouse-idx-address {
+    color: gray;
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+.treehouse-idx-name {
+    text-transform: uppercase;
+    margin-top: 6px;
+}
+
+.treehouse-idx-price-num {
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.treehouse-idx-price {
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+

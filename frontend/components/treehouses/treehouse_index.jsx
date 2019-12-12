@@ -19,7 +19,13 @@ class TreehouseIndex extends React.Component {
         });
 
         return (
-            <div className="treehouses-container">
+            <div className="treehouses-idx-container">
+                <h2 className="treehouses-idx-header">
+                    Top-rated nature lofts
+                </h2>
+                <h3 className="treehouses-idx-subhead">
+                    Explore some of the most famous treehouses in history
+                </h3>
                 <ul className="treehouses-ul">
                     {treehousesLis}
                 </ul>
