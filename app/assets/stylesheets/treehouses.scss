@@ -65,3 +65,78 @@
     margin-bottom: 25px;
 }
 
+
+// Show page
+
+.treehouse-photos-container {
+    height: 35vw;
+    width: 100%;
+    color: white;
+    display: flex;
+}
+
+.treehouse-photo-1 {
+    width: 50%;
+    height: 100%;
+    background-color: darkblue;
+}
+
+.treehouse-right-side-photos-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+}
+
+.treehouse-photo-2, .treehouse-photo-3, .treehouse-photo-4, .treehouse-photo-5 {
+    width: 50%;
+    height: 50%;
+}
+
+.treehouse-photo-2 {
+    background-color: red;
+}
+
+.treehouse-photo-3 {
+    background-color: green;
+}
+
+.treehouse-photo-4 {
+    background-color: yellow;
+}
+
+.treehouse-photo-5 {
+    background-color: purple;
+}
+
+
+// Show page // Booking box
+
+.treehouse-show-container {
+    display: grid;
+    grid-template-columns: 1fr 600px 375px 1fr;
+    margin: auto;
+}
+
+.treehouse-show-left-side {
+    grid-column: 2 / 3;
+    height: auto;
+    margin-right: 65px;
+    padding-bottom: 1500px;
+}
+
+.treehouse-show-name {
+    text-transform: uppercase;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.treehouse-booking-box {
+    grid-column: 3 / 4;
+    height: 400px;
+    position: sticky;
+    top: 30px;
+}
+
+
+
+

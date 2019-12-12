@@ -1,13 +1,16 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 
 const TreehouseIndexItem = ({treehouse}) => {
 
+    // debugger;
     return (
         <li className="treehouse-li">
-            <div className="treehouse-idx-photo-standin">
-                THUMBNAIL GOES HERE
-            </div>
+            <Link to={`/treehouses/${treehouse.id}`}>
+                <div className="treehouse-idx-photo-standin">
+                    THUMBNAIL GOES HERE
+                </div>
+            </Link>
             {/* <div className="treehouse-idx-photo">
                 <img 
                     src={treehouse.photoUrls[0]}

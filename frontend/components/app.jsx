@@ -3,6 +3,7 @@ import NavbarContainer from './navbar/navbar_container';
 import Modal from './modal';
 import SearchBox from './forms/search_box';
 import TreehouseIndexContainer from './treehouses/treehouse_index_container';
+import TreehouseShowContainer from './treehouses/treehouse_show_container';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
 const App = (props) => {
@@ -16,6 +17,9 @@ const App = (props) => {
                 <Route
                     exact path="/treehouses"
                     component={ TreehouseIndexContainer } />
+                <Route
+                    exact path="/treehouses/:treehouseId"
+                    component={ TreehouseShowContainer } />
                 <Route path="/">
                     <SearchBox />
                     <TreehouseIndexContainer />
