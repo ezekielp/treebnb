@@ -59,15 +59,15 @@ input {
     border-radius: 4px;
 }
 
-header {
-    max-width: 100%;
-    height: 100%;
-    background-image: asset-data-url("treebnb-homepage-image.jpg");
-    z-index: 1;
-    overflow: scroll;
-    background-size: cover;
-    position: relative;
-}
+// header {
+//     max-width: 100%;
+//     height: 100%;
+//     background-image: asset-data-url("treebnb-homepage-image.jpg");
+//     z-index: 1;
+//     overflow: scroll;
+//     background-size: cover;
+//     position: relative;
+// }
 
 
 // Navbar
@@ -80,6 +80,7 @@ header {
     background: white;
     border-bottom: 1px solid black;
     padding-top: 12px;
+    z-index: 10;
 }
 
 .treebnb-logo {
@@ -144,6 +145,7 @@ header {
     width: 280px;
     height: auto;
     background-color: white;
+    position: absolute;
     z-index: 1000;
     box-sizing: border-box;
     margin-left: -230px;
@@ -314,7 +316,15 @@ header {
 }
 
 
-// Search Box (on homepage)
+// Search Box + splash image (on homepage)
+
+.splash-image-container {
+    max-width: 100%;
+    height: 1000px;
+    background-image: asset-data-url("treebnb-homepage-image.jpg");
+    background-size: cover;
+    position: relative;
+}
 
 .search-box-container {
     width: 440px;
@@ -325,10 +335,11 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    position: relative;
+    position: absolute;
     box-sizing: border-box;
     padding: 35px;
     border-radius: 4px;
+    z-index: 10;
 }
 
 .search-box-header h1 {
