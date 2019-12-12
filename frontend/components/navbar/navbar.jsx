@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class Navbar extends React.Component {
     constructor(props) {
@@ -60,10 +61,12 @@ class Navbar extends React.Component {
     
         return (
             <nav className="nav-container">
-                <div className="treebnb-logo">
-                    <i className="fas fa-tree"></i>
-                    <span id="treebnb-word">treebnb</span>
-                </div>
+                <Link to="/">
+                    <div className="treebnb-logo">
+                        <i className="fas fa-tree"></i>
+                        <span id="treebnb-word">treebnb</span>
+                    </div>
+                </Link>
                 {linksToRender}
             </nav>
         )
