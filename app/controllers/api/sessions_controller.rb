@@ -10,7 +10,11 @@ class Api::SessionsController < ApplicationController
             login_user(@user)
             render :show
         else
-            render json: ["Invalid email and/or password"], status: 422
+            if User.find_by(email: params[:user][:email])
+                render json: ["Password invalid"], status: 422
+            elsif
+                render json: ["Email can't be found"], status: 422
+            end
         end
     end
 
@@ -21,3 +25,7 @@ class Api::SessionsController < ApplicationController
     end
 
 end
+
+
+
+

@@ -63,7 +63,6 @@ class SessionForm extends React.Component {
         let passwordErrors = errors.password ? <div>{errors.password}.</div> : <></>;
         let firstNameErrors = errors.first ? <div>{errors.first}.</div> : <></>;
         let lastNameErrors = errors.last ? <div>{errors.last}.</div> : <></>;
-        let loginErrors = errors.invalid ? <div>{errors.invalid}.</div> : <></>;
 
         // Conditional for the First / Last name fields
         let nameFields;
@@ -156,7 +155,7 @@ class SessionForm extends React.Component {
                         <i className="fas fa-lock"></i>
                     </div>
                     <div className="error-message">
-                        {passwordErrors}{loginErrors}
+                        {passwordErrors}
                     </div>
                     <input
                         className="session-form-submit-btn" 

@@ -74,10 +74,25 @@ header {
 
 .nav-container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     width: 100%;
-    height: 50px;
-    position: absolute;
+    height: 60px;
+    background: white;
+    border-bottom: 1px solid black;
+    padding-top: 12px;
+}
+
+.treebnb-logo {
+    color: #484848;
+    display: flex;
+    font-size: 24px;
+    margin-left: 102px;
+    margin-top: 8px;
+}
+
+#treebnb-word {
+    font-weight: 700;
+    margin-left: 10px;
 }
 
 .nav-links {
@@ -89,7 +104,7 @@ header {
 .nav-links li {
     color: #484848;
     margin-left: 10px;
-    font-size: 12px;
+    font-size: 13px;
     cursor: pointer;
     // height: 40px;
     font-weight: 600;
@@ -115,6 +130,7 @@ header {
     background-color: #F2F2F2;
     border: 2px solid #484848;
     align-self: center;
+    margin-top: -11px;
 }
 
 
@@ -130,9 +146,9 @@ header {
     background-color: white;
     z-index: 1000;
     box-sizing: border-box;
-    margin-left: -238px;
-    margin-top: 35px;
-    box-shadow: 0 0 5px 2px darkgrey;
+    margin-left: -233px;
+    margin-top: 49px;
+    box-shadow: -2px 3px 5px 0px darkgrey;
 }
 
 .profile-dropdown-container ul {
@@ -150,24 +166,6 @@ header {
     border-bottom: 1px solid #424242;
 }
 
-// .profile-dropdown-container ul li:hover {
-//     border-bottom: 1px solid #292929;
-// }
-
-// .profile-dropdown-container ul hr {
-//     border-top: 1px solid #f5f5f5;
-//     border-left: none;
-//     padding: 0;
-//     width: 90%;
-//     margin: 0 0 0 7px;
-// }
-
-
-// Navbar dropdown
-
-/* .treebnb-symbol {
-    
-} */
 
 // Modal
 
@@ -189,7 +187,7 @@ header {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 25px;
+    padding: 25px 35px;
     box-sizing: border-box;
 }
 
@@ -268,11 +266,11 @@ header {
 }
 
 .session-form-demo-btn {
-    border: 2px solid #767676;
-    color: #767676;
+    color: white;
     text-align: center;
     margin-bottom: 15px;
     cursor: pointer;
+    background: #008489;
 }
 
 .session-form-input {
@@ -365,7 +363,7 @@ header {
 
 .check_-inputs-container {
     display: flex;
-    width: 381px;
+    width: 370px;
 }
 
 .check_-input {

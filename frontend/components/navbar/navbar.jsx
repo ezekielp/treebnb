@@ -60,7 +60,10 @@ class Navbar extends React.Component {
     
         return (
             <nav className="nav-container">
-                <div className="treebnb-symbol"></div>
+                <div className="treebnb-logo">
+                    <i className="fas fa-tree"></i>
+                    <span id="treebnb-word">treebnb</span>
+                </div>
                 {linksToRender}
             </nav>
         )
