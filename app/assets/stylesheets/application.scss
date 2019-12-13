@@ -367,6 +367,10 @@ input {
     border-radius: 4px;
 }
 
+.search-box-input:focus {
+    border: 1px solid #008489;
+}
+
 .check_-labels-container {
     display: flex;
 }
@@ -405,4 +409,27 @@ input {
     margin-top: 9px;
     margin-left: 282px;
     cursor: pointer;
+}
+
+// Search box // Guests dropdown
+
+.search-box-dropdown-container {
+    width: 370px;
+    height: auto;
+    background-color: white;
+    position: absolute;
+    padding: 25px;
+}
+
+.search-box-dropdown-container ul {
+    padding: 0;
+}
+
+.search-box-dropdown-container ul li {
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-box-counter-container {
+    display: flex;
 }
