@@ -359,7 +359,7 @@ input {
     width: 100%;
     border: 1px solid lightgray;
     height: 50px;
-    color: lightgray;
+    color: #484848;
     margin-bottom: 13px;
     margin-top: 8px;
     padding-left: 10px;
@@ -373,10 +373,12 @@ input {
 
 .check_-labels-container {
     display: flex;
+    margin-bottom: 9px;
+    margin-top: 11px;
 }
 
 .checkout-label {
-    margin-left: 125px;
+    margin-left: 129px;
 }
 
 .check_-inputs-container {
@@ -407,7 +409,7 @@ input {
     border-radius: 4px;
     font-size: 15px;
     margin-top: 9px;
-    margin-left: 282px;
+    margin-left: 271px;
     cursor: pointer;
 }
 
@@ -418,7 +420,11 @@ input {
     height: auto;
     background-color: white;
     position: absolute;
-    padding: 25px;
+    padding: 5px 0 25px 25px;
+    box-sizing: border-box;
+    color: #484848;
+    box-shadow: rgba(26, 26, 29, 0.3) 0px 15px 46px -10px;
+    border-radius: 3px;
 }
 
 .search-box-dropdown-container ul {
@@ -430,6 +436,65 @@ input {
     justify-content: space-between;
 }
 
+.search-box-dropdown-container ul li > span {
+    font-weight: 600;
+}
+
+// .search-box-counter-container > div {
+//     line-height: 64px;
+// }
+
 .search-box-counter-container {
     display: flex;
+    font-weight: bold;
+}
+
+.search-box-minus-circle, .search-box-plus-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #008489;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 32px;
+    color: #008489;
+    margin: 15px 20px 15px 25px;
+}
+
+.search-box-plus-circle {
+    border: 1px solid #008489;
+    color: #008489;
+    cursor: pointer;
+}
+
+.search-box-minus-circle {
+    border: 1px solid #008489;
+    color: #008489;
+    opacity: 50%;
+}
+
+.search-box-dropdown-counter-num {
+    width: 16px;
+    line-height: 64px;
+    color: #484848;
+}
+
+.search-box-dropdown-label {
+    display: flex;
+    flex-direction: column;
+    margin-top: 11px;
+}
+
+// .search-box-dropdown-label div {
+//     display: block;
+// }
+
+.search-box-dropdown-label div:first-child {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.search-box-dropdown-label div:last-child {
+    font-size: 13px;
+    margin-top: 6px;
 }

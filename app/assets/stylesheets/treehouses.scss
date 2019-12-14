@@ -66,6 +66,7 @@
 }
 
 
+
 // Show page
 
 .treehouse-photos-container {
@@ -108,20 +109,19 @@
     background-color: purple;
 }
 
-
-// Show page // Booking box
-
 .treehouse-show-container {
     display: grid;
     grid-template-columns: 1fr 600px 375px 1fr;
     margin: auto;
+    margin-top: 25px;
+    color: #484848;
 }
 
 .treehouse-show-left-side {
     grid-column: 2 / 3;
     height: auto;
     margin-right: 65px;
-    padding-bottom: 1500px;
+    // padding-bottom: 1500px;
 }
 
 .treehouse-show-name {
@@ -130,13 +130,93 @@
     font-weight: 600;
 }
 
+// Show page // Booking box
+
 .treehouse-booking-box {
     grid-column: 3 / 4;
-    height: 400px;
+    height: 335px;
     position: sticky;
     top: 30px;
+    border: 1px solid lightgray;
+    padding: 25px;
+}
+
+.treehouse-show-price-container {
+    display: flex;
+}
+
+.treehouse-show-price-container div:first-child {
+    font-weight: bold;
+    font-size: 24px;
+    color: #484848;
+}
+
+.treehouse-show-price-container div:last-child, .treehouse-booking-box-bottom-text {
+    font-weight: 600;
+    font-size: 11px;
+    color: #484848;
+}
+
+.treehouse-show-price-container div:last-child {
+    align-self: flex-end;
+    margin-bottom: 5px;
+    margin-left: 3px;
+}
+
+.treehouse-booking-box-guests-input {
+    width: 100%;
+    border: 1px solid lightgray;
+    height: 50px;
+    color: lightgray;
+    margin-bottom: 13px;
+    margin-top: 8px;
+    padding-left: 10px;
+    font-size: 15px;
+    border-radius: 4px;
+}
+
+.treehouse-booking-box-reserve-btn {
+    background-color: #FF5A5F;
+    color: white;
+    text-align: center;
+    height: 50px;
+    font-weight: 600;
+    width: 100%;
+    border-radius: 4px;
+    font-size: 15px;
+    margin-top: 9px;
+    cursor: pointer;
+}
+
+.treehouse-booking-box-bottom-text {
+    margin-top: 13px;
+    text-align: center;
+}
+
+.treehouse-booking-box-hr {
+    border-top: 1px solid lightgray;
+    height: 0px;
+    margin: 25px 0 15px 0;
 }
 
 
+// // Show page // Booking box // Guests dropdown
 
+#treehouse-booking-box-dropdown-container {
+    width: 323px;
+    margin-top: -18px;
+    box-shadow: 0px 3px 12px -4px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: 2px solid #008489;
+}
 
+#treehouse-show-guests-input:focus {
+    border: 1px solid lightgray;
+}
+
+// .treehouse-guests-bottom-highlight {
+//     width: 100px;
+//     height: 2px;
+//     border-bottom: 2px solid #008489;
+// }

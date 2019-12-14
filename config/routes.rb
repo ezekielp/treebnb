@@ -9,6 +9,4 @@ Rails.application.routes.draw do
     resources :treehouses, only: [:index, :show]
   end
 
-  resources :treehouses, only: [:show]
-
 end

@@ -8,7 +8,7 @@ export const fetchTreehouses = () => {
 export const fetchTreehouse = treehouseId => {
     return $.ajax({
         type: "GET",
-        url: `/api/treehouses${treehouseId}`
+        url: `/api/treehouses/${treehouseId}`
     })
 }
 

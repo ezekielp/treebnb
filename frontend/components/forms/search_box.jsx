@@ -1,16 +1,27 @@
 import React from 'react';
 
+// import 'react-dates/initialize';
+const reactDates = require('react-dates/initialize');
+import 'react-dates/lib/css/_datepicker.css';
+import { DateRangePicker, SingleDatePicker } from 'react-dates';
+
 class SearchBox extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            dropdownOpen: true,
+            dropdownOpen: false,
             kidsCount: 0,
             petsCount: 0,
-            parentsCount: 0
-        }
+            parentsCount: 0,
+            startDate: null,
+            endDate: null,
+            focusedInput: null
+        };
 
         this.toggleDropdown = this.toggleDropdown.bind(this);
+        this.increaseCount = this.increaseCount.bind(this);
+        this.decreaseCount = this.decreaseCount.bind(this);
+        this.makeSingleGuestsInputString = this.makeSingleGuestsInputString.bind(this);
     }
 
     toggleDropdown() {
@@ -25,33 +36,102 @@ class SearchBox extends React.Component {
         this.setState({ dropdownOpen: false });
     }
 
+    increaseCount(type) {
+        // e.stopPropagation();
+        let newVal = this.state[type] + 1;
+        this.setState({ [type]: newVal })
+    }
+    
+    decreaseCount(type) {
+        // e.stopPropagation();
+        let newVal = this.state[type] - 1;
+        if (this.state[type] > 0 ) {
+            this.setState({ [type]: newVal })
+        }
+    }
+
+    makeSingleGuestsInputString(type, stateName) {
+        let num = this.state[stateName];
+        if (num === 0) return null;
+        if (num === 1) {
+            return `${num} ${type}`
+        } else {
+            return `${num} ${type}s`
+        }
+    };
+
     render() {
+
+        // Conditional to toggle color of minus sign on Guests dropdown
+        let kidsMinusSignColorClass = (this.state.kidsCount === 0) ? "search-box-minus-circle" : "search-box-plus-circle";
+        let petsMinusSignColorClass = (this.state.petsCount === 0) ? "search-box-minus-circle" : "search-box-plus-circle";
+        let parentsMinusSignColorClass = (this.state.parentsCount === 0) ? "search-box-minus-circle" : "search-box-plus-circle";
+
+        // Create Guests input string
+        let guestsInputContent = [
+            this.makeSingleGuestsInputString("kid", "kidsCount"),
+            this.makeSingleGuestsInputString("pet", "petsCount"),
+            this.makeSingleGuestsInputString("parent", "parentsCount")
+        ].filter(type => type).join(", ");
+
+        const dateRangePicker = (
+            <DateRangePicker
+                startDate={this.state.startDate}
+                startDateId="mm/dd/yyyy"
+                endDate={this.state.endDate}
+                endDateId="mm/dd/yyyy"
+                onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })}
+                focusedInput={this.state.focusedInput}
+                onFocusChange={focusedInput => this.setState({ focusedInput })}
+            />
+        )
 
         const dropdownMenu = (
             <div className="search-box-dropdown-container">
                 <ul>
                     <li>
-                        <span>Kids</span>
+                        <div className="search-box-dropdown-label">
+                            <div>Kids</div>
+                            <div>The young at heart</div>
+                        </div>
                         <div className="search-box-counter-container">
-                            <div className="search-box-minus-circle">-</div>
-                            <span>{this.state.kidsCount}+</span>
-                            <div className="search-box-plus-circle">+</div>
+                            <div
+                                className={`${kidsMinusSignColorClass}`}
+                                onClick={() => this.decreaseCount("kidsCount")}>–</div>
+                            <div className="search-box-dropdown-counter-num">{this.state.kidsCount}+</div>
+                            <div 
+                                className="search-box-plus-circle"
+                                onClick={() => this.increaseCount("kidsCount")} >+</div>
                         </div>
                     </li>
                     <li>
-                        <span>Pets</span>
+                        <div className="search-box-dropdown-label">
+                            <div>Pets</div>
+                            <div>Dogs, capybaras, etc.</div>
+                        </div>
                         <div className="search-box-counter-container">
-                            <div className="search-box-minus-circle">-</div>
-                            <span>{this.state.petsCount}+</span>
-                            <div className="search-box-plus-circle">+</div>
+                            <div
+                                className={`${petsMinusSignColorClass}`}
+                                onClick={() => this.decreaseCount("petsCount")}>–</div>
+                            <div className="search-box-dropdown-counter-num">{this.state.petsCount}+</div>
+                            <div
+                                className="search-box-plus-circle"
+                                onClick={() => this.increaseCount("petsCount")} >+</div>
                         </div>
                     </li>
                     <li>
-                        <span>Parents</span>
+                        <div className="search-box-dropdown-label">
+                            <div>Parents</div>
+                            <div>Old people</div>
+                        </div>
                         <div className="search-box-counter-container">
-                            <div className="search-box-minus-circle">-</div>
-                            <span>{this.state.parentsCount}+</span>
-                            <div className="search-box-plus-circle">+</div>
+                            <div
+                                className={`${parentsMinusSignColorClass}`}
+                                onClick={() => this.decreaseCount("parentsCount")}>–</div>
+                            <div className="search-box-dropdown-counter-num">{this.state.parentsCount}+</div>
+                            <div
+                                className="search-box-plus-circle"
+                                onClick={() => this.increaseCount("parentsCount")}>+</div>
                         </div>
                     </li>
                 </ul>
@@ -67,15 +147,13 @@ class SearchBox extends React.Component {
                         <h1>Branch out — book a unique treehouse to stay in.</h1>
                     </div>
                     <form>
-                        <label>
-                            <span className="search-box-label">
-                                WHERE
-                            </span>
-                            <input
-                                className="search-box-input"
-                                type="text"
-                                placeholder="Anywhere" />
-                        </label>
+                        <span className="search-box-label">
+                            WHERE
+                        </span>
+                        <input
+                            className="search-box-input"
+                            type="text"
+                            placeholder="Anywhere" />
                         <div className="check_-labels-container">
                             <span className="search-box-label checkin-label">
                                 CHECK-IN
@@ -85,31 +163,32 @@ class SearchBox extends React.Component {
                             </span>
                         </div>
                         <div className="check_-inputs-container">
-                            <input
+                            {dateRangePicker}
+                            {/* <input
                                 className="search-box-input check_-input checkin-input"
                                 type="text"
                                 placeholder="mm/dd/yyyy" />
                             <input
                                 className="search-box-input check_-input checkout-input"
                                 type="text"
-                                placeholder="mm/dd/yyyy" />
+                                placeholder="mm/dd/yyyy" /> */}
                         </div>
-                        <label>
-                            <span className="search-box-label">
-                                GUESTS
-                            </span>
-                            <input
-                                className="search-box-input"
-                                type="text"
-                                placeholder="Guests" 
-                                onMouseDown={() => this.toggleDropdown()}
-                                onBlur={() => this.closeDropdown()}/>
-                            <div
-                                onFocus={() => this.openDropdown()}
-                                onBlur={() => this.closeDropdown()}
-                                tabIndex="0"
-                            >{dropdownComponent}</div>
-                        </label>
+                        <span className="search-box-label">
+                            GUESTS
+                        </span>
+                        <input
+                            className="search-box-input"
+                            type="text"
+                            placeholder="Guests" 
+                            readOnly
+                            value={guestsInputContent}
+                            onMouseDown={() => this.toggleDropdown()}
+                            onBlur={() => this.closeDropdown()}/>
+                        <div
+                            onFocus={() => this.openDropdown()}
+                            onBlur={() => this.closeDropdown()}
+                            tabIndex="0"
+                        >{dropdownComponent}</div>
                         <input
                             className="search-box-submit-btn"
                             type="submit"
