@@ -3,7 +3,10 @@ import React from 'react';
 const reactDates = require('react-dates/initialize');
 import 'react-dates/lib/css/_datepicker.css';
 import './treehouse_show.css';
-import { DateRangePicker, SingleDatePicker } from 'react-dates';
+import { DateRangePicker, DayPickerRangeController } from 'react-dates';
+import { START_DATE, END_DATE } from 'react-dates/src/constants';
+import isInclusivelyAfterDay from 'react-dates/src/utils/isInclusivelyAfterDay';
+import moment from 'moment';
 
 
 class TreehouseShow extends React.Component {
@@ -17,13 +20,15 @@ class TreehouseShow extends React.Component {
             parentsCount: 0,
             startDate: null,
             endDate: null,
-            focusedInput: null
+            focusedInput: null,
+            focusedInputLeftCol: START_DATE
         };
 
         this.toggleDropdown = this.toggleDropdown.bind(this);
         this.increaseCount = this.increaseCount.bind(this);
         this.decreaseCount = this.decreaseCount.bind(this);
         this.makeSingleGuestsInputString = this.makeSingleGuestsInputString.bind(this);
+        this.onFocusChange = this.onFocusChange.bind(this);
     }
 
     componentDidMount() {
@@ -66,6 +71,13 @@ class TreehouseShow extends React.Component {
         }
     }
 
+    onFocusChange() {
+        this.setState({
+            // Force the focusedInput to always be truthy so that dates are always selectable
+            focusedInputLeftCol: this.state.focusedInputLeftCol === START_DATE ? END_DATE : START_DATE
+        });
+    }
+
     render() {
 
         let kidsMinusSignColorClass = (this.state.kidsCount === 0) ? "search-box-minus-circle" : "search-box-plus-circle";
@@ -88,6 +100,19 @@ class TreehouseShow extends React.Component {
                 onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })}
                 focusedInput={this.state.focusedInput}
                 onFocusChange={focusedInput => this.setState({ focusedInput })}
+                />
+                )
+                
+            const dayPickerRangeController = (
+                <DayPickerRangeController
+                startDate={this.state.startDate}
+                endDate={this.state.endDate}
+                onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })}
+                focusedInput={this.state.focusedInputLeftCol}
+                onFocusChange={this.onFocusChange}
+                numberOfMonths={2}
+                isOutsideRange={day => !isInclusivelyAfterDay(day, moment())}
+                // initialVisibleMonth={() => moment().add(2, "M")}
             />
         )
 
@@ -180,6 +205,16 @@ class TreehouseShow extends React.Component {
                         </div>
                         <div className="treehouse-show-address">
                             {treehouse.address}
+                        </div>
+                        <hr className="treehouse-show-hr-below-address"/>
+                        <div className="treehouse-show-description">
+                            {treehouse.description}
+                        </div>
+                        <div className="treehouse-calendar-picker-container">
+                            <div>Availability</div>
+                            <div>
+                                {dayPickerRangeController}
+                            </div>
                         </div>
                     </div>
                     <div className="treehouse-booking-box">

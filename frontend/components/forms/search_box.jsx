@@ -18,10 +18,29 @@ class SearchBox extends React.Component {
             focusedInput: null
         };
 
+        this.dropdownNode = React.createRef();
         this.toggleDropdown = this.toggleDropdown.bind(this);
         this.increaseCount = this.increaseCount.bind(this);
         this.decreaseCount = this.decreaseCount.bind(this);
         this.makeSingleGuestsInputString = this.makeSingleGuestsInputString.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    componentWillMount() {
+        document.addEventListener('mousedown', this.handleClick, false)
+    }
+    
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClick, false)
+    }
+
+    handleClick(e) {
+        if (this.dropdownNode.current.contains(e.target)) {
+            this.openDropdown();
+            return;
+        } else {
+            this.closeDropdown();
+        }
     }
 
     toggleDropdown() {
@@ -40,6 +59,7 @@ class SearchBox extends React.Component {
         // e.stopPropagation();
         let newVal = this.state[type] + 1;
         this.setState({ [type]: newVal })
+        // console.log("Increase");
     }
     
     decreaseCount(type) {
@@ -101,7 +121,9 @@ class SearchBox extends React.Component {
                             <div className="search-box-dropdown-counter-num">{this.state.kidsCount}+</div>
                             <div 
                                 className="search-box-plus-circle"
-                                onClick={() => this.increaseCount("kidsCount")} >+</div>
+                                onClick={() => {
+                                    this.increaseCount("kidsCount");
+                                    }} >+</div>
                         </div>
                     </li>
                     <li>
@@ -164,14 +186,6 @@ class SearchBox extends React.Component {
                         </div>
                         <div className="check_-inputs-container">
                             {dateRangePicker}
-                            {/* <input
-                                className="search-box-input check_-input checkin-input"
-                                type="text"
-                                placeholder="mm/dd/yyyy" />
-                            <input
-                                className="search-box-input check_-input checkout-input"
-                                type="text"
-                                placeholder="mm/dd/yyyy" /> */}
                         </div>
                         <span className="search-box-label">
                             GUESTS
@@ -183,11 +197,9 @@ class SearchBox extends React.Component {
                             readOnly
                             value={guestsInputContent}
                             onMouseDown={() => this.toggleDropdown()}
-                            onBlur={() => this.closeDropdown()}/>
+                            />
                         <div
-                            onFocus={() => this.openDropdown()}
-                            onBlur={() => this.closeDropdown()}
-                            tabIndex="0"
+                            ref={this.dropdownNode}
                         >{dropdownComponent}</div>
                         <input
                             className="search-box-submit-btn"
