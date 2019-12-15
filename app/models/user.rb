@@ -24,6 +24,10 @@ class User < ApplicationRecord
         foreign_key: :owner_id,
         class_name: :Treehouse
 
+    has_many :bookings,
+        class_name: :Booking,
+        foreign_key: :guest_id
+
     def self.find_by_credentials(email, password)
         user = User.find_by(email: email)
         return nil unless user && user.valid_password?(password)

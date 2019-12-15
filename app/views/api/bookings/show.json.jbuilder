@@ -1,0 +1,1 @@
+json.extract! @booking, :id, :treehouse_id, :guest_id, :start_date, :end_date, :status
