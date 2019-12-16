@@ -15,7 +15,8 @@ class SearchBox extends React.Component {
             parentsCount: 0,
             startDate: null,
             endDate: null,
-            focusedInput: null
+            focusedInput: null,
+            guestsInputBorderFocused: false
         };
 
         this.inputNode = React.createRef();
@@ -70,6 +71,10 @@ class SearchBox extends React.Component {
         this.setState({ dropdownOpen: false });
     }
 
+    toggleGuestsInputBorderColor() {
+        this.setState({ guestsInputBorderFocused: !this.state.guestsInputBorderFocused });
+    }
+
     increaseCount(type) {
         // e.stopPropagation();
         let newVal = this.state[type] + 1;
@@ -109,6 +114,17 @@ class SearchBox extends React.Component {
             this.makeSingleGuestsInputString("parent", "parentsCount")
         ].filter(type => type).join(", ");
 
+        // Conditional for the Guests input chevron
+        let chevronDirection;
+        if (this.state.dropdownOpen) {
+            chevronDirection = "fas fa-chevron-up";
+        } else {
+            chevronDirection = "fas fa-chevron-down";
+        }
+
+        // Conditional for guests input container border color class
+        let guestsInputBorderColorClass = this.state.guestsInputBorderFocused ? "guests-input-outline-blue" : "";
+
         const dateRangePicker = (
             <DateRangePicker
                 startDate={this.state.startDate}
@@ -118,6 +134,7 @@ class SearchBox extends React.Component {
                 onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })}
                 focusedInput={this.state.focusedInput}
                 onFocusChange={focusedInput => this.setState({ focusedInput })}
+                numberOfMonths={1}
             />
         )
 
@@ -205,14 +222,24 @@ class SearchBox extends React.Component {
                         <span className="search-box-label">
                             GUESTS
                         </span>
-                        <input
+                        <div
+                            id={guestsInputBorderColorClass}
+                            className={`search-box-input guests-input-container`}
                             ref={this.inputNode}
-                            className="search-box-input"
-                            type="text"
-                            placeholder="Guests" 
-                            readOnly
-                            value={guestsInputContent}
-                            />
+                            onFocus={() => this.toggleGuestsInputBorderColor()}
+                            onBlur={() => this.toggleGuestsInputBorderColor()}
+                            tabIndex="0">
+                            <input
+                                className="guests-input"
+                                type="text"
+                                placeholder="Guests" 
+                                readOnly
+                                value={guestsInputContent}
+                                onFocus={() => this.toggleGuestsInputBorderColor()}
+                                onBlur={() => this.toggleGuestsInputBorderColor()}
+                                />
+                            <i className={chevronDirection}></i>
+                        </div>
                         <div
                             ref={this.dropdownNode}
                         >{dropdownComponent}</div>

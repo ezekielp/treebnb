@@ -125,6 +125,14 @@ class TreehouseShow extends React.Component {
         //     darkenHoverClass = "";
         // }
 
+        // Conditional for the Guests input chevron
+        let chevronDirection;
+        if (this.state.dropdownOpen) {
+            chevronDirection = "fas fa-chevron-up";
+        } else {
+            chevronDirection = "fas fa-chevron-down";
+        }
+
         let kidsMinusSignColorClass = (this.state.kidsCount === 0) ? "search-box-minus-circle" : "search-box-plus-circle";
         let petsMinusSignColorClass = (this.state.petsCount === 0) ? "search-box-minus-circle" : "search-box-plus-circle";
         let parentsMinusSignColorClass = (this.state.parentsCount === 0) ? "search-box-minus-circle" : "search-box-plus-circle";
@@ -289,15 +297,18 @@ class TreehouseShow extends React.Component {
                             <span className="search-box-label">
                                     Guests
                             </span>
-                            <input
-                                ref={this.inputNode}
-                                className="search-box-input"
-                                id="treehouse-show-guests-input"
-                                type="text"
-                                placeholder="Guests"
-                                readOnly
-                                value={guestsInputContent}
-                                />
+                            <div
+                                className="search-box-input" id="treehouse-show-guests-input-container"
+                                ref={this.inputNode}>
+                                <input
+                                    className="guests-input"
+                                    type="text"
+                                    placeholder="Guests"
+                                    readOnly
+                                    value={guestsInputContent}
+                                    />
+                                <i className={chevronDirection}></i>
+                            </div>
                             <div
                                 ref={this.dropdownNode}
                             >{dropdownComponent}</div>

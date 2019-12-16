@@ -7,15 +7,17 @@ const TreehouseIndexItem = ({treehouse}) => {
     return (
         <li className="treehouse-li">
             <Link to={`/treehouses/${treehouse.id}`}>
-                <div className="treehouse-idx-photo-standin">
+                {/* <div className="treehouse-idx-photo-standin">
                     THUMBNAIL GOES HERE
+                </div> */}
+                <div className="treehouse-idx-photo">
+                    <div className="treehouse-idx-photo-child" style={{ backgroundImage: `url(${treehouse.photoUrls[0]})`}}>
+                    </div>
+                    {/* <img 
+                        src={treehouse.photoUrls[0]}
+                        alt={treehouse.name}/> */}
                 </div>
             </Link>
-            {/* <div className="treehouse-idx-photo">
-                <img 
-                    src={treehouse.photoUrls[0]}
-                    alt={treehouse.name}/>
-            </div> */}
             <div className="treehouse-idx-address">
                 {treehouse.address}
             </div>

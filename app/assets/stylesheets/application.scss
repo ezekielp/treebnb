@@ -413,6 +413,22 @@ input {
     cursor: pointer;
 }
 
+.guests-input-container {
+    display: flex;
+    justify-content: space-between;
+    width: 97.5%;
+    cursor: pointer;
+}
+
+.guests-input-container:focus {
+    // border: 1px solid #008489;
+    outline: 0;
+}
+
+#guests-input-outline-blue {
+    border: 1px solid #008489;    
+}
+
 // Search box // Guests dropdown
 
 .search-box-dropdown-container {
