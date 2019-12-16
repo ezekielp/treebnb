@@ -29,6 +29,7 @@ class TreehouseShow extends React.Component {
         this.decreaseCount = this.decreaseCount.bind(this);
         this.makeSingleGuestsInputString = this.makeSingleGuestsInputString.bind(this);
         this.onFocusChange = this.onFocusChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -76,6 +77,21 @@ class TreehouseShow extends React.Component {
             // Force the focusedInput to always be truthy so that dates are always selectable
             focusedInputLeftCol: this.state.focusedInputLeftCol === START_DATE ? END_DATE : START_DATE
         });
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        let treehouse_id = this.props.match.params.treehouseId;
+        let start_date = this.state.startDate.format('YYYY/MM/DD');
+        let end_date = this.state.endDate.format('YYYY/MM/DD');
+        let newBooking = {
+            guest_id: this.props.currentUser.id,
+            treehouse_id,
+            start_date,
+            end_date
+        };
+        debugger;
+        this.props.createBooking(treehouse_id, newBooking);
     }
 
     render() {
@@ -231,7 +247,7 @@ class TreehouseShow extends React.Component {
                             <div>per night</div>
                         </div>
                         <hr className="treehouse-booking-box-hr"/>
-                        <form>
+                        <form onSubmit={this.handleSubmit}>
                             <div className="check_-labels-container">
                                 <span className="search-box-label">
                                     Dates

@@ -27,10 +27,17 @@ class SearchBox extends React.Component {
     }
 
     componentWillMount() {
+        // debugger;
+        document.addEventListener('mousedown', this.handleClick, false)
+    }
+    
+    componentDidMount() {
+        // debugger;
         document.addEventListener('mousedown', this.handleClick, false)
     }
     
     componentWillUnmount() {
+        // debugger;
         document.removeEventListener('mousedown', this.handleClick, false)
     }
 
@@ -44,11 +51,19 @@ class SearchBox extends React.Component {
     }
 
     toggleDropdown() {
-        this.setState({ dropdownOpen: !this.state.dropdownOpen});
+        // console.log("click detected!");
+        // console.log(this.state.dropdownOpen);
+        if (this.state.dropdownOpen === false) {
+            this.openDropdown();
+        } else {
+            this.closeDropdown();
+        }
+        // this.setState({ dropdownOpen: !this.state.dropdownOpen});
     }
 
     openDropdown() {
         this.setState({ dropdownOpen: true });
+        console.log(this.state.dropdownOpen);
     }
     
     closeDropdown() {
@@ -81,7 +96,7 @@ class SearchBox extends React.Component {
     };
 
     render() {
-
+        // console.log(this.state.dropdownOpen);
         // Conditional to toggle color of minus sign on Guests dropdown
         let kidsMinusSignColorClass = (this.state.kidsCount === 0) ? "search-box-minus-circle" : "search-box-plus-circle";
         let petsMinusSignColorClass = (this.state.petsCount === 0) ? "search-box-minus-circle" : "search-box-plus-circle";
@@ -196,7 +211,9 @@ class SearchBox extends React.Component {
                             placeholder="Guests" 
                             readOnly
                             value={guestsInputContent}
-                            onMouseDown={() => this.toggleDropdown()}
+                            // onFocus={() => this.openDropdown()}
+                            // onMouseDown={() => this.openDropdown()}
+                            onClick={() => this.toggleDropdown()}
                             />
                         <div
                             ref={this.dropdownNode}

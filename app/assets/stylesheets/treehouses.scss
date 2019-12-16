@@ -74,7 +74,9 @@
 
 .treehouse-photos-container {
     height: 35vw;
+    max-height: 600px;
     width: 100%;
+    min-width: 1115px;
     color: white;
     display: flex;
 }

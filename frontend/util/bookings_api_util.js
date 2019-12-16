@@ -13,8 +13,9 @@ export const fetchBooking = (userId, bookingId) => {
 }
 
 export const createBooking = (treehouseId, booking) => {
+    debugger;
     return $.ajax({
-        type: "PUT",
+        type: "POST",
         url: `/api/treehouses/${treehouseId}/bookings`,
         data: { booking }
     })

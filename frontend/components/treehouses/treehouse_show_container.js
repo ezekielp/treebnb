@@ -15,7 +15,7 @@ const msp = ({ entities, session }, ownProps) => {
 const mdp = dispatch => {
     return {
         fetchTreehouse: treehouseId => dispatch(fetchTreehouse(treehouseId)),
-        createBooking: booking => dispatch(createBooking(booking))
+        createBooking: (treehouseId, booking) => dispatch(createBooking(treehouseId, booking))
     }
 }
 
