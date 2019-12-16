@@ -25,3 +25,22 @@
 .DateRangePicker {
     width: 100%;
 }
+
+.CalendarMonth_caption {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.CalendarDay {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.CalendarMonth_table {
+    margin-top: 6px;
+}
+
+/* .DayPicker__withBorder {
+    box-shadow: none;
+} */
+

@@ -117,7 +117,7 @@
 
 .treehouse-show-container {
     display: grid;
-    grid-template-columns: 1fr 900px 375px 1fr;
+    grid-template-columns: 1fr 734px 375px 1fr;
     margin: auto;
     margin-top: 25px;
     color: #484848;
@@ -144,6 +144,16 @@
     height: 0px;
     border-left: none;
     margin: 30px 0 40px 0;
+}
+
+// .treehouse-calendar-picker-container div:first-child {
+//     margin: 30px 0;
+// }
+
+.treehouse-availability-div {
+    margin: 30px 0;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 

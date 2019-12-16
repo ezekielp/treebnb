@@ -1,16 +1,21 @@
 import { connect } from 'react-redux';
 import { fetchTreehouse } from '../../actions/treehouse_actions';
+import { createBooking } from '../../actions/booking_actions';
 import TreehouseShow from './treehouse_show';
 
-const msp = (state, ownProps) => {
+const msp = ({ entities, session }, ownProps) => {
+    let currentUser = session.currentUser ? entities.users[session.currentUser.id] : {};
+
     return {
-        treehouse: state.entities.treehouses[ownProps.match.params.treehouseId]
+        treehouse: entities.treehouses[ownProps.match.params.treehouseId],
+        currentUser
     }
 }
 
 const mdp = dispatch => {
     return {
-        fetchTreehouse: treehouseId => dispatch(fetchTreehouse(treehouseId))
+        fetchTreehouse: treehouseId => dispatch(fetchTreehouse(treehouseId)),
+        createBooking: booking => dispatch(createBooking(booking))
     }
 }
 

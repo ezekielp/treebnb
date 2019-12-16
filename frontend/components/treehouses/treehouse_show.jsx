@@ -79,6 +79,8 @@ class TreehouseShow extends React.Component {
     }
 
     render() {
+        console.log(this.state.startDate);
+        console.log(this.props.currentUser);
 
         let kidsMinusSignColorClass = (this.state.kidsCount === 0) ? "search-box-minus-circle" : "search-box-plus-circle";
         let petsMinusSignColorClass = (this.state.petsCount === 0) ? "search-box-minus-circle" : "search-box-plus-circle";
@@ -100,6 +102,10 @@ class TreehouseShow extends React.Component {
                 onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })}
                 focusedInput={this.state.focusedInput}
                 onFocusChange={focusedInput => this.setState({ focusedInput })}
+                numberOfMonths={1}
+                hideKeyboardShortcutsPanel={true}
+                startDatePlaceholderText="Check-in"
+                endDatePlaceholderText="Checkout"
                 />
                 )
                 
@@ -112,6 +118,7 @@ class TreehouseShow extends React.Component {
                 onFocusChange={this.onFocusChange}
                 numberOfMonths={2}
                 isOutsideRange={day => !isInclusivelyAfterDay(day, moment())}
+                hideKeyboardShortcutsPanel={true}
                 // initialVisibleMonth={() => moment().add(2, "M")}
             />
         )
@@ -210,8 +217,9 @@ class TreehouseShow extends React.Component {
                         <div className="treehouse-show-description">
                             {treehouse.description}
                         </div>
+                        <hr className="treehouse-show-hr-below-address"/>
                         <div className="treehouse-calendar-picker-container">
-                            <div>Availability</div>
+                            <div className="treehouse-availability-div">Availability</div>
                             <div>
                                 {dayPickerRangeController}
                             </div>

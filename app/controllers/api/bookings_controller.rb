@@ -13,6 +13,7 @@ class Api::BookingsController < ApplicationController
     def create
         @booking = Booking.new(booking_params)
         if @booking.save
+            @booking.approve!
             render :show
         else
             render json: @booking.errors.full_messages, status: 422

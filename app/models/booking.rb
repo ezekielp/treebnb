@@ -25,29 +25,34 @@ class Booking < ApplicationRecord
 
     def overlapping_requests
         Booking
-            .select("*")
-            .where("treehouse_id = #{self.treehouse_id} AND
-                (start_date BETWEEN '#{self.start_date}' AND '#{self.end_date}'
-                OR end_date BETWEEN '#{self.start_date}' AND '#{self.end_date}')")
+            .where.not(id: self.id)
+            .where(treehouse_id: self.treehouse_id)
+            .where('start_date BETWEEN :start_date AND :end_date
+                OR end_date BETWEEN :start_date AND :end_date',start_date: start_date, end_date: end_date)
     end
 
     def overlapping_approved_requests
-        self.overlapping_requests.where(status: "APPROVED")
+        self.overlapping_requests.where('status = \'APPROVED\'')
     end
 
     def overlapping_pending_requests
-        self.overlapping_requests.where(status: "PENDING")
+        self.overlapping_requests.where('status = \'PENDING\'')
     end
 
     def does_not_overlap_approved_request
-        !self.overlapping_approved_requests.exists?
+        if !overlapping_approved_requests.empty?
+            errors[:status] << "Booking conflicts with existing reservation"
+            self.update(status: 'DENIED')
+        end
+
+        # !self.overlapping_approved_requests.exists?
     end
 
     def approve!
         transaction do
-            self.update(status: "APPROVED")
+            self.update(status: 'APPROVED')
             self.overlapping_pending_requests.each do |request|
-                request.deny!
+                request.update(status: 'DENIED')
             end
         end
     end
