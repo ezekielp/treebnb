@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 const TreehouseIndexItem = ({treehouse}) => {
 
-    // debugger;
     return (
         <li className="treehouse-li">
             <Link to={`/treehouses/${treehouse.id}`}>

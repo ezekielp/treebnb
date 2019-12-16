@@ -14,7 +14,6 @@ class TreehouseShow extends React.Component {
         super(props);
 
         this.state = {
-            darkenEffect: false,
             dropdownOpen: false,
             kidsCount: 0,
             petsCount: 0,
