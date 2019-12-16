@@ -24,16 +24,39 @@ class TreehouseShow extends React.Component {
             focusedInputLeftCol: START_DATE
         };
 
+        this.inputNode = React.createRef();
+        this.dropdownNode = React.createRef();
         this.toggleDropdown = this.toggleDropdown.bind(this);
         this.increaseCount = this.increaseCount.bind(this);
         this.decreaseCount = this.decreaseCount.bind(this);
         this.makeSingleGuestsInputString = this.makeSingleGuestsInputString.bind(this);
         this.onFocusChange = this.onFocusChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    componentWillMount() {
+        document.addEventListener('mousedown', this.handleClick, false);
     }
 
     componentDidMount() {
         this.props.fetchTreehouse(this.props.match.params.treehouseId);
+        document.addEventListener('mousedown', this.handleClick, false);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.handleClick, false);
+    }
+
+    handleClick(e) {
+        if (this.dropdownNode.current.contains(e.target)) {
+            this.openDropdown();
+            return;
+        } else if (this.inputNode.current.contains(e.target)) {
+            this.toggleDropdown();
+        } else {
+            this.closeDropdown();
+        }
     }
 
     toggleDropdown() {
@@ -207,15 +230,21 @@ class TreehouseShow extends React.Component {
                         BIG PHOTO GOES HERE
                     </div>
                     <div className="treehouse-right-side-photos-container">
-                        <div className="treehouse-photo-2">
+                        <div className="treehouse-photo-parent">
+                            <div className="treehouse-photo-child treehouse-photo-2">
+                            </div>
                         </div>
-                        <div className="treehouse-photo-3">
+                        <div className="treehouse-photo-parent">
+                            <div className="treehouse-photo-child treehouse-photo-3">
+                            </div>
                         </div>
-                        <div className="treehouse-photo-4">
-                            PHOTO #4 GOES HERE
+                        <div className="treehouse-photo-parent">
+                            <div className="treehouse-photo-child treehouse-photo-4">
+                            </div>
                         </div>
-                        <div className="treehouse-photo-5">
-                            PHOTO #5 GOES HERE
+                        <div className="treehouse-photo-parent">
+                            <div className="treehouse-photo-child treehouse-photo-5">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -256,18 +285,16 @@ class TreehouseShow extends React.Component {
                                     Guests
                             </span>
                             <input
+                                ref={this.inputNode}
                                 className="search-box-input"
                                 id="treehouse-show-guests-input"
                                 type="text"
                                 placeholder="Guests"
                                 readOnly
                                 value={guestsInputContent}
-                                onMouseDown={() => this.toggleDropdown()}
-                                onBlur={() => this.closeDropdown()} />
+                                />
                             <div
-                                onFocus={() => this.openDropdown()}
-                                onBlur={() => this.closeDropdown()}
-                                tabIndex="0"
+                                ref={this.dropdownNode}
                             >{dropdownComponent}</div>
                             <input
                                 className="treehouse-booking-box-reserve-btn"

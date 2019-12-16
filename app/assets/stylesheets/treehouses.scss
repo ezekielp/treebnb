@@ -24,12 +24,14 @@
     height: auto;
     display: flex;
     flex-wrap: wrap;
-    padding: 0;
+    // padding: 0 20px;
+    margin: 15px auto;
 }
 
 .treehouse-li {
-    margin: 8px 16px 8px 0;
-    width: 20vw;
+    padding: 8px 16px 8px 16px;
+    box-sizing: border-box;
+    width: 21vw;
     min-width: 250px;
 }
 
@@ -93,27 +95,40 @@
     width: 50%;
 }
 
-.treehouse-photo-2, .treehouse-photo-3, .treehouse-photo-4, .treehouse-photo-5 {
+.treehouse-photo-parent {
     width: 50%;
     height: 50%;
+    overflow: hidden;
+}
+
+.treehouse-photo-child {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    transition: all .5s;
+    background-size: cover;
+    background-position: center;
+}
+
+.treehouse-photo-child:hover {
+    transform: scale(1.1);
+    overflow: hidden;
 }
 
 .treehouse-photo-2 {
     background-image: asset-data-url("small-photo-2.jpeg");
-    background-size: cover;
 }
 
 .treehouse-photo-3 {
     background-image: asset-data-url("small-photo-3.jpg");
-    background-size: cover;
 }
 
 .treehouse-photo-4 {
-    background-color: yellow;
+    background-image: asset-data-url("small-photo-5.jpg");
 }
 
 .treehouse-photo-5 {
-    background-color: purple;
+    background-image: asset-data-url("small-photo-4.jpg");
 }
 
 

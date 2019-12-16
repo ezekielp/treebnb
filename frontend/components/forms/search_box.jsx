@@ -3,7 +3,7 @@ import React from 'react';
 // import 'react-dates/initialize';
 const reactDates = require('react-dates/initialize');
 import 'react-dates/lib/css/_datepicker.css';
-import { DateRangePicker, SingleDatePicker } from 'react-dates';
+import { DateRangePicker } from 'react-dates';
 
 class SearchBox extends React.Component {
     constructor(props) {
@@ -18,6 +18,7 @@ class SearchBox extends React.Component {
             focusedInput: null
         };
 
+        this.inputNode = React.createRef();
         this.dropdownNode = React.createRef();
         this.toggleDropdown = this.toggleDropdown.bind(this);
         this.increaseCount = this.increaseCount.bind(this);
@@ -45,25 +46,24 @@ class SearchBox extends React.Component {
         if (this.dropdownNode.current.contains(e.target)) {
             this.openDropdown();
             return;
+        } else if (this.inputNode.current.contains(e.target)) {
+            this.toggleDropdown();
         } else {
             this.closeDropdown();
         }
     }
 
     toggleDropdown() {
-        // console.log("click detected!");
-        // console.log(this.state.dropdownOpen);
-        if (this.state.dropdownOpen === false) {
-            this.openDropdown();
-        } else {
-            this.closeDropdown();
-        }
-        // this.setState({ dropdownOpen: !this.state.dropdownOpen});
+        // if (this.state.dropdownOpen === false) {
+        //     this.openDropdown();
+        // } else {
+        //     this.closeDropdown();
+        // }
+        this.setState({ dropdownOpen: !this.state.dropdownOpen});
     }
 
     openDropdown() {
         this.setState({ dropdownOpen: true });
-        console.log(this.state.dropdownOpen);
     }
     
     closeDropdown() {
@@ -206,14 +206,12 @@ class SearchBox extends React.Component {
                             GUESTS
                         </span>
                         <input
+                            ref={this.inputNode}
                             className="search-box-input"
                             type="text"
                             placeholder="Guests" 
                             readOnly
                             value={guestsInputContent}
-                            // onFocus={() => this.openDropdown()}
-                            // onMouseDown={() => this.openDropdown()}
-                            onClick={() => this.toggleDropdown()}
                             />
                         <div
                             ref={this.dropdownNode}
