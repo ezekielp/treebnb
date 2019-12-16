@@ -6,10 +6,19 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require 'open-uri'
+
 User.create(email: "annie_smith@magictreehouse.com", first_name: "Annie", last_name: "Smith", password: "Merlin")
 
 Treehouse.destroy_all
-Treehouse.create(name: "Treehouse", description: "An amazing treehouse", owner_id: "1", address: "Narnia", lat: "31.24", lng: "-62.8", price: "13")
+
+treehouse_1 = Treehouse.create(name: "Treehouse", description: "An amazing treehouse", owner_id: "1", address: "Narnia", lat: "31.24", lng: "-62.8", price: "13")
+
+file = open('https://treebnb-seeds.s3.amazonaws.com/treehouse-big-1.jpg')
+
+treehouse_1.photos.attach(io: file, filename: 'treehouse-big-1.jpg')
+
+
 Treehouse.create(name: "Treehouse 2", description: "An amazing treehouse", owner_id: "2", address: "Middle Earth", lat: "25.52", lng: "-77.3", price: "950")
 Treehouse.create(name: "Treehouse 3", description: "An amazing treehouse", owner_id: "3", address: "Chicago", lat: "20", lng: "-82", price: "443")
 Treehouse.create(name: "Yggdrasil", description: "An amazing treehouse", owner_id: "1", address: "Nine Worlds", lat: "62.7", lng: "7.9", price: "6")

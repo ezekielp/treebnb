@@ -83,10 +83,23 @@
     display: flex;
 }
 
+// .treehouse-photo-darkened:hover::after {
+//     background: rgba(0,0,0,0.4);
+//     width: 100%;
+//     height: 100%;
+//     top: 0;
+//     left: 0;
+//     z-index: 1;
+//     content: "";
+//     position: absolute;
+// }
+
 .treehouse-photo-1 {
     width: 50%;
     height: 100%;
-    background-color: darkblue;
+    overflow: hidden;
+    // background-size: cover;
+    // background-position: center;
 }
 
 .treehouse-right-side-photos-container {
@@ -106,7 +119,6 @@
     height: 100%;
     background-size: cover;
     transition: all .5s;
-    background-size: cover;
     background-position: center;
 }
 

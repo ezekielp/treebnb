@@ -14,6 +14,7 @@ class TreehouseShow extends React.Component {
         super(props);
 
         this.state = {
+            darkenEffect: false,
             dropdownOpen: false,
             kidsCount: 0,
             petsCount: 0,
@@ -113,13 +114,16 @@ class TreehouseShow extends React.Component {
             start_date,
             end_date
         };
-        debugger;
-        this.props.createBooking(treehouse_id, newBooking);
+        // this.props.createBooking(treehouse_id, newBooking);
     }
 
     render() {
-        console.log(this.state.startDate);
-        console.log(this.props.currentUser);
+        // let darkenHoverClass;
+        // if (this.state.darkenEffect === true) {
+        //     darkenHoverClass = "treehouse-photo-darkened";
+        // } else {
+        //     darkenHoverClass = "";
+        // }
 
         let kidsMinusSignColorClass = (this.state.kidsCount === 0) ? "search-box-minus-circle" : "search-box-plus-circle";
         let petsMinusSignColorClass = (this.state.petsCount === 0) ? "search-box-minus-circle" : "search-box-plus-circle";
@@ -227,7 +231,8 @@ class TreehouseShow extends React.Component {
             <div>
                 <div className="treehouse-photos-container">
                     <div className="treehouse-photo-1">
-                        BIG PHOTO GOES HERE
+                        <div className="treehouse-photo-child" style={{backgroundImage: `url(${treehouse.photoUrls[0]})`}}>
+                        </div>
                     </div>
                     <div className="treehouse-right-side-photos-container">
                         <div className="treehouse-photo-parent">
