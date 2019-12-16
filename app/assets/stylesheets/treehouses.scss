@@ -99,11 +99,13 @@
 }
 
 .treehouse-photo-2 {
-    background-color: red;
+    background-image: asset-data-url("small-photo-2.jpeg");
+    background-size: cover;
 }
 
 .treehouse-photo-3 {
-    background-color: green;
+    background-image: asset-data-url("small-photo-3.jpg");
+    background-size: cover;
 }
 
 .treehouse-photo-4 {

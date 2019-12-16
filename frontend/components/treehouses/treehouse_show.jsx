@@ -208,10 +208,8 @@ class TreehouseShow extends React.Component {
                     </div>
                     <div className="treehouse-right-side-photos-container">
                         <div className="treehouse-photo-2">
-                            PHOTO #2 GOES HERE
                         </div>
                         <div className="treehouse-photo-3">
-                            PHOTO #3 GOES HERE
                         </div>
                         <div className="treehouse-photo-4">
                             PHOTO #4 GOES HERE
