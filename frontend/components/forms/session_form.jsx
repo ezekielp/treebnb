@@ -52,6 +52,14 @@ class SessionForm extends React.Component {
 
         let { formType, openModal } = this.props;
 
+        // Conditonal for top error message (trying to book without being logged in)
+        let messageContainer;
+        if (this.props.message) {
+            messageContainer = this.props.message;
+        } else {
+            messageContainer = <></>;
+        }
+
         // Conditionals for rendering errors
         let errors;
         if (this.props.errors) {
@@ -116,6 +124,7 @@ class SessionForm extends React.Component {
 
         return (
             <div className="session-container">
+                {messageContainer}
                 <button
                     onClick={this.logInWithDemoUser}
                     className="session-form-demo-btn">

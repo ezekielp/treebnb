@@ -104,16 +104,32 @@ class TreehouseShow extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+
+        // If all fields are filled out but user is not logged in, open modal
+        // and send message that they need to sign up / log in
+        let { currentUser } = this.props;
+        if (!currentUser.id) {
+            let message = (
+                <div>
+                    <div>Sign up to book</div>
+                    <div>You're moments away from booking your stay.</div>
+                </div>
+            );
+            this.props.openModal('Sign up', message)
+        } else {
+        // If all fields are filled out and user is logged in, send the booking
+        // request
         let treehouse_id = this.props.match.params.treehouseId;
         let start_date = this.state.startDate.format('YYYY/MM/DD');
         let end_date = this.state.endDate.format('YYYY/MM/DD');
         let newBooking = {
-            guest_id: this.props.currentUser.id,
+            guest_id: currentUser.id,
             treehouse_id,
             start_date,
             end_date
         };
         // this.props.createBooking(treehouse_id, newBooking);
+        };
     }
 
     render() {

@@ -5,14 +5,19 @@ import LoginFormContainer from './forms/login_form_container';
 import SignupFormContainer from './forms/signup_form_container';
 
 const Modal = ({modal, closeModal}) => {
-    // debugger;
     if (!modal) return null;
+    let { formType, message } = modal;
+
 
     let component;
-    if (modal === 'Log in') {
+    if (formType === 'Log in') {
         component = <LoginFormContainer />
-    } else if (modal === 'Sign up') {
-        component = <SignupFormContainer />
+    } else if (formType === 'Sign up') {
+        if (!message) {
+            component = <SignupFormContainer />
+        } else {
+            component = <SignupFormContainer message={message} />
+        }
     }
 
     return (
