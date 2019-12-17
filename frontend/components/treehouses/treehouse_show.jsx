@@ -15,7 +15,7 @@ class TreehouseShow extends React.Component {
 
         this.state = {
             dropdownOpen: false,
-            kidsCount: 0,
+            kidsCount: 1,
             petsCount: 0,
             parentsCount: 0,
             startDate: null,
@@ -80,8 +80,14 @@ class TreehouseShow extends React.Component {
     decreaseCount(type) {
         // e.stopPropagation();
         let newVal = this.state[type] - 1;
-        if (this.state[type] > 0) {
-            this.setState({ [type]: newVal })
+        if (type === "kidsCount") {
+            if (this.state[type] > 1) {
+                this.setState({ [type]: newVal })
+            }
+        } else {
+            if (this.state[type] > 0) {
+                this.setState({ [type]: newVal })
+            }
         }
     }
     
@@ -108,7 +114,10 @@ class TreehouseShow extends React.Component {
         // If all fields are filled out but user is not logged in, open modal
         // and send message that they need to sign up / log in
         let { currentUser } = this.props;
-        if (!currentUser.id) {
+        if (!this.state.startDate || !this.state.endDate) {
+            this.setState({ focusedInput: START_DATE });
+        } else  {
+            if (!currentUser.id) {
             let message = (
                 <div>
                     <div id="sign-up-to-book">Sign up to book</div>
@@ -116,19 +125,20 @@ class TreehouseShow extends React.Component {
                 </div>
             );
             this.props.openModal('Sign up', message)
-        } else {
-        // If all fields are filled out and user is logged in, send the booking
-        // request
-        let treehouse_id = this.props.match.params.treehouseId;
-        let start_date = this.state.startDate.format('YYYY/MM/DD');
-        let end_date = this.state.endDate.format('YYYY/MM/DD');
-        let newBooking = {
-            guest_id: currentUser.id,
-            treehouse_id,
-            start_date,
-            end_date
-        };
-        // this.props.createBooking(treehouse_id, newBooking);
+            } else {
+            // If all fields are filled out and user is logged in, send the booking
+            // request
+                let treehouse_id = this.props.match.params.treehouseId;
+                let start_date = this.state.startDate.format('YYYY/MM/DD');
+                let end_date = this.state.endDate.format('YYYY/MM/DD');
+                let newBooking = {
+                    guest_id: currentUser.id,
+                    treehouse_id,
+                    start_date,
+                    end_date
+                };
+                this.props.createBooking(treehouse_id, newBooking);
+            };
         };
     }
 
@@ -148,16 +158,22 @@ class TreehouseShow extends React.Component {
             chevronDirection = "fas fa-chevron-down";
         }
 
-        let kidsMinusSignColorClass = (this.state.kidsCount === 0) ? "search-box-minus-circle" : "search-box-plus-circle";
+        let kidsMinusSignColorClass = (this.state.kidsCount === 1) ? "search-box-minus-circle" : "search-box-plus-circle";
         let petsMinusSignColorClass = (this.state.petsCount === 0) ? "search-box-minus-circle" : "search-box-plus-circle";
         let parentsMinusSignColorClass = (this.state.parentsCount === 0) ? "search-box-minus-circle" : "search-box-plus-circle";
 
         // Create Guests input string
-        let guestsInputContent = [
-            this.makeSingleGuestsInputString("kid", "kidsCount"),
-            this.makeSingleGuestsInputString("pet", "petsCount"),
-            this.makeSingleGuestsInputString("parent", "parentsCount")
-        ].filter(type => type).join(", ");
+        let guestsInputContent = '1 guest';
+        let { kidsCount, petsCount, parentsCount } = this.state;
+        let numGuests = kidsCount + petsCount + parentsCount;
+        if (numGuests > 1) {
+            guestsInputContent = `${numGuests} guests`;
+        };
+        // guestsInputContent = [
+        //     this.makeSingleGuestsInputString("kid", "kidsCount"),
+        //     this.makeSingleGuestsInputString("pet", "petsCount"),
+        //     this.makeSingleGuestsInputString("parent", "parentsCount")
+        // ].filter(type => type).join(", ");
 
         const dateRangePicker = (
             <DateRangePicker
