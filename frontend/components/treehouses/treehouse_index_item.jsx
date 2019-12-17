@@ -12,9 +12,6 @@ const TreehouseIndexItem = ({treehouse}) => {
                 <div className="treehouse-idx-photo">
                     <div className="treehouse-idx-photo-child" style={{ backgroundImage: `url(${treehouse.photoUrls[0]})`}}>
                     </div>
-                    {/* <img 
-                        src={treehouse.photoUrls[0]}
-                        alt={treehouse.name}/> */}
                 </div>
             </Link>
             <div className="treehouse-idx-address">

@@ -97,16 +97,16 @@
     display: flex;
 }
 
-// .treehouse-photo-darkened:hover::after {
-//     background: rgba(0,0,0,0.4);
-//     width: 100%;
-//     height: 100%;
-//     top: 0;
-//     left: 0;
-//     z-index: 1;
-//     content: "";
-//     position: absolute;
-// }
+.treehouse-photos-container:hover:after {
+    background: rgba(0,0,0,0.4);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    content: "";
+    position: absolute;
+}
 
 .treehouse-photo-1 {
     width: 50%;
@@ -143,6 +143,11 @@
 
 .treehouse-photo-2 {
     background-image: asset-data-url("small-photo-2.jpeg");
+}
+
+.treehouse-photo-2:hover {
+    background-image: asset-data-url("small-photo-2.jpeg");
+    z-index: 100;
 }
 
 .treehouse-photo-3 {

@@ -29,7 +29,7 @@ class TreehouseShow extends React.Component {
         this.toggleDropdown = this.toggleDropdown.bind(this);
         this.increaseCount = this.increaseCount.bind(this);
         this.decreaseCount = this.decreaseCount.bind(this);
-        this.makeSingleGuestsInputString = this.makeSingleGuestsInputString.bind(this);
+        // this.makeSingleGuestsInputString = this.makeSingleGuestsInputString.bind(this);
         this.onFocusChange = this.onFocusChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -91,15 +91,25 @@ class TreehouseShow extends React.Component {
         }
     }
     
-    makeSingleGuestsInputString(type, stateName) {
-        let num = this.state[stateName];
-        if (num === 0) return null;
-        if (num === 1) {
-            return `${num} ${type}`
-        } else {
-            return `${num} ${type}s`
-        }
+
+    toggleOverlay(name) {
+        let photos = ["photo1Overlay", "photo2Overlay", "photo3Overlay", "photo4Overlay", "photo5Overlay"];
+        photos.forEach(photo => {
+            if (photo !== name) {
+                this.setState({ [photo]: true })
+            }
+        })
     }
+
+    // makeSingleGuestsInputString(type, stateName) {
+    //     let num = this.state[stateName];
+    //     if (num === 0) return null;
+    //     if (num === 1) {
+    //         return `${num} ${type}`
+    //     } else {
+    //         return `${num} ${type}s`
+    //     }
+    // }
 
     onFocusChange() {
         this.setState({
@@ -143,12 +153,23 @@ class TreehouseShow extends React.Component {
     }
 
     render() {
-        // let darkenHoverClass;
-        // if (this.state.darkenEffect === true) {
-        //     darkenHoverClass = "treehouse-photo-darkened";
-        // } else {
-        //     darkenHoverClass = "";
-        // }
+
+        // When you hover over the whole container, you toggle one class (piece of state) for the overlay with z-index of 10
+        // When you hover over a specific photo, you toggle an additional class (piece of state)
+
+        // let overlayClass1, overlayClass2, overlayClass3, overlayClass4, overlayClass5;
+        // let photosAndClasses = [
+        //     ["photo1Overlay", overlayClass1],
+        //     ["photo2Overlay", overlayClass2],
+        //     ["photo3Overlay", overlayClass3],
+        //     ["photo4Overlay", overlayClass4],
+        //     ["photo5Overlay", overlayClass5]
+        // ]
+        // photosAndClasses.forEach(photoAndClass => {
+        //     if (this.state[photo]) {
+                
+        //     }
+        // })
 
         // Conditional for the Guests input chevron
         let chevronDirection;
@@ -158,6 +179,8 @@ class TreehouseShow extends React.Component {
             chevronDirection = "fas fa-chevron-down";
         }
 
+        // Conditional to fade out the minus circle on the
+        // dropdown menu
         let kidsMinusSignColorClass = (this.state.kidsCount === 1) ? "search-box-minus-circle" : "search-box-plus-circle";
         let petsMinusSignColorClass = (this.state.petsCount === 0) ? "search-box-minus-circle" : "search-box-plus-circle";
         let parentsMinusSignColorClass = (this.state.parentsCount === 0) ? "search-box-minus-circle" : "search-box-plus-circle";

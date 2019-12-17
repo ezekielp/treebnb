@@ -22,7 +22,7 @@ const App = (props) => {
                     exact path="/treehouses/:treehouseId"
                     component={ TreehouseShowContainer } />
                 <Route
-                    exact path="/users/:userId/trips"
+                    exact path="/trips"
                     component={ UserBookingsContainer } />
                 <Route path="/">
                     <SearchBox />
