@@ -8,6 +8,8 @@ import { START_DATE, END_DATE } from 'react-dates/src/constants';
 import isInclusivelyAfterDay from 'react-dates/src/utils/isInclusivelyAfterDay';
 import moment from 'moment';
 
+import { withRouter, Redirect } from 'react-router-dom';
+
 
 class TreehouseShow extends React.Component {
     constructor(props) {
@@ -21,7 +23,8 @@ class TreehouseShow extends React.Component {
             startDate: null,
             endDate: null,
             focusedInput: null,
-            focusedInputLeftCol: START_DATE
+            focusedInputLeftCol: START_DATE,
+            redirectToTrips: false
         };
 
         this.inputNode = React.createRef();
@@ -118,6 +121,10 @@ class TreehouseShow extends React.Component {
         });
     }
 
+    dayBlocked(day) {
+        
+    }
+
     handleSubmit(e) {
         e.preventDefault();
 
@@ -136,8 +143,7 @@ class TreehouseShow extends React.Component {
             );
             this.props.openModal('Sign up', message)
             } else {
-            // If all fields are filled out and user is logged in, send the booking
-            // request
+            // If all fields are filled out and user is logged in, send the booking request
                 let treehouse_id = this.props.match.params.treehouseId;
                 let start_date = this.state.startDate.format('YYYY/MM/DD');
                 let end_date = this.state.endDate.format('YYYY/MM/DD');
@@ -148,11 +154,17 @@ class TreehouseShow extends React.Component {
                     end_date
                 };
                 this.props.createBooking(treehouse_id, newBooking);
+                this.setState({ redirectToTrips: true });
+                // this.props.history.push('./trips');
             };
         };
     }
 
     render() {
+
+        if (this.state.redirectToTrips) {
+            return <Redirect to="/trips" />
+        }
 
         // When you hover over the whole container, you toggle one class (piece of state) for the overlay with z-index of 10
         // When you hover over a specific photo, you toggle an additional class (piece of state)
@@ -381,4 +393,4 @@ class TreehouseShow extends React.Component {
     }
 }
 
-export default TreehouseShow;
+export default withRouter(TreehouseShow);

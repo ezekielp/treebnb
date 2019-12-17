@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { fetchTreehouse } from '../../actions/treehouse_actions';
-import { createBooking } from '../../actions/booking_actions';
+import { fetchBookings, createBooking } from '../../actions/booking_actions';
 import { openModal } from '../../actions/modal_actions';
 import TreehouseShow from './treehouse_show';
 
@@ -9,6 +9,7 @@ const msp = ({ entities, session }, ownProps) => {
 
     return {
         treehouse: entities.treehouses[ownProps.match.params.treehouseId],
+        bookings: 
         currentUser
     }
 }

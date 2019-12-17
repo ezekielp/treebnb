@@ -4,6 +4,6 @@
         json.startDateMonth booking.start_date.strftime("%B")
         json.startDateYear booking.start_date.strftime("%Y")
         json.location booking.treehouse.address
-        json.photos booking.treehouse.photoUrls
+        json.photos booking.treehouse.photos.map { |photo| url_for(photo) }
     end
 end

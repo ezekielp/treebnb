@@ -19,27 +19,22 @@ export const removeBooking = bookingId => ({
     bookingId
 })
 
-export const fetchBookings  = userId => dispatch => {
-    return BookingsApiUtil.fetchBookings(userId)
-        .then(bookings => dispatch(receiveBookings(bookings)))
-}
-
-export const fetchBooking = (userId, bookingId) => dispatch => {
-    return BookingsApiUtil.fetchBooking(userId, bookingId)
+export const fetchBooking = bookingId => dispatch => {
+    return BookingsApiUtil.fetchBooking(bookingId)
         .then(booking => dispatch(receiveBooking(booking)))
 }
 
-export const createBooking = (treehouseId, booking) => dispatch => {
-    return BookingsApiUtil.createBooking(treehouseId, booking)
+export const createBooking = booking => dispatch => {
+    return BookingsApiUtil.createBooking(booking)
         .then(booking => dispatch(receiveBooking(booking)))
 }
 
-export const updateBooking = (userId, booking) => dispatch => {
-    return BookingsApiUtil.updateBooking(userId, booking)
+export const updateBooking = booking => dispatch => {
+    return BookingsApiUtil.updateBooking(booking)
         .then(booking => dispatch(receiveBooking(booking)))
 }
 
-export const deleteBooking = (userId, bookingId) => dispatch => {
-    return BookingsApiUtil.deleteBooking(userId, bookingId)
+export const deleteBooking = bookingId => dispatch => {
+    return BookingsApiUtil.deleteBooking(bookingId)
         .then(booking => dispatch(removeBooking(booking.Id)))
 }

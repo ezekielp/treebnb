@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import UserBookingsItem from './user_bookings_item';
 
 class UserBookings extends React.Component {
     constructor(props) {
@@ -7,8 +8,11 @@ class UserBookings extends React.Component {
     }
 
     componentDidMount() {
-        let { currentUser, fetchBookings } = this.props;
-        fetchBookings(currentUser.id);
+        let { currentUser, fetchBooking } = this.props;
+        debugger;
+        currentUser.bookingIds.forEach(bookingId => {
+            fetchBooking(bookingId);
+        });
     }
     
     render() {
@@ -17,7 +21,6 @@ class UserBookings extends React.Component {
 
         let { bookings } = this.props;
         let bookingsLis, noBookingsmessage;
-        // debugger;
         if (bookings[0] === undefined) {
             noBookingsmessage = 
                 <div>
@@ -47,7 +50,9 @@ class UserBookings extends React.Component {
                     Upcoming plans
                 </h1>
                 {noBookingsmessage}
-                <ul className="treehouses-ul">
+                <ul
+                    className="treehouses-ul"
+                    id="user-bookings-ul" >
                     {bookingsLis}
                 </ul>
             </div>

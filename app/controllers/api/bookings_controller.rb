@@ -12,7 +12,7 @@ class Api::BookingsController < ApplicationController
     
     def create
         @booking = Booking.new(booking_params)
-        debugger
+        # debugger
         if @booking.save
             @booking.approve!
             render :show

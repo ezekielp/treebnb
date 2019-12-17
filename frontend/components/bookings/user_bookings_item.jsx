@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 
 const UserBookingsItem = ({booking}) => {
 
-    let { startDateMonth, startDateYear, location, photos } = booking;
+    let { startDateMonth, startDateYear, location, photos, treehouse_id } = booking;
 
     return (
-        <li className="treehouse-li">
-            <Link>
+        <li className="user-bookings-li">
+            <Link to={`/treehouses/${treehouse_id}`}>
                 <div className="treehouse-idx-photo">
                     <div 
                         className="treehouse-idx-photo-child"
@@ -16,8 +16,8 @@ const UserBookingsItem = ({booking}) => {
                 </div>
             </Link>
             <div className="booking-idx-item-month-year-container">
-                <div>{startDateMonth}</div>
-                <div>{startDateYear}</div>
+                <div className="">{startDateMonth}</div>
+                <div className="booking-idx-item-month">{startDateYear}</div>
             </div>
             <div className="booking-idx-item-location">
                 {location}
