@@ -24,7 +24,8 @@ class TreehouseShow extends React.Component {
             endDate: null,
             focusedInput: null,
             focusedInputLeftCol: START_DATE,
-            redirectToTrips: false
+            redirectToTrips: false,
+            bookedDates: []
         };
 
         this.inputNode = React.createRef();
@@ -33,6 +34,7 @@ class TreehouseShow extends React.Component {
         this.increaseCount = this.increaseCount.bind(this);
         this.decreaseCount = this.decreaseCount.bind(this);
         this.onFocusChange = this.onFocusChange.bind(this);
+        this.dayBlocked = this.dayBlocked.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClick = this.handleClick.bind(this);
     }
@@ -43,10 +45,21 @@ class TreehouseShow extends React.Component {
 
     componentDidMount() {
         this.props.fetchTreehouse(this.props.match.params.treehouseId);
-        // this.props.treehouse.bookingIds.forEach(bookingId => {
-        //     this.props.fetchBooking(bookingId);
-        // });
         document.addEventListener('mousedown', this.handleClick, false);
+    }
+
+    componentDidUpdate() {
+        if (this.props.bookings[0] && !this.state.bookedDates[0]) {
+            let dates = [];
+            this.props.bookings.forEach(booking => {
+                booking.dates.forEach(date => {
+                    if (this.props.treehouse.id === booking.treehouse_id) {
+                        dates.push(moment(date, "YYYY-MM-DD"));
+                    }
+                });
+            });
+            this.setState({ bookedDates: dates });
+        }
     }
 
     componentWillUnmount() {
@@ -114,7 +127,12 @@ class TreehouseShow extends React.Component {
     }
 
     dayBlocked(day) {
-        
+        for (let i = 0; i < this.state.bookedDates.length; i++) {
+            if (day.isSame(this.state.bookedDates[i], 'day')) {
+                return true;
+            };
+        };
+        return false;
     }
 
     handleSubmit(e) {
@@ -145,7 +163,7 @@ class TreehouseShow extends React.Component {
                     start_date,
                     end_date
                 };
-                this.props.createBooking(treehouse_id, newBooking);
+                this.props.createBooking(newBooking);
                 this.setState({ redirectToTrips: true });
                 // this.props.history.push('./trips');
             };
@@ -215,6 +233,7 @@ class TreehouseShow extends React.Component {
                 hideKeyboardShortcutsPanel={true}
                 startDatePlaceholderText="Check-in"
                 endDatePlaceholderText="Checkout"
+                isDayBlocked={day => this.dayBlocked(day)}
                 />
                 )
                 
@@ -228,6 +247,7 @@ class TreehouseShow extends React.Component {
                 numberOfMonths={2}
                 isOutsideRange={day => !isInclusivelyAfterDay(day, moment())}
                 hideKeyboardShortcutsPanel={true}
+                isDayBlocked={day => this.dayBlocked(day)}
                 // initialVisibleMonth={() => moment().add(2, "M")}
             />
         )

@@ -36,6 +36,13 @@
 
 #user-bookings-ul {
     padding: 0;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    // padding: 0 20px;
+    padding: 0;
+    margin: 15px auto;
 }
 
 .user-bookings-li {

@@ -32,10 +32,6 @@ class UserBookings extends React.Component {
                             Explore Treebnb
                         </button>
                     </Link>
-                    <img
-                        className="upcoming-plans-drawing" 
-                        src={window.upcomingPlansSvg}
-                        alt="Tree drawing"/>
                 </div>
         } else {
             bookingsLis = bookings.map((booking, idx) => {
@@ -51,10 +47,13 @@ class UserBookings extends React.Component {
                 </h1>
                 {noBookingsmessage}
                 <ul
-                    className="treehouses-ul"
                     id="user-bookings-ul" >
                     {bookingsLis}
                 </ul>
+                <img
+                    className="upcoming-plans-drawing"
+                    src={window.upcomingPlansSvg}
+                    alt="Tree drawing" />
             </div>
         )
     }
