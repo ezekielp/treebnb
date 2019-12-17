@@ -111,8 +111,8 @@ class TreehouseShow extends React.Component {
         if (!currentUser.id) {
             let message = (
                 <div>
-                    <div>Sign up to book</div>
-                    <div>You're moments away from booking your stay.</div>
+                    <div id="sign-up-to-book">Sign up to book</div>
+                    <div id="moments-away-from-booking">You're moments away from booking your stay.</div>
                 </div>
             );
             this.props.openModal('Sign up', message)

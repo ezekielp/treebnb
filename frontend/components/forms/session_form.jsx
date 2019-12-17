@@ -53,12 +53,6 @@ class SessionForm extends React.Component {
         let { formType, openModal } = this.props;
 
         // Conditonal for top error message (trying to book without being logged in)
-        let messageContainer;
-        if (this.props.message) {
-            messageContainer = this.props.message;
-        } else {
-            messageContainer = <></>;
-        }
 
         // Conditionals for rendering errors
         let errors;
@@ -72,33 +66,6 @@ class SessionForm extends React.Component {
         let firstNameErrors = errors.first ? <div>{errors.first}.</div> : <></>;
         let lastNameErrors = errors.last ? <div>{errors.last}.</div> : <></>;
 
-        // Conditional for the First / Last name fields
-        let nameFields;
-        if (formType === 'Sign up') {
-            nameFields = 
-            <>
-                <input
-                    className="session-form-input"
-                    type="text"
-                    placeholder="First name"
-                    value={this.state.first_name} 
-                    onChange={this.handleUpdate("first_name")}/>
-                <div className="error-message">
-                    {firstNameErrors}
-                </div>
-                <input
-                    className="session-form-input"
-                    type="text"
-                    placeholder="Last name"
-                    value={this.state.last_name}
-                    onChange={this.handleUpdate("last_name")}/>
-                <div className="error-message">
-                    {lastNameErrors}
-                </div>
-            </>
-        } else {
-            nameFields = <></>
-        }
 
         // Conditional for bottom message
         let bottomMessage;
@@ -112,15 +79,109 @@ class SessionForm extends React.Component {
         } else {
             bottomMessage = (
                 <div className="session-message">
-                    Don't have an account? 
+                    Don't have an account?
                     <span className="blue-link-text" onClick={() => openModal('Sign up')}>Sign up</span>
                 </div>
             )
         }
 
+
         // Conditionals for input container border color class
         let emailInputBorderColorClass = this.state.emailInputBorderFocused ? "input-outline-blue" : "";
         let passwordInputBorderColorClass = this.state.passwordInputBorderFocused ? "input-outline-blue" : "";
+
+
+        // Conditional for the First / Last name fields
+        let nameFields, signUpTransferButton, messageContainer;
+
+        if (formType === 'Sign up') {
+            if (this.props.message) {
+                messageContainer = this.props.message;
+                nameFields = <></>;
+                signUpTransferButton =
+                    <>
+                        <div
+                            id="sign-up-with-email-btn"
+                            className="session-form-submit-btn"
+                            onClick={() => openModal('Sign up')}>
+                            <i className="far fa-envelope sign-up-with-email-envelope"></i>
+                            <div>Sign up with Email</div>
+                        </div>
+                    </>;
+            } else {
+                messageContainer = <></>;
+                nameFields =
+                    <>
+                        <input
+                            className="session-form-input"
+                            type="text"
+                            placeholder="First name"
+                            value={this.state.first_name}
+                            onChange={this.handleUpdate("first_name")} />
+                        <div className="error-message">
+                            {firstNameErrors}
+                        </div>
+                        <input
+                            className="session-form-input"
+                            type="text"
+                            placeholder="Last name"
+                            value={this.state.last_name}
+                            onChange={this.handleUpdate("last_name")} />
+                        <div className="error-message">
+                            {lastNameErrors}
+                        </div>
+                    </>;
+                signUpTransferButton = <></>
+            }
+        } else {
+            nameFields = <></>;
+            signUpTransferButton = <></>;
+            messageContainer = <></>;
+        }
+
+        let actualSessionForm =
+            <form onSubmit={this.handleSubmit}>
+                <div
+                    id={`${emailInputBorderColorClass}`}
+                    className={`session-form-input email-input`}
+                >
+                    <input
+                        type="email"
+                        value={this.state.email}
+                        placeholder="Email Address"
+                        onChange={this.handleUpdate("email")}
+                        onFocus={() => this.toggleEmailInputBorderColor()}
+                        onBlur={() => this.toggleEmailInputBorderColor()} />
+                    <i className="far fa-envelope"></i>
+                </div>
+                <div className="error-message">
+                    {emailErrors}
+                </div>
+                {nameFields}
+                <div
+                    id={`${passwordInputBorderColorClass}`}
+                    className={`session-form-input email-input`}>
+                    <input
+                        type="password"
+                        value={this.state.password}
+                        placeholder={"Password"}
+                        onChange={this.handleUpdate("password")}
+                        onFocus={() => this.togglePasswordInputBorderColor()}
+                        onBlur={() => this.togglePasswordInputBorderColor()} />
+                    <i className="fas fa-lock"></i>
+                </div>
+                <div className="error-message">
+                    {passwordErrors}
+                </div>
+                <input
+                    className="session-form-submit-btn"
+                    type="submit"
+                    value={formType} />
+            </form>;
+
+        if (this.props.message) {
+            actualSessionForm = <></>;
+        }
 
         return (
             <div className="session-container">
@@ -133,44 +194,8 @@ class SessionForm extends React.Component {
                 <div className="session-form-or-container">
                     <hr/>
                 </div>
-                <form onSubmit={this.handleSubmit}>
-                    <div 
-                        id={`${emailInputBorderColorClass}`}
-                        className={`session-form-input email-input`}
-                        >
-                        <input
-                            type="email"
-                            value={this.state.email}
-                            placeholder="Email Address" 
-                            onChange={this.handleUpdate("email")} 
-                            onFocus={() => this.toggleEmailInputBorderColor()}
-                            onBlur={() => this.toggleEmailInputBorderColor()}/>
-                        <i className="far fa-envelope"></i>
-                    </div>
-                    <div className="error-message">
-                        {emailErrors}
-                    </div>
-                    {nameFields}
-                    <div
-                        id={`${passwordInputBorderColorClass}`}    
-                        className={`session-form-input email-input`}>
-                        <input
-                            type="password"
-                            value={this.state.password}
-                            placeholder={"Password"}
-                            onChange={this.handleUpdate("password")}
-                            onFocus={() => this.togglePasswordInputBorderColor()}
-                            onBlur={() => this.togglePasswordInputBorderColor()}/>
-                        <i className="fas fa-lock"></i>
-                    </div>
-                    <div className="error-message">
-                        {passwordErrors}
-                    </div>
-                    <input
-                        className="session-form-submit-btn" 
-                        type="submit"
-                        value={formType}/>
-                </form>
+                {actualSessionForm}
+                {signUpTransferButton}
                 <div className="bottom-message">
                     {bottomMessage}
                 </div>

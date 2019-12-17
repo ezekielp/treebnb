@@ -316,6 +316,35 @@ input {
 }
 
 
+// Session form in modal // "Sign up with Email" btn 
+
+#sign-up-with-email-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-up-with-email-envelope {
+    margin-right: 11px;
+    margin-top: 1px;
+}
+
+.sign-up-with-email-envelope:before {
+    color: white;
+}
+
+#sign-up-to-book {
+    font-size: 24px;
+    margin: 20px 0 30px 0;
+    font-weight: 600;
+}
+
+#moments-away-from-booking {
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+
 // Search Box + splash image (on homepage)
 
 .splash-image-container {
