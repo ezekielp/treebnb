@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class UserBookings extends React.Component {
     constructor(props) {
@@ -16,20 +17,28 @@ class UserBookings extends React.Component {
 
         let { bookings } = this.props;
         let bookingsLis, noBookingsmessage;
-        if (bookings === {}) {
+        // debugger;
+        if (bookings[0] === undefined) {
             noBookingsmessage = 
                 <div>
-                    <div>
-                        "You have no upcoming plans. Start exploring ideas for your next trip."
+                    <div className="no-upcoming-plans-message">
+                        You have no upcoming plans. Start exploring ideas for your next trip.
                     </div>
-                    <button className="explore-treebnb-btn">
-                        Explore Treebnb
-                    </button>
+                    <Link to="/">
+                        <button className="explore-treebnb-btn">
+                            Explore Treebnb
+                        </button>
+                    </Link>
+                    <img
+                        className="upcoming-plans-drawing" 
+                        src={window.upcomingPlansSvg}
+                        alt="Tree drawing"/>
                 </div>
         } else {
             bookingsLis = bookings.map((booking, idx) => {
                 return <UserBookingsItem booking={booking} key={idx} />;
             });
+            noBookingsmessage = <></>;
         }    
         
         return (

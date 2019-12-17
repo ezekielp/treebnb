@@ -1,5 +1,38 @@
 // User bookings idx
 
+.user-bookings-container {
+    padding: 65px;
+}
+
+.user-bookings-header {
+    font-size: 32px;
+    font-weight: 600;
+    color: #484848;
+}
+
+.no-upcoming-plans-message {
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.upcoming-plans-drawing {
+    display: block;
+    opacity: 85%;
+    margin: auto;
+}
+
+.explore-treebnb-btn {
+    height: 40px;
+    width: 155px;
+    margin-top: 15px;
+    border: 2px solid #008489;
+    border-radius: 5px;
+    color: #008489;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+}
+
 .booking-idx-item-month-year-container {
     display: flex;
 }

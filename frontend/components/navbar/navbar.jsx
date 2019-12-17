@@ -48,7 +48,9 @@ class Navbar extends React.Component {
 
         const loggedInLinks = (
             <ul className="nav-links">
-                <li>Trips</li>
+                <Link to="/trips">
+                    <li>Trips</li>
+                </Link>
                 <li id="profile-image-circle"
                     onFocus={() => this.toggleDropdown()}
                     onBlur={() => this.toggleDropdown()}
