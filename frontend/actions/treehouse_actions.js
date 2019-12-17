@@ -1,4 +1,5 @@
 import * as TreehousesAPIUtil from '../util/treehouses_api_util';
+import { fetchBooking } from '../actions/booking_actions';
 
 export const RECEIVE_TREEHOUSES = "RECEIVE_TREEHOUSES";
 export const RECEIVE_TREEHOUSE = "RECEIVE_TREEHOUSE";
@@ -20,5 +21,10 @@ export const fetchTreehouses = () => dispatch => {
 
 export const fetchTreehouse = treehouseId => dispatch => {
     return TreehousesAPIUtil.fetchTreehouse(treehouseId)
-        .then(treehouse => dispatch(receiveTreehouse(treehouse)));
+        .then(treehouse => {
+            dispatch(receiveTreehouse(treehouse));
+            treehouse.bookingIds.forEach(bookingId => {
+                dispatch(fetchBooking(bookingId));
+            });
+        });
 };

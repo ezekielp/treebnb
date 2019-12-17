@@ -9,7 +9,7 @@ class UserBookings extends React.Component {
 
     componentDidMount() {
         let { currentUser, fetchBooking } = this.props;
-        debugger;
+        // debugger;
         currentUser.bookingIds.forEach(bookingId => {
             fetchBooking(bookingId);
         });

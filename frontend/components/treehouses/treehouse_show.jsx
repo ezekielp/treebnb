@@ -32,7 +32,6 @@ class TreehouseShow extends React.Component {
         this.toggleDropdown = this.toggleDropdown.bind(this);
         this.increaseCount = this.increaseCount.bind(this);
         this.decreaseCount = this.decreaseCount.bind(this);
-        // this.makeSingleGuestsInputString = this.makeSingleGuestsInputString.bind(this);
         this.onFocusChange = this.onFocusChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -44,6 +43,9 @@ class TreehouseShow extends React.Component {
 
     componentDidMount() {
         this.props.fetchTreehouse(this.props.match.params.treehouseId);
+        // this.props.treehouse.bookingIds.forEach(bookingId => {
+        //     this.props.fetchBooking(bookingId);
+        // });
         document.addEventListener('mousedown', this.handleClick, false);
     }
 
@@ -103,16 +105,6 @@ class TreehouseShow extends React.Component {
             }
         })
     }
-
-    // makeSingleGuestsInputString(type, stateName) {
-    //     let num = this.state[stateName];
-    //     if (num === 0) return null;
-    //     if (num === 1) {
-    //         return `${num} ${type}`
-    //     } else {
-    //         return `${num} ${type}s`
-    //     }
-    // }
 
     onFocusChange() {
         this.setState({

@@ -65,4 +65,8 @@ class Booking < ApplicationRecord
         self.status == "PENDING"
     end
 
+    def dates
+        (self.start_date..self.end_date).to_a
+    end
+
 end
