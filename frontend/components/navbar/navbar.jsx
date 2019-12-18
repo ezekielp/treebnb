@@ -9,11 +9,42 @@ class Navbar extends React.Component {
             dropdownOpen: false
         }
 
+        this.profileCircleNode = React.createRef();
+        this.profileDropdownNode = React.createRef();
         this.toggleDropdown = this.toggleDropdown.bind(this);
+        this.closeDropdown = this.closeDropdown.bind(this);
+        this.navbarHandleClick = this.navbarHandleClick.bind(this);
+    }
+
+    // componentWillMount() {
+    //     document.addEventListener('mousedown', this.handleClick, false);
+    // }
+
+    componentDidMount() {
+        document.addEventListener('mousedown', this.navbarHandleClick, false);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('mousedown', this.navbarHandleClick, false);
     }
 
     toggleDropdown() {
         this.setState({ dropdownOpen: !this.state.dropdownOpen });
+    }
+
+    closeDropdown() {
+        this.setState({ dropdownOpen: false });
+    }
+
+    navbarHandleClick(e) {
+        if (this.profileDropdownNode && this.profileDropdownNode.current.contains(e.target)) {
+            // this.toggleDropdown();
+            return;
+        } else if (this.profileCircleNode.current.contains(e.target)) {
+            this.toggleDropdown();
+        } else {
+            this.closeDropdown();
+        }
     }
 
     render() {
@@ -33,10 +64,9 @@ class Navbar extends React.Component {
         const dropdownMenu = (
             <div className="profile-dropdown-container">
                 <ul>
-                    <li>Profile</li>
                     <li onClick={() => {
                         logoutUser();
-                        this.toggleDropdown()
+                        this.toggleDropdown();
                     }}>
                         Log Out
                         </li>
@@ -51,12 +81,19 @@ class Navbar extends React.Component {
                 <Link to="/trips">
                     <li>Trips</li>
                 </Link>
-                <li id="profile-image-circle"
-                    onFocus={() => this.toggleDropdown()}
-                    onBlur={() => this.toggleDropdown()}
-                    tabIndex="0">
-                    {dropdownComponent}
+                <li 
+                    ref={this.profileCircleNode}
+                    id="profile-image-circle"
+                    // onFocus={() => this.toggleDropdown()}
+                    // onBlur={() => this.toggleDropdown()}
+                    // tabIndex="0"
+                    >
                 </li>
+                <div
+                    ref={this.profileDropdownNode}
+                    >
+                    {dropdownComponent}
+                </div>
             </ul>
         );
         const linksToRender = currentUser.id ? loggedInLinks : sessionLinks;
