@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { deleteBooking, fetchBooking, removeBookingSuccessMessage } from '../../actions/booking_actions';
+import { openModal } from '../../actions/modal_actions';
 import UserBookings from './user_bookings';
 
 const msp = state => {
@@ -14,8 +15,9 @@ const msp = state => {
 
 const mdp = dispatch => {
     return {
-        deleteBooking: (bookingId) => dispatch(deleteBooking(bookingId)),
-        fetchBooking: (bookingId) => dispatch(fetchBooking(bookingId)),
+        deleteBooking: bookingId => dispatch(deleteBooking(bookingId)),
+        fetchBooking: bookingId => dispatch(fetchBooking(bookingId)),
+        openModal: (formType, bookingId) => dispatch(openModal(formType, bookingId)),
         removeBookingSuccessMessage: () => dispatch(removeBookingSuccessMessage())
     }
 }

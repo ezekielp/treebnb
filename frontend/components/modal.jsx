@@ -3,6 +3,7 @@ import { closeModal } from '../actions/modal_actions';
 import { connect } from 'react-redux';
 import LoginFormContainer from './forms/login_form_container';
 import SignupFormContainer from './forms/signup_form_container';
+import CancelBookingContainer from './bookings/cancel_booking_container';
 
 const Modal = ({modal, closeModal}) => {
     if (!modal) return null;
@@ -18,6 +19,9 @@ const Modal = ({modal, closeModal}) => {
         } else {
             component = <SignupFormContainer message={message} />
         }
+    } else if (formType === 'Cancel booking') {
+        debugger;
+        component = <CancelBookingContainer bookingId={message} />;
     }
 
     return (

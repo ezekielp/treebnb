@@ -64,6 +64,7 @@ class UserBookings extends React.Component {
                 return <UserBookingsItem
                     booking={booking}
                     deleteBooking={this.props.deleteBooking}
+                    openModal={this.props.openModal}
                     key={idx} />;
             });
             noBookingsmessage = <></>;

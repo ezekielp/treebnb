@@ -10,6 +10,8 @@ const UserBookingsItem = (props) => {
         props.deleteBooking(props.booking.id);
     }
 
+    debugger;
+
     return (
         <li className="user-bookings-li">
             <Link to={`/treehouses/${treehouse_id}`}>
@@ -29,7 +31,7 @@ const UserBookingsItem = (props) => {
             </div>
             <div 
                 className="booking-idx-item-cancel-btn"
-                onClick={handleDelete}>
+                onClick={() => props.openModal('Cancel booking', props.booking.id)}>
                 Cancel reservation
             </div>
         </li>
