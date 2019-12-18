@@ -2,6 +2,7 @@ import * as BookingsApiUtil from '../util/bookings_api_util';
 
 export const RECEIVE_BOOKING = "RECEIVE_BOOKING";
 export const RECEIVE_BOOKING_SUCCESS_MESSAGE = 'RECEIVE_BOOKING_SUCCESS_MESSAGE';
+export const REMOVE_BOOKING_SUCCESS_MESSAGE = 'REMOVE_BOOKING_SUCCESS_MESSAGE';
 export const REMOVE_BOOKING = 'REMOVE_BOOKING';
 
 export const receiveBooking = booking => ({
@@ -12,6 +13,10 @@ export const receiveBooking = booking => ({
 export const receiveBookingSuccessMessage = msg => ({
     type: RECEIVE_BOOKING_SUCCESS_MESSAGE,
     msg
+})
+
+export const removeBookingSuccessMessage = () => ({
+    type: REMOVE_BOOKING_SUCCESS_MESSAGE
 })
 
 export const removeBooking = bookingId => ({

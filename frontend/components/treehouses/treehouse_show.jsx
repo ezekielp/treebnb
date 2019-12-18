@@ -28,6 +28,7 @@ class TreehouseShow extends React.Component {
             bookedDates: []
         };
 
+        // debugger;
         this.inputNode = React.createRef();
         this.dropdownNode = React.createRef();
         this.toggleDropdown = this.toggleDropdown.bind(this);
@@ -37,29 +38,61 @@ class TreehouseShow extends React.Component {
         this.dayBlocked = this.dayBlocked.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        // this.loadData
     }
 
     componentWillMount() {
         document.addEventListener('mousedown', this.handleClick, false);
     }
 
+    loadData() {
+        let promise = new Promise((resolve, reject) => {
+            this.props.fetchTreehouse(this.props.match.params.treehouseId);
+        });
+        return promise;
+    }
+
     componentDidMount() {
-        this.props.fetchTreehouse(this.props.match.params.treehouseId);
+        this.loadData();
+            // .then((data) => {
+            //     // debugger;
+            //     let dates = [];
+            //     this.props.bookings.forEach(booking => {
+            //         booking.dates.forEach(date => {
+            //             if (this.props.treehouse.id === booking.treehouse_id) {
+            //                 dates.push(moment(date, "YYYY-MM-DD").valueOf());
+            //             }
+            //         });
+            //     });
+            //     this.setState({ bookedDates: dates });
+            // })
+        // this.props.fetchTreehouse(this.props.match.params.treehouseId);
         document.addEventListener('mousedown', this.handleClick, false);
     }
 
     componentDidUpdate() {
-        if (this.props.bookings[0] && !this.state.bookedDates[0]) {
-            let dates = [];
-            this.props.bookings.forEach(booking => {
-                booking.dates.forEach(date => {
-                    if (this.props.treehouse.id === booking.treehouse_id) {
-                        dates.push(moment(date, "YYYY-MM-DD"));
-                    }
-                });
-            });
-            this.setState({ bookedDates: dates });
-        }
+        // debugger;
+        // if (!this.state.bookedDates[0]
+        //         && (this.props.bookings.length === this.props.treehouse.bookingIds.length)) {
+        //     let dates = [];
+        //     this.props.bookings.forEach(booking => {
+        //         booking.dates.forEach(date => {
+        //             if (this.props.treehouse.id === booking.treehouse_id) {
+        //                 dates.push(moment(date, "YYYY-MM-DD").valueOf());
+        //             }
+        //         });
+        //     });
+        //     this.setState({ bookedDates: dates });
+        // }
+        // let dates = [];
+        // this.props.bookings.forEach(booking => {
+        //     booking.dates.forEach(date => {
+        //         if (this.props.treehouse.id === booking.treehouse_id) {
+        //             dates.push(moment(date, "YYYY-MM-DD").valueOf());
+        //         }
+        //     });
+        // });
+        
     }
 
     componentWillUnmount() {
@@ -127,12 +160,21 @@ class TreehouseShow extends React.Component {
     }
 
     dayBlocked(day) {
-        for (let i = 0; i < this.state.bookedDates.length; i++) {
-            if (day.isSame(this.state.bookedDates[i], 'day')) {
+        let { bookings, treehouse } = this.props;
+        for (let i = 0; i < bookings.length; i++) {
+            if ((bookings[i].treehouse_id === treehouse.id) &&
+                (day.isBetween(bookings[i].start_date, bookings[i].end_date, 'day'))) {
+                    // debugger;
                 return true;
             };
         };
         return false;
+        // for (let i = 0; i < this.state.bookedDates.length; i++) {
+        //     if (day.isSame(this.state.bookedDates[i], 'day')) {
+        //         return true;
+        //     };
+        // };
+        // return false;
     }
 
     handleSubmit(e) {
@@ -176,23 +218,6 @@ class TreehouseShow extends React.Component {
             return <Redirect to="/trips" />
         }
 
-        // When you hover over the whole container, you toggle one class (piece of state) for the overlay with z-index of 10
-        // When you hover over a specific photo, you toggle an additional class (piece of state)
-
-        // let overlayClass1, overlayClass2, overlayClass3, overlayClass4, overlayClass5;
-        // let photosAndClasses = [
-        //     ["photo1Overlay", overlayClass1],
-        //     ["photo2Overlay", overlayClass2],
-        //     ["photo3Overlay", overlayClass3],
-        //     ["photo4Overlay", overlayClass4],
-        //     ["photo5Overlay", overlayClass5]
-        // ]
-        // photosAndClasses.forEach(photoAndClass => {
-        //     if (this.state[photo]) {
-                
-        //     }
-        // })
-
         // Conditional for the Guests input chevron
         let chevronDirection;
         if (this.state.dropdownOpen) {
@@ -214,11 +239,6 @@ class TreehouseShow extends React.Component {
         if (numGuests > 1) {
             guestsInputContent = `${numGuests} guests`;
         };
-        // guestsInputContent = [
-        //     this.makeSingleGuestsInputString("kid", "kidsCount"),
-        //     this.makeSingleGuestsInputString("pet", "petsCount"),
-        //     this.makeSingleGuestsInputString("parent", "parentsCount")
-        // ].filter(type => type).join(", ");
 
         const dateRangePicker = (
             <DateRangePicker

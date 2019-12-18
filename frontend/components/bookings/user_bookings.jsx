@@ -5,14 +5,22 @@ import UserBookingsItem from './user_bookings_item';
 class UserBookings extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            success: this.props.success,
+            successMessageClasses: ['reservation-successful-msg-visible']
+        }
     }
 
     componentDidMount() {
         let { currentUser, fetchBooking } = this.props;
-        // debugger;
         currentUser.bookingIds.forEach(bookingId => {
             fetchBooking(bookingId);
         });
+    }
+
+    componentWillUnmount() {
+        this.props.removeBookingSuccessMessage();
     }
     
     render() {
@@ -23,13 +31,19 @@ class UserBookings extends React.Component {
         // Conditional for the success message when having made a booking
         let successMessage;
         let { success } = this.props;
-        if (success) {
+        // debugger;
+        if (success[0]) {
             successMessage = 
-                <div>{success}</div>;
+                <div className={this.state.successMessageClasses.join(' ')}>{success[0]}</div>;
         } else {
             successMessage = <></>;
         }
 
+        if (this.props.success[0]) {
+            window.setTimeout(() => {
+                this.setState({ successMessageClasses: ['reservation-successful-msg-visible', 'reservation-successful-msg-hidden'] })
+            }, 3000);
+        }
 
         let { bookings } = this.props;
         let bookingsLis, noBookingsmessage;
@@ -53,20 +67,22 @@ class UserBookings extends React.Component {
         }    
         
         return (
-            <div className="user-bookings-container">
+            <div className="outer-user-bookings-container">
                 {successMessage}
-                <h1 className="user-bookings-header">
-                    Upcoming plans
-                </h1>
-                {noBookingsmessage}
-                <ul
-                    id="user-bookings-ul" >
-                    {bookingsLis}
-                </ul>
-                <img
-                    className="upcoming-plans-drawing"
-                    src={window.upcomingPlansSvg}
-                    alt="Tree drawing" />
+                <div className="inner-user-bookings-container">
+                    <h1 className="user-bookings-header">
+                        Upcoming plans
+                    </h1>
+                    {noBookingsmessage}
+                    <ul
+                        id="user-bookings-ul" >
+                        {bookingsLis}
+                    </ul>
+                    <img
+                        className="upcoming-plans-drawing"
+                        src={window.upcomingPlansSvg}
+                        alt="Tree drawing" />
+                </div>
             </div>
         )
     }

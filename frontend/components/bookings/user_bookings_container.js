@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchBooking } from '../../actions/booking_actions';
+import { fetchBooking, removeBookingSuccessMessage } from '../../actions/booking_actions';
 import UserBookings from './user_bookings';
 
 const msp = state => {
@@ -14,7 +14,8 @@ const msp = state => {
 
 const mdp = dispatch => {
     return {
-        fetchBooking: (bookingId) => dispatch(fetchBooking(bookingId))
+        fetchBooking: (bookingId) => dispatch(fetchBooking(bookingId)),
+        removeBookingSuccessMessage: () => dispatch(removeBookingSuccessMessage())
     }
 }
 

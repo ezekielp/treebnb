@@ -1,7 +1,7 @@
 // User bookings idx
 
-.user-bookings-container {
-    padding: 65px;
+.inner-user-bookings-container {
+    padding: 45px 65px 65px 65px;
 }
 
 .user-bookings-header {
@@ -53,7 +53,8 @@
 }
 
 .user-bookings-li:first-child {
-    padding: 8px 16px 8px 0;
+    // padding: 8px 16px 8px 0;
+    margin-left: -15px;
 }
 
 .booking-idx-item-month-year-container {
@@ -74,4 +75,21 @@
     font-weight: 500;
 }
 
+.reservation-successful-msg-visible {
+    width: 100%;
+    text-align: center;
+    height: 50px;
+    background-color: #2C979C;
+    line-height: 50px;
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    transition: 3s;
+    opacity: 90%;
+    visibility: visible;
+}
 
+.reservation-successful-msg-hidden {
+    // visibility: hidden;
+    opacity: 0;
+}
