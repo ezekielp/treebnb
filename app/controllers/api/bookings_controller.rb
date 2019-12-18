@@ -32,8 +32,11 @@ class Api::BookingsController < ApplicationController
     end
     
     def destroy
-        Booking.destroy(params[:id])
-        render :index
+        @booking = Booking.find(params[:id])
+
+        if @booking.destroy
+            render :show
+        end
     end
 
     private

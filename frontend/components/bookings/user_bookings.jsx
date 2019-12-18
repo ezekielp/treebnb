@@ -61,7 +61,10 @@ class UserBookings extends React.Component {
                 </div>
         } else {
             bookingsLis = bookings.map((booking, idx) => {
-                return <UserBookingsItem booking={booking} key={idx} />;
+                return <UserBookingsItem
+                    booking={booking}
+                    deleteBooking={this.props.deleteBooking}
+                    key={idx} />;
             });
             noBookingsmessage = <></>;
         }    

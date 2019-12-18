@@ -1,9 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const UserBookingsItem = ({booking}) => {
+const UserBookingsItem = (props) => {
 
-    let { startDateMonth, startDateYear, location, photos, treehouse_id } = booking;
+    let { startDateMonth, startDateYear, location, photos, treehouse_id } = props.booking;
+
+    const handleDelete = e => {
+        e.preventDefault();
+        props.deleteBooking(props.booking.id);
+    }
 
     return (
         <li className="user-bookings-li">
@@ -21,6 +26,11 @@ const UserBookingsItem = ({booking}) => {
             </div>
             <div className="booking-idx-item-location">
                 {location}
+            </div>
+            <div 
+                className="booking-idx-item-cancel-btn"
+                onClick={handleDelete}>
+                Cancel reservation
             </div>
         </li>
     )
