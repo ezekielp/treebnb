@@ -349,8 +349,19 @@
     border: 1px solid lightgray;
 }
 
-// .treehouse-guests-bottom-highlight {
-//     width: 100px;
-//     height: 2px;
-//     border-bottom: 2px solid #008489;
-// }
+.clear-dates-standin {
+    width: 100%;
+    height: 50px;
+}
+
+.clear-dates-btn {
+    font-size: 15px;
+    margin-top: 30px;
+    color: #008489;
+    cursor: pointer;
+}
+
+#clear-dates-right-side {
+    margin-left: 289px;
+}
+

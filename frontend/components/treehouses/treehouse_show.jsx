@@ -161,20 +161,45 @@ class TreehouseShow extends React.Component {
 
     dayBlocked(day) {
         let { bookings, treehouse } = this.props;
+
         for (let i = 0; i < bookings.length; i++) {
-            if ((bookings[i].treehouse_id === treehouse.id) &&
-                (day.isBetween(bookings[i].start_date, bookings[i].end_date, 'day'))) {
-                    // debugger;
-                return true;
-            };
-        };
-        return false;
-        // for (let i = 0; i < this.state.bookedDates.length; i++) {
-        //     if (day.isSame(this.state.bookedDates[i], 'day')) {
-        //         return true;
+            if (bookings[i].treehouse_id === treehouse.id) {
+                if (this.state.startDate
+                        && this.state.startDate.isBefore(bookings[i].start_date, 'day')) {
+                    if (day.isBetween(bookings[i].start_date, bookings[i].end_date, 'day', "[)")) {
+                        return true;
+                    } else if (day.isAfter(bookings[i].end_date, 'day')) {
+                        return true;
+                    } else if (day.isSame(bookings[i].end_date, 'day')) {
+                        return true;
+                    };
+                } else {
+                    if (day.isBetween(bookings[i].start_date, bookings[i].end_date, 'day')) {
+                        return true;
+                    };
+                };
+            }
+        }
+
+        // if (bookings[i].treehouse_id === treehouse.id) {
+        //     if (this.state.startDate) {
+        //         for (let i = 0; i < bookings.length; i++) {
+        //             if (day.isBetween(bookings[i].start_date, bookings[i].end_date, 'day')) {
+        //                 return true;
+        //             } else if (day.isAfter(bookings[i].end_date, 'day')) {
+        //                 return true;
+        //             };
+        //         };
+        //     } else {
+        //         for (let i = 0; i < bookings.length; i++) {
+        //             if (day.isBetween(bookings[i].start_date, bookings[i].end_date, 'day')) {
+        //                 return true;
+        //             };
+        //         };
         //     };
         // };
-        // return false;
+
+        return false;
     }
 
     handleSubmit(e) {
@@ -271,6 +296,21 @@ class TreehouseShow extends React.Component {
                 // initialVisibleMonth={() => moment().add(2, "M")}
             />
         )
+
+        // Conditional for "Clear dates" thing below calendars
+        let clearDates;
+        if (this.state.startDate) {
+            clearDates = 
+                <div
+                    className="clear-dates-btn"
+                    onClick={() => this.setState({
+                        startDate: null,
+                        endDate: null })} >
+                    Clear dates
+                </div>;
+        } else {
+            clearDates = <></>;
+        }
 
         const dropdownMenu = (
             <div className="search-box-dropdown-container" id="treehouse-booking-box-dropdown-container">
@@ -399,8 +439,10 @@ class TreehouseShow extends React.Component {
                             <div>
                                 {dayPickerRangeController}
                             </div>
+                            {clearDates}
                         </div>
                     </div>
+                    <div>
                     <div className="treehouse-booking-box">
                         <div className="treehouse-show-price-container">
                             <div>${treehouse.price}</div>
@@ -440,6 +482,8 @@ class TreehouseShow extends React.Component {
                         <div className="treehouse-booking-box-bottom-text">
                             You won't be charged (ever)
                         </div>
+                    </div>
+                    <div id="clear-dates-right-side">{clearDates}</div>
                     </div>
                 </div>
             </div>

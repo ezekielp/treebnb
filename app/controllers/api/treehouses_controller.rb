@@ -5,6 +5,11 @@ class Api::TreehousesController < ApplicationController
         render :index
     end
 
+    def search
+        # @treehouses = Treehouse.where # etc.
+        # search_term = "Middle"
+    end
+
     def show
         @treehouse = Treehouse.find(params[:id])
         render :show

@@ -24,5 +24,14 @@ class Treehouse < ApplicationRecord
     has_many :bookings
 
     has_many_attached :photos
+
+    def self.search_by_keyword(keyword)
+        matcher = "%#{keyword}%"
+        name_results = Treehouse.where("name ILIKE ?", matcher)
+        address_results = Treehouse.where("address ILIKE ?", matcher)
+        description_results = Treehouse.where("description ILIKE ?", matcher)
+        search_result = name_results.concat(address_results).concat(description_results)
+        search_result
+    end
     
 end
