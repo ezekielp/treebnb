@@ -19,6 +19,18 @@ class UserBookings extends React.Component {
         // Return null before bookings have loaded
         if (!this.props.bookings) return null;
 
+
+        // Conditional for the success message when having made a booking
+        let successMessage;
+        let { success } = this.props;
+        if (success) {
+            successMessage = 
+                <div>{success}</div>;
+        } else {
+            successMessage = <></>;
+        }
+
+
         let { bookings } = this.props;
         let bookingsLis, noBookingsmessage;
         if (bookings[0] === undefined) {
@@ -42,6 +54,7 @@ class UserBookings extends React.Component {
         
         return (
             <div className="user-bookings-container">
+                {successMessage}
                 <h1 className="user-bookings-header">
                     Upcoming plans
                 </h1>

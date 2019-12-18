@@ -1,17 +1,17 @@
 import * as BookingsApiUtil from '../util/bookings_api_util';
 
 export const RECEIVE_BOOKING = "RECEIVE_BOOKING";
-export const RECEIVE_BOOKINGS = "RECEIVE_BOOKINGS";
+export const RECEIVE_BOOKING_SUCCESS_MESSAGE = 'RECEIVE_BOOKING_SUCCESS_MESSAGE';
 export const REMOVE_BOOKING = 'REMOVE_BOOKING';
-
-export const receiveBookings = bookings => ({
-    type: RECEIVE_BOOKINGS,
-    bookings
-})
 
 export const receiveBooking = booking => ({
     type: RECEIVE_BOOKING,
     booking
+})
+
+export const receiveBookingSuccessMessage = msg => ({
+    type: RECEIVE_BOOKING_SUCCESS_MESSAGE,
+    msg
 })
 
 export const removeBooking = bookingId => ({
@@ -26,8 +26,11 @@ export const fetchBooking = bookingId => dispatch => {
 
 export const createBooking = booking => dispatch => {
     return BookingsApiUtil.createBooking(booking)
-        .then(booking => dispatch(receiveBooking(booking)))
-}
+        .then(booking => {
+            dispatch(receiveBooking(booking));
+            dispatch(receiveBookingSuccessMessage(booking.success))
+        });
+};
 
 export const updateBooking = booking => dispatch => {
     return BookingsApiUtil.updateBooking(booking)
@@ -36,5 +39,5 @@ export const updateBooking = booking => dispatch => {
 
 export const deleteBooking = bookingId => dispatch => {
     return BookingsApiUtil.deleteBooking(bookingId)
-        .then(booking => dispatch(removeBooking(booking.Id)))
+        .then(booking => dispatch(removeBooking(booking.id)))
 }

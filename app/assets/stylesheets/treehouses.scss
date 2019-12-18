@@ -87,19 +87,20 @@
 
 // Show page // Top photos
 
-.treehouse-photos-container {
-    height: 35vw;
-    max-height: 600px;
-    width: 100%;
-    min-width: 1115px;
-    color: white;
-    display: flex;
-}
+// .treehouse-photos-container {
+//     height: 35vw;
+//     max-height: 600px;
+//     width: 100%;
+//     min-width: 1115px;
+//     color: white;
+//     display: flex;
+// }
 
 .treehouse-photos-container-new {
     display: grid;
     height: 35vw;
-    max-height: 600px;
+    max-height: 500px;
+    min-height: 300px;
     width: 100%;
     min-width: 1115px;
     color: white;

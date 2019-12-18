@@ -15,6 +15,7 @@ class Api::BookingsController < ApplicationController
         # debugger
         if @booking.save
             @booking.approve!
+            @success = "Reservation successful!"
             render :show
         else
             render json: @booking.errors.full_messages, status: 422

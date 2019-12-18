@@ -4,3 +4,6 @@ json.startDateYear @booking.start_date.strftime("%Y")
 json.dates @booking.dates
 json.location @booking.treehouse.address
 json.photos @booking.treehouse.photos.map { |photo| url_for(photo) }
+if @success
+    json.success @success
+end

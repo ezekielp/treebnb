@@ -16,5 +16,4 @@ const ErrorsReducer = (state = {}, action) => {
     }
 }
 
-
 export default ErrorsReducer;

@@ -37,7 +37,7 @@ class Navbar extends React.Component {
     }
 
     navbarHandleClick(e) {
-        if (this.profileDropdownNode && this.profileDropdownNode.current.contains(e.target)) {
+        if (this.profileDropdownNode && this.profileDropdownNode.current &&this.profileDropdownNode.current.contains(e.target)) {
             // this.toggleDropdown();
             return;
         } else if (this.profileCircleNode.current.contains(e.target)) {

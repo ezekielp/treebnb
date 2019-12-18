@@ -7,6 +7,7 @@ const msp = state => {
     let currentUser = session.currentUser ? entities.users[session.currentUser.id] : {}
     return {
         bookings: Object.values(entities.bookings),
+        success: state.ui.success,
         currentUser
     }
 };
