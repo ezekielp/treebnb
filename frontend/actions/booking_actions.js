@@ -33,7 +33,7 @@ export const createBooking = booking => dispatch => {
     return BookingsApiUtil.createBooking(booking)
         .then(booking => {
             dispatch(receiveBooking(booking));
-            dispatch(receiveBookingSuccessMessage(booking.success))
+            dispatch(receiveBookingSuccessMessage(booking.success));
         });
 };
 
@@ -44,5 +44,8 @@ export const updateBooking = booking => dispatch => {
 
 export const deleteBooking = bookingId => dispatch => {
     return BookingsApiUtil.deleteBooking(bookingId)
-        .then(booking => dispatch(removeBooking(booking.id)))
-}
+        .then(booking => {
+            dispatch(removeBooking(booking.id));
+            dispatch(receiveBookingSuccessMessage(booking.success))
+        });
+};

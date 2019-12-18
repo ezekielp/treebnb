@@ -33,6 +33,7 @@ class Api::BookingsController < ApplicationController
     
     def destroy
         @booking = Booking.find(params[:id])
+        @success = "Reservation successfully canceled"
 
         if @booking.destroy
             render :show

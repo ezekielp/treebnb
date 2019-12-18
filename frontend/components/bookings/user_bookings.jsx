@@ -20,7 +20,7 @@ class UserBookings extends React.Component {
     }
 
     componentWillUnmount() {
-        this.props.removeBookingSuccessMessage();
+        // this.props.removeBookingSuccessMessage();
     }
     
     render() {
@@ -35,14 +35,20 @@ class UserBookings extends React.Component {
         if (success[0]) {
             successMessage = 
                 <div className={this.state.successMessageClasses.join(' ')}>{success[0]}</div>;
+            window.setTimeout(() => {
+                this.props.removeBookingSuccessMessage();
+                this.setState({
+                    successMessageClasses: ['reservation-successful-msg-visible']
+                })
+            }, 5000)
         } else {
-            successMessage = <></>;
+            successMessage = <div className="empty-success-msg-div"></div>;
         }
 
         if (this.props.success[0]) {
             window.setTimeout(() => {
                 this.setState({ successMessageClasses: ['reservation-successful-msg-visible', 'reservation-successful-msg-hidden'] })
-            }, 3000);
+            }, 2000);
         }
 
         let { bookings } = this.props;
