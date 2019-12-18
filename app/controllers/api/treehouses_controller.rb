@@ -6,8 +6,8 @@ class Api::TreehousesController < ApplicationController
     end
 
     def search
-        # @treehouses = Treehouse.where # etc.
-        # search_term = "Middle"
+        @treehouses = Treehouse.search_by_keyword(params[:treehouse][:search_term])
+        render :index
     end
 
     def show
@@ -17,7 +17,7 @@ class Api::TreehousesController < ApplicationController
 
     private
     def treehouse_params
-        params.require(:treehouse).permit(:name, :description, :owner_id, :address, :lat, :lng, :price, photos: [])
+        params.require(:treehouse).permit(:name, :description, :owner_id, :address, :lat, :lng, :price, :search_term, photos: [])
     end
 
 end

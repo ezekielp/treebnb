@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:create]
     resource :session, only: [:create, :destroy]
-    resources :treehouses, only: [:index, :search, :show]
+    resources :treehouses, only: [:index, :show]
+    get '/treehouses/search', to: 'treehouses#search'
     resources :bookings, only: [:show, :create, :update, :destroy]
   end
 

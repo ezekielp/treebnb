@@ -27,10 +27,7 @@ class Treehouse < ApplicationRecord
 
     def self.search_by_keyword(keyword)
         matcher = "%#{keyword}%"
-        name_results = Treehouse.where("name ILIKE ?", matcher)
-        address_results = Treehouse.where("address ILIKE ?", matcher)
-        description_results = Treehouse.where("description ILIKE ?", matcher)
-        search_result = name_results.concat(address_results).concat(description_results)
+        search_result = Treehouse.where("name ILIKE ?", matcher).or(Treehouse.where("address ILIKE ?", matcher).or(Treehouse.where("description ILIKE ?", matcher)))
         search_result
     end
     
