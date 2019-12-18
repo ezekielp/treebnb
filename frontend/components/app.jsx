@@ -6,6 +6,7 @@ import TreehouseIndexContainer from './treehouses/treehouse_index_container';
 import TreehouseShowContainer from './treehouses/treehouse_show_container';
 import UserBookingsContainer from './bookings/user_bookings_container';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import { AuthRoute } from '../util/route_util';
 
 const App = (props) => {
     return (
@@ -21,7 +22,7 @@ const App = (props) => {
                 <Route
                     exact path="/treehouses/:treehouseId"
                     component={ TreehouseShowContainer } />
-                <Route
+                <AuthRoute
                     exact path="/trips"
                     component={ UserBookingsContainer } />
                 <Route path="/">
