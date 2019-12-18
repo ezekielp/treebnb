@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom';
 
 const UserBookingsItem = (props) => {
 
-    let { startDateMonth, startDateYear, location, photos, treehouse_id } = props.booking;
+    let { startDateMonth, startDateDay, endDateMonth, endDateDay, endDateYear, location, photos, treehouse_id } = props.booking;
 
     const handleDelete = e => {
         e.preventDefault();
         props.deleteBooking(props.booking.id);
     }
 
-    debugger;
+    // debugger;
+    let dateStringToDisplay = `${startDateMonth} ${startDateDay} - ${endDateMonth} ${endDateDay}, ${endDateYear}`;
 
     return (
         <li className="user-bookings-li">
@@ -23,8 +24,9 @@ const UserBookingsItem = (props) => {
                 </div>
             </Link>
             <div className="booking-idx-item-month-year-container">
-                <div className="">{startDateMonth}</div>
-                <div className="booking-idx-item-month">{startDateYear}</div>
+                <div className="booking-idx-item-month">
+                    {dateStringToDisplay}
+                </div>
             </div>
             <div className="booking-idx-item-location">
                 {location}

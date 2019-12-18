@@ -31,7 +31,6 @@ class UserBookings extends React.Component {
         // Conditional for the success message when having made a booking
         let successMessage;
         let { success } = this.props;
-        // debugger;
         if (success[0]) {
             successMessage = 
                 <div className={this.state.successMessageClasses.join(' ')}>{success[0]}</div>;
