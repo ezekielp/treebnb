@@ -15,7 +15,6 @@ class CancelBookingForm extends React.Component {
     
     handleConfirmation(e) {
         e.preventDefault();
-        debugger;
         this.props.deleteBooking(this.props.bookingId)
             .then(() => this.props.closeModal());
     }
