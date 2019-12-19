@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchTreehouseSearchResults } from '../../actions/treehouse_actions';
+import { clearTreehouseState, fetchTreehouseSearchResults } from '../../actions/treehouse_actions';
 import SearchBox from './search_box';
 
 const msp = state => {
@@ -10,7 +10,8 @@ const msp = state => {
 
 const mdp = dispatch => {
     return {
-        fetchTreehouseSearchResults: searchTerm => dispatch(fetchTreehouseSearchResults(searchTerm))
+        fetchTreehouseSearchResults: searchTerm => dispatch(fetchTreehouseSearchResults(searchTerm)),
+        clearTreehouseState: () => dispatch(clearTreehouseState())
     }
 }
 

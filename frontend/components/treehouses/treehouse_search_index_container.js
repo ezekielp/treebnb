@@ -10,6 +10,7 @@ const msp = state => {
 
 const mdp = dispatch => {
     return {
+        fetchAllTreehouses: () => dispatch(fetchTreehouses()),
         updateBounds: bounds => dispatch(updateBounds(bounds))
     }
 }

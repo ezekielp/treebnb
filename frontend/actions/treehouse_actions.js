@@ -3,6 +3,7 @@ import { fetchBooking } from '../actions/booking_actions';
 
 export const RECEIVE_TREEHOUSES = "RECEIVE_TREEHOUSES";
 export const RECEIVE_TREEHOUSE = "RECEIVE_TREEHOUSE";
+export const CLEAR_TREEHOUSE_STATE = "CLEAR_TREEHOUSE_STATE";
 
 const receiveTreehouses = treehouses => ({
     type: RECEIVE_TREEHOUSES,
@@ -13,6 +14,10 @@ const receiveTreehouse = treehouse => ({
     type: RECEIVE_TREEHOUSE,
     treehouse
 });
+
+export const clearTreehouseState = () => ({
+    type: CLEAR_TREEHOUSE_STATE
+})
 
 export const fetchTreehouses = () => dispatch => {
     return TreehousesAPIUtil.fetchTreehouses()

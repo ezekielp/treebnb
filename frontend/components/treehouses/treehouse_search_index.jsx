@@ -32,6 +32,7 @@ class TreehouseSearchIndex extends React.Component {
                     <TreehouseSearchMap 
                         updateBounds={this.props.updateBounds} 
                         treehouses={this.props.treehouses}
+                        fetchAllTreehouses={this.props.fetchAllTreehouses}
                         />
                 </div>
             </div>

@@ -43,6 +43,7 @@ class SearchBox extends React.Component {
     
     componentWillUnmount() {
         document.removeEventListener('mousedown', this.handleClick, false)
+        this.props.clearTreehouseState();
     }
 
     handleClick(e) {
