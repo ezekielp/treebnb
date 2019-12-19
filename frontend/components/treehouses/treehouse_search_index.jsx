@@ -16,9 +16,12 @@ class TreehouseSearchIndex extends React.Component {
                 treehouse={treehouse} />
         });
 
+        let numResults = treehouses.length;
+
         return (
             <div className="treehouse-search-idx-outer-container">
                 <div className="treehouse-search-idx-left-container">
+                    <h1>{numResults} places to stay</h1>
                     {treehousesLis}
                 </div>
                 <div className="treehouse-search-idx-map-container">

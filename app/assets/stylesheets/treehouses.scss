@@ -85,8 +85,15 @@
     grid-column: 1 / 2;
 }
 
+.treehouse-search-li {
+    padding: 20px;
+}
+
 .treehouse-search-li-hr {
-    
+    border-top: 1px solid rgb(235, 235, 235);
+    height: 0px;
+    border-left: none;
+    margin-bottom: 25px;
 }
 
 .treehouse-search-li-container {
@@ -96,30 +103,49 @@
 .treehouse-search-idx-photo {
     width: 300px;
     height: 200px;
+    margin-right: 15px;
+}
+
+.treehouse-search-idx-photo-child {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;    
 }
 
 .treehouse-search-idx-item-right-side {
-
-}
-
-.treehouse-search-idx-tag-header {
-
-}
-
-.treehouse-search-idx-name {
-
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
 }
 
 .treehouse-search-idx-address {
+    color: rgb(113, 113, 113);
+    font-size: 14px;
+    margin-bottom: 15px;
+}
 
+.treehouse-search-idx-name {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.treehouse-search-idx-tagline {
+    color: rgb(113, 113, 113);
+    font-size: 13px;
+    margin-bottom: 15px;
 }
 
 .treehouse-search-idx-price {
-
+    align-self: flex-end;
+    font-size: 17px;
+    margin-top: 72px;
 }
 
 .treehouse-search-idx-price-num {
-
+    font-weight: 600;
 }
 
 
