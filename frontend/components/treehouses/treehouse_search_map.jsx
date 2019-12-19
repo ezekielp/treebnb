@@ -29,28 +29,17 @@ class TreehouseSearchMap extends React.Component {
             zoom: 10
         };
 
-        // debugger;
         this.map = new google.maps.Map(this.mapNode);
         this.MarkerManager = new MarkerManager(this.map);
         this.MarkerManager.updateMarkers(this.props.treehouses)
 
-        // debugger;
-        // this.markers = Object.values(this.MarkerManager.markers);
-        // let bounds = new google.maps.LatLngBounds();
-        // for (let i = 0; i < this.markers.length; i++) {
-        //     bounds.extend(this.markers[i]);
-        // }
-        // this.map.fitBounds(bounds);
-        // debugger;
     }
 
     componentDidUpdate() {
         this.MarkerManager.updateMarkers(this.props.treehouses);
         this.markers = Object.values(this.MarkerManager.markers);
         let bounds = new google.maps.LatLngBounds();
-        // debugger;
         for (let i = 0; i < this.markers.length; i++) {
-            // bounds.extend(this.markers[i]);
             let point = {
                 lat: this.markers[i].position.lat(),
                 lng: this.markers[i].position.lng()
@@ -58,13 +47,6 @@ class TreehouseSearchMap extends React.Component {
             bounds.extend(point);
         }
         this.map.fitBounds(bounds);
-    }
-
-    componentWillUnmount() {
-        // this.CleanMarkerManager = new MarkerManager(null);
-        // this.CleanMarkerManager.updateMarkers(this.props.treehouses);
-        // this.MarkerManager.removeMarkers();
-        // debugger;
     }
 
     listenForMove() {

@@ -25,7 +25,8 @@ export default class MarkerManager {
         let { lat, lng } = treehouse;
         let marker = new google.maps.Marker({
             position: { lat, lng },
-            map: this.map
+            map: this.map,
+            treehouseId: treehouse.id
         });
         this.markers[treehouse.id] = marker;
         // let infoWindow = this.createTreehouseInfoWindow(treehouse);
@@ -39,19 +40,26 @@ export default class MarkerManager {
             //     this.createMarkerFromTreehouse(treehouse);
             // }
         });
+        const newTreehouseMarkersObj = {};
+        treehouses.forEach(treehouse => newTreehouseMarkersObj[treehouse.id] = treehouse);
+        
+        Object.keys(this.markers).filter(markerId => !newTreehouseMarkersObj[markerId]).forEach(markerId => this.removeMarker(this.markers[markerId]));
         // debugger;
     }
 
-    removeMarkers() {
+    removeMarker(marker) {
+        // debugger;
+        this.markers[marker.treehouseId].setMap(null);
+        delete this.markers[marker.treehouseId];
         // debugger;
         // THE BELOW DOESN'T WORK BECAUSE "THIS" IS UNDEFINED
         // INSIDE THE FOREACH APPARENTLY
-        Object.keys(this.markers).forEach(treehouseId => {
-            // debugger;
-            if (this.markers[treehouseId]) {
-                this.markers[treehouseId].setMap(null);
-            }
-            this.markers = {};
-        })
+        // Object.keys(this.markers).forEach(treehouseId => {
+        //     // debugger;
+        //     if (this.markers[treehouseId]) {
+        //         this.markers[treehouseId].setMap(null);
+        //     }
+        //     this.markers = {};
+        // })
     }
 }

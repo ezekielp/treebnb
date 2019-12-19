@@ -1,6 +1,6 @@
 import React from 'react';
 import TreehouseSearchIndexItem from './treehouse_search_index_item';
-import TreehouseSearchMap from './treehouse_search_map';
+import TreehouseSearchMapContainer from './treehouse_search_map_container';
 
 class TreehouseSearchIndex extends React.Component {
     constructor(props) {
@@ -29,9 +29,9 @@ class TreehouseSearchIndex extends React.Component {
                     {treehousesLis}
                 </div>
                 <div className="treehouse-search-idx-map-container">
-                    <TreehouseSearchMap 
+                    <TreehouseSearchMapContainer 
                         updateBounds={this.props.updateBounds} 
-                        treehouses={this.props.treehouses}
+                        // treehouses={this.props.treehouses}
                         fetchAllTreehouses={this.props.fetchAllTreehouses}
                         />
                 </div>
