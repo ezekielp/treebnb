@@ -8,11 +8,13 @@ class UserBookings extends React.Component {
 
         this.state = {
             success: this.props.success,
-            successMessageClasses: ['reservation-successful-msg-visible']
+            successMessageClasses: ['reservation-successful-msg-visible'],
+            // bookings: []
         }
     }
 
     componentDidMount() {
+        this.props.clearBookingsState();
         let { currentUser, fetchBooking } = this.props;
         currentUser.bookingIds.forEach(bookingId => {
             fetchBooking(bookingId);
@@ -26,6 +28,13 @@ class UserBookings extends React.Component {
     render() {
         // Return null before bookings have loaded
         if (!this.props.bookings) return null;
+        // if (this.props.bookings && (this.props.bookings.length === this.props.currentUser.bookingIds.length)) {
+        //     this.setState({
+        //         bookings: this.props.bookings.filter(booking => {
+        //             return this.props.currentUser.bookingIds.includes(booking["id"]);
+        //         })
+        //     })
+        // }
 
 
         // Conditional for the success message when having made a booking
@@ -50,6 +59,7 @@ class UserBookings extends React.Component {
             }, 2000);
         }
 
+        // debugger;
         let { bookings } = this.props;
         let bookingsLis, noBookingsmessage;
         if (bookings[0] === undefined) {
