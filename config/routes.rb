@@ -7,8 +7,8 @@ Rails.application.routes.draw do
     resources :users, only: [:create]
     resource :session, only: [:create, :destroy]
     resources :treehouses, only: [:index, :show]
-    get '/treehouses/search', to: 'treehouses#search'
     resources :bookings, only: [:show, :create, :update, :destroy]
+    get '/search', to: 'treehouses#search'
   end
 
 end

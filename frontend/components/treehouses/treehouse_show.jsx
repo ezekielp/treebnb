@@ -28,7 +28,6 @@ class TreehouseShow extends React.Component {
             bookedDates: []
         };
 
-        // debugger;
         this.inputNode = React.createRef();
         this.dropdownNode = React.createRef();
         this.toggleDropdown = this.toggleDropdown.bind(this);
@@ -38,7 +37,6 @@ class TreehouseShow extends React.Component {
         this.dayBlocked = this.dayBlocked.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClick = this.handleClick.bind(this);
-        // this.loadData
     }
 
     componentWillMount() {
@@ -54,45 +52,7 @@ class TreehouseShow extends React.Component {
 
     componentDidMount() {
         this.loadData();
-            // .then((data) => {
-            //     // debugger;
-            //     let dates = [];
-            //     this.props.bookings.forEach(booking => {
-            //         booking.dates.forEach(date => {
-            //             if (this.props.treehouse.id === booking.treehouse_id) {
-            //                 dates.push(moment(date, "YYYY-MM-DD").valueOf());
-            //             }
-            //         });
-            //     });
-            //     this.setState({ bookedDates: dates });
-            // })
-        // this.props.fetchTreehouse(this.props.match.params.treehouseId);
         document.addEventListener('mousedown', this.handleClick, false);
-    }
-
-    componentDidUpdate() {
-        // debugger;
-        // if (!this.state.bookedDates[0]
-        //         && (this.props.bookings.length === this.props.treehouse.bookingIds.length)) {
-        //     let dates = [];
-        //     this.props.bookings.forEach(booking => {
-        //         booking.dates.forEach(date => {
-        //             if (this.props.treehouse.id === booking.treehouse_id) {
-        //                 dates.push(moment(date, "YYYY-MM-DD").valueOf());
-        //             }
-        //         });
-        //     });
-        //     this.setState({ bookedDates: dates });
-        // }
-        // let dates = [];
-        // this.props.bookings.forEach(booking => {
-        //     booking.dates.forEach(date => {
-        //         if (this.props.treehouse.id === booking.treehouse_id) {
-        //             dates.push(moment(date, "YYYY-MM-DD").valueOf());
-        //         }
-        //     });
-        // });
-        
     }
 
     componentWillUnmount() {
@@ -180,25 +140,6 @@ class TreehouseShow extends React.Component {
                 };
             }
         }
-
-        // if (bookings[i].treehouse_id === treehouse.id) {
-        //     if (this.state.startDate) {
-        //         for (let i = 0; i < bookings.length; i++) {
-        //             if (day.isBetween(bookings[i].start_date, bookings[i].end_date, 'day')) {
-        //                 return true;
-        //             } else if (day.isAfter(bookings[i].end_date, 'day')) {
-        //                 return true;
-        //             };
-        //         };
-        //     } else {
-        //         for (let i = 0; i < bookings.length; i++) {
-        //             if (day.isBetween(bookings[i].start_date, bookings[i].end_date, 'day')) {
-        //                 return true;
-        //             };
-        //         };
-        //     };
-        // };
-
         return false;
     }
 
@@ -232,13 +173,13 @@ class TreehouseShow extends React.Component {
                 };
                 this.props.createBooking(newBooking);
                 this.setState({ redirectToTrips: true });
-                // this.props.history.push('./trips');
             };
         };
     }
 
     render() {
 
+        // Redirect to Trips page when a booking is made
         if (this.state.redirectToTrips) {
             return <Redirect to="/trips" />
         }

@@ -6,7 +6,8 @@ class Api::TreehousesController < ApplicationController
     end
 
     def search
-        @treehouses = Treehouse.search_by_keyword(params[:treehouse][:search_term])
+        @treehouses = Treehouse.search_by_keyword(params[:search_term])
+        # debugger;
         render :index
     end
 

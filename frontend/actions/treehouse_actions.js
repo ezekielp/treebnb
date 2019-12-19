@@ -28,3 +28,8 @@ export const fetchTreehouse = treehouseId => dispatch => {
             });
         });
 };
+
+export const fetchTreehouseSearchResults = searchTerm => dispatch => {
+    return TreehousesAPIUtil.fetchSearchResults(searchTerm)
+        .then(treehouses => dispatch(receiveTreehouses(treehouses)));
+};

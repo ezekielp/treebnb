@@ -4,19 +4,22 @@ import React from 'react';
 const reactDates = require('react-dates/initialize');
 import 'react-dates/lib/css/_datepicker.css';
 import { DateRangePicker } from 'react-dates';
+import { Redirect } from 'react-router-dom';
 
 class SearchBox extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             dropdownOpen: false,
+            searchTerm: "",
             kidsCount: 0,
             petsCount: 0,
             parentsCount: 0,
             startDate: null,
             endDate: null,
             focusedInput: null,
-            guestsInputBorderFocused: false
+            guestsInputBorderFocused: false,
+            redirectToSearchIdx: false
         };
 
         this.inputNode = React.createRef();
@@ -24,6 +27,8 @@ class SearchBox extends React.Component {
         this.toggleDropdown = this.toggleDropdown.bind(this);
         this.increaseCount = this.increaseCount.bind(this);
         this.decreaseCount = this.decreaseCount.bind(this);
+        this.handleSearchUpdate = this.handleSearchUpdate.bind(this);
+        this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
         this.makeSingleGuestsInputString = this.makeSingleGuestsInputString.bind(this);
         this.handleClick = this.handleClick.bind(this);
     }
@@ -52,6 +57,22 @@ class SearchBox extends React.Component {
         } else {
             this.closeDropdown();
         }
+    }
+
+    handleSearchUpdate() {
+        return (e) => {
+            debugger;
+            this.setState({
+                searchTerm: e.currentTarget.value
+            });
+        };
+    }
+
+    handleSearchSubmit(e) {
+        e.preventDefault();
+        debugger;
+        this.props.fetchTreehouseSearchResults(this.state.searchTerm);
+        this.setState({ redirectToSearchIdx: true })
     }
 
     toggleDropdown() {
@@ -101,7 +122,12 @@ class SearchBox extends React.Component {
     };
 
     render() {
-        // console.log(this.state.dropdownOpen);
+        
+        // Redirect to search index when a search is made
+        if (this.state.redirectToSearchIdx) {
+            return <Redirect to="/treehouses/search" />
+        }
+
         // Conditional to toggle color of minus sign on Guests dropdown
         let kidsMinusSignColorClass = (this.state.kidsCount === 0) ? "search-box-minus-circle" : "search-box-plus-circle";
         let petsMinusSignColorClass = (this.state.petsCount === 0) ? "search-box-minus-circle" : "search-box-plus-circle";
@@ -200,14 +226,16 @@ class SearchBox extends React.Component {
                     <div className="search-box-header">
                         <h1>Branch out — book a unique treehouse to stay in.</h1>
                     </div>
-                    <form>
+                    <form onSubmit={this.handleSearchSubmit}>
                         <span className="search-box-label">
                             WHERE
                         </span>
                         <input
                             className="search-box-input"
                             type="text"
-                            placeholder="Anywhere" />
+                            placeholder="Anywhere" 
+                            onChange={this.handleSearchUpdate()} 
+                            value={this.state.searchTerm}/>
                         <div className="check_-labels-container">
                             <span className="search-box-label checkin-label">
                                 CHECK-IN

@@ -37,16 +37,6 @@
     min-width: 250px;
 }
 
-// .treehouse-idx-photo-standin {
-//     background-color: #484848;
-//     color: white;
-//     text-align: center;
-//     width: 100%;
-//     height: 17vh;
-//     min-height: 175px;
-//     border-radius: 2px;
-// }
-
 .treehouse-idx-photo {
     width: 100%;
     height: 235px;
@@ -84,17 +74,56 @@
 }
 
 
+// Treehouse search idx
+
+.treehouse-search-idx-outer-container {
+    display: grid;
+    grid-template-columns: 800px 1fr;
+}
+
+.treehouse-search-idx-left-container {
+    grid-column: 1 / 2;
+}
+
+.treehouse-search-li-hr {
+    
+}
+
+.treehouse-search-li-container {
+    display: flex;
+}
+
+.treehouse-search-idx-photo {
+    width: 300px;
+    height: 200px;
+}
+
+.treehouse-search-idx-item-right-side {
+
+}
+
+.treehouse-search-idx-tag-header {
+
+}
+
+.treehouse-search-idx-name {
+
+}
+
+.treehouse-search-idx-address {
+
+}
+
+.treehouse-search-idx-price {
+
+}
+
+.treehouse-search-idx-price-num {
+
+}
+
 
 // Show page // Top photos
-
-// .treehouse-photos-container {
-//     height: 35vw;
-//     max-height: 600px;
-//     width: 100%;
-//     min-width: 1115px;
-//     color: white;
-//     display: flex;
-// }
 
 .treehouse-photos-container-new {
     display: grid;
