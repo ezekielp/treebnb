@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import updateBounds from '../../actions/filter_actions';
 import TreehouseSearchIndex from './treehouse_search_index';
 
 const msp = state => {
@@ -9,8 +10,8 @@ const msp = state => {
 
 const mdp = dispatch => {
     return {
-
+        updateBounds: bounds => dispatch(updateBounds(bounds))
     }
 }
 
-export default connect(msp, null)(TreehouseSearchIndex);
+export default connect(msp, mdp)(TreehouseSearchIndex);

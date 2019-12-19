@@ -3,6 +3,7 @@ export const LOGOUT_USER = "LOGOUT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 
 import * as SessionAPIUtil from '../util/session_api_util';
+import { clearBookingsState } from './booking_actions';
 
 export const receiveUser = user => ({
     type: RECEIVE_USER,
@@ -37,5 +38,6 @@ export const loginUser = user => dispatch => {
 
 export const logoutUser = () => dispatch => {
     return SessionAPIUtil.logoutUser()
-        .then(() => dispatch(logout()));
+        .then(() => dispatch(logout()))
+        .then(() => dispatch(clearBookingsState()));
 }

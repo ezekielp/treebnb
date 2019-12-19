@@ -3,6 +3,7 @@ import * as BookingsApiUtil from '../util/bookings_api_util';
 export const RECEIVE_BOOKING = "RECEIVE_BOOKING";
 export const RECEIVE_BOOKING_SUCCESS_MESSAGE = 'RECEIVE_BOOKING_SUCCESS_MESSAGE';
 export const REMOVE_BOOKING_SUCCESS_MESSAGE = 'REMOVE_BOOKING_SUCCESS_MESSAGE';
+export const CLEAR_BOOKINGS_STATE = 'CLEAR_BOOKINGS_STATE';
 export const REMOVE_BOOKING = 'REMOVE_BOOKING';
 
 export const receiveBooking = booking => ({
@@ -22,6 +23,10 @@ export const removeBookingSuccessMessage = () => ({
 export const removeBooking = bookingId => ({
     type: REMOVE_BOOKING,
     bookingId
+})
+
+export const clearBookingsState = () => ({
+    type: CLEAR_BOOKINGS_STATE
 })
 
 export const fetchBooking = bookingId => dispatch => {

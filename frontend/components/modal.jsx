@@ -20,7 +20,6 @@ const Modal = ({modal, closeModal}) => {
             component = <SignupFormContainer message={message} />
         }
     } else if (formType === 'Cancel booking') {
-        debugger;
         component = <CancelBookingContainer bookingId={message} />;
     }
 

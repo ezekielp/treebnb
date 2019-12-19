@@ -9,9 +9,14 @@ class TreehouseSearchMap extends React.Component {
     }
 
     componentDidMount() {
+        const firstTreehouseLocation = {
+            lat: this.props.treehouses[0].lat,
+            lng: this.props.treehouses[0].lng,
+        }
+
         const mapOptions = {
-            // center: ,
-            // zoom: 
+            center: firstTreehouseLocation,
+            zoom: 13
         };
 
         this.map = new google.maps.Map(this.mapNode, mapOptions);
@@ -43,6 +48,7 @@ class TreehouseSearchMap extends React.Component {
     render() {
         return (
             <div
+                id="map-container"
                 ref={ map => this.mapNode = map }
             >
             </div>
