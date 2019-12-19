@@ -166,7 +166,7 @@ class TreehouseShow extends React.Component {
             if (bookings[i].treehouse_id === treehouse.id) {
                 if (this.state.startDate
                         && this.state.startDate.isBefore(bookings[i].start_date, 'day')) {
-                    if (day.isBetween(bookings[i].start_date, bookings[i].end_date, 'day', "[)")) {
+                    if (day.isBetween(bookings[i].start_date, bookings[i].end_date, 'day', "[]")) {
                         return true;
                     } else if (day.isAfter(bookings[i].end_date, 'day')) {
                         return true;
@@ -174,7 +174,7 @@ class TreehouseShow extends React.Component {
                         return true;
                     };
                 } else {
-                    if (day.isBetween(bookings[i].start_date, bookings[i].end_date, 'day')) {
+                    if (day.isBetween(bookings[i].start_date, bookings[i].end_date, 'day', "[]")) {
                         return true;
                     };
                 };
@@ -305,7 +305,9 @@ class TreehouseShow extends React.Component {
                     className="clear-dates-btn"
                     onClick={() => this.setState({
                         startDate: null,
-                        endDate: null })} >
+                        endDate: null,
+                        focusedInput: null,
+                        focusedInputLeftCol: START_DATE })} >
                     Clear dates
                 </div>;
         } else {

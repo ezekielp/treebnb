@@ -1,12 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 class Navbar extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            dropdownOpen: false
+            dropdownOpen: false,
+            justLoggedOut: false
         }
 
         this.profileCircleNode = React.createRef();
@@ -14,6 +15,7 @@ class Navbar extends React.Component {
         this.toggleDropdown = this.toggleDropdown.bind(this);
         this.closeDropdown = this.closeDropdown.bind(this);
         this.navbarHandleClick = this.navbarHandleClick.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
     }
 
     // componentWillMount() {
@@ -47,7 +49,20 @@ class Navbar extends React.Component {
         }
     }
 
+    handleLogout() {
+        this.props.logoutUser();
+        this.toggleDropdown();
+        this.setState({
+            justLoggedOut: true
+        });
+    }
+
     render() {
+        if (this.state.justLoggedOut) {
+            this.setState({ justLoggedOut: false});
+            return <Redirect to="/" />;
+        }
+
         let { currentUser, openModal, logoutUser } = this.props;
 
         const sessionLinks = (
@@ -64,10 +79,7 @@ class Navbar extends React.Component {
         const dropdownMenu = (
             <div className="profile-dropdown-container">
                 <ul>
-                    <li onClick={() => {
-                        logoutUser();
-                        this.toggleDropdown();
-                    }}>
+                    <li onClick={() => this.handleLogout()}>
                         Log Out
                         </li>
                 </ul>
