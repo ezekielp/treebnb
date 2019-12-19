@@ -4,6 +4,9 @@ import TreehouseSearchIndexItem from './treehouse_search_index_item';
 class TreehouseSearchIndex extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+        }
     }
 
 
@@ -21,7 +24,7 @@ class TreehouseSearchIndex extends React.Component {
         return (
             <div className="treehouse-search-idx-outer-container">
                 <div className="treehouse-search-idx-left-container">
-                    <h1>{numResults} places to stay</h1>
+                    <h1 className="num-places-to-stay-header">{numResults} places to stay</h1>
                     {treehousesLis}
                 </div>
                 <div className="treehouse-search-idx-map-container">

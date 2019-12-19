@@ -34,17 +34,14 @@ class SearchBox extends React.Component {
     }
 
     componentWillMount() {
-        // debugger;
         document.addEventListener('mousedown', this.handleClick, false)
     }
     
     componentDidMount() {
-        // debugger;
         document.addEventListener('mousedown', this.handleClick, false)
     }
     
     componentWillUnmount() {
-        // debugger;
         document.removeEventListener('mousedown', this.handleClick, false)
     }
 
@@ -61,7 +58,6 @@ class SearchBox extends React.Component {
 
     handleSearchUpdate() {
         return (e) => {
-            debugger;
             this.setState({
                 searchTerm: e.currentTarget.value
             });
@@ -70,7 +66,6 @@ class SearchBox extends React.Component {
 
     handleSearchSubmit(e) {
         e.preventDefault();
-        debugger;
         this.props.fetchTreehouseSearchResults(this.state.searchTerm);
         this.setState({ redirectToSearchIdx: true })
     }

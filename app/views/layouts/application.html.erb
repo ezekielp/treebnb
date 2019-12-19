@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Treebnb</title>
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['MAPS_API_KEY']}" %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     

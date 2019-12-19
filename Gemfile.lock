@@ -104,6 +104,8 @@ GEM
     erubi (1.9.0)
     execjs (2.7.0)
     ffi (1.11.3)
+    figaro (1.1.1)
+      thor (~> 0.14)
     font-awesome-sass (5.11.2)
       sassc (>= 1.11)
     globalid (0.4.2)
@@ -239,6 +241,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
+  figaro
   font-awesome-sass
   jbuilder (~> 2.5)
   jquery-rails
