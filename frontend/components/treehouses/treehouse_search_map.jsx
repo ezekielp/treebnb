@@ -10,8 +10,8 @@ class TreehouseSearchMap extends React.Component {
 
     componentDidMount() {
 
-        let startingLocation, theTreehouses;
-        if (this.props.treehouses.length > 0) {
+        let startingLocation;
+        if (this.props.treehouses.length === 0) {
             // this.props.fetchAllTreehouses();
             startingLocation = {
                 lat: this.props.treehouses[0].lat,
