@@ -13,7 +13,9 @@ Treebnb is a functional clone of the vacation rental site Airbnb, with a treehou
 3. [Features](#features)
     - [Bookings](#bookings)
     - [Search with Google Maps](#search)
-4. [Future tasks](#future)
+4. [State management](#state)
+5. [Styling and UI elements](#styling)
+6. [Future tasks](#future)
 
 ## <a name="demo"></a> Demo
 
@@ -32,7 +34,7 @@ I focused on the ability to make bookings and a search function for the clone.
 The bookings features presented a number of technical challenges on the front end. I used the [React Dates](https://github.com/airbnb/react-dates) library to render the calendar pickers, and integrating a single calendar was straightforward. But adding and syncing a second calendar on the same page proved more difficult.
 
 <p>
-    <a href="https://mytreebnb.herokuapp.com/"><img src="https://raw.githubusercontent.com/ezekielp/treebnb-markdown-assets/master/markdown-assets/treebnb-show-img-2.png"></a>
+    <a name="dropdown" href="https://mytreebnb.herokuapp.com/"><img src="https://raw.githubusercontent.com/ezekielp/treebnb-markdown-assets/master/markdown-assets/treebnb-show-img-2.png"></a>
 </p>
 
 The main issue was that the second calendar had no text input attached and therefore needed to have its `focusedInput` prop set to `START_DATE` by default in order to be functional (see code snippet below). However, the other calendar picker, with inputs, cannot have its `focusedInput` prop set to `START_DATE` by default, since it would leave the "Check-in" picker open at all times. My solution was to create a separate state variable, `focusedInputLeftCol`, to which I set the left-side picker's `focusedInput` prop.
@@ -54,6 +56,14 @@ I implemented a simple search function for treehouses using a PostgreSQL `ILIKE`
 <p>
     <a href="https://mytreebnb.herokuapp.com/"><img src="https://raw.githubusercontent.com/ezekielp/treebnb-markdown-assets/master/markdown-assets/treebnb-search-img-2.png"></a>
 </p>
+
+### <a name="state"></a> State management
+
+The site uses a normalized Redux store to manage front-end state with React components. The top-level reducers include Entities, which houses Users, Treehouses, and Bookings, and a UI reducer for a modal and success messages.
+
+### <a name="styling"></a> Styling and UI elements
+
+I attempted to match Airbnb's styling and UI elements as much as possible. The biggest challenge among the elements I created was the dropdown menu for the bookings box (see [screenshot](#dropdown) above). Originally, the "+" and "-" signs on the menu were not registering on the first click. I fixed this by changing my click behavior for opening the menu, adding event listeners to the `document` when the component mounts to close, open or toggle the menu depending on where the user clicks, then removing the event listeners when the component unmounts.
 
 ### <a name="future"></a> Future tasks
 
