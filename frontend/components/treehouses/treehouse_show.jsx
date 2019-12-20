@@ -114,7 +114,6 @@ class TreehouseShow extends React.Component {
 
     onFocusChange() {
         this.setState({
-            // Force the focusedInput to always be truthy so that dates are always selectable
             focusedInputLeftCol: this.state.focusedInputLeftCol === START_DATE ? END_DATE : START_DATE
         });
     }
