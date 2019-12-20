@@ -26,7 +26,7 @@ class TreehouseSearchMap extends React.Component {
 
         const mapOptions = {
             center: startingLocation,
-            zoom: 10
+            zoom: 13
         };
 
         this.map = new google.maps.Map(this.mapNode);
