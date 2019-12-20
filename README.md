@@ -8,12 +8,12 @@
 Treebnb is a functional clone of the vacation rental site Airbnb, with a treehouse theme. You can sign up for an account, search and view treehouses to rent, and book (fake) vacations with a few clicks.
 
 ### Table of contents
-1. [Demo](https://github.com/ezekielp/treebnb/#demo)
-2. [Technologies](https://github.com/ezekielp/treebnb/#technologies)
-3. [Features](https://github.com/ezekielp/treebnb/#features)
-    - [Bookings](https://github.com/ezekielp/treebnb/#bookings)
-    - [Search with Google Maps](https://github.com/ezekielp/treebnb/#search)
-4. [Future tasks](https://github.com/ezekielp/treebnb/#future)
+1. [Demo](#demo)
+2. [Technologies](#technologies)
+3. [Features](#features)
+    - [Bookings](#bookings)
+    - [Search with Google Maps](#search)
+4. [Future tasks](#future)
 
 ## <a name="demo"></a> Demo
 
