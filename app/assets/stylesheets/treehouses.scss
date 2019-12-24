@@ -231,7 +231,7 @@
 .photo-3:hover,
 .photo-4:hover,
 .photo-5:hover {
-    filter: brightness(1.25) !important;
+    filter: brightness(1.33) !important;
 }
 
 // .treehouse-photo-parent {
@@ -434,6 +434,9 @@
 }
 
 #clear-dates-right-side {
-    margin-left: 289px;
+    display: flex;
+    justify-content: flex-end;
+    width: 106%;
+    margin-top: 10px;
 }
 

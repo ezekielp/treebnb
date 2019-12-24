@@ -424,8 +424,8 @@ class TreehouseShow extends React.Component {
                         <div className="treehouse-booking-box-bottom-text">
                             You won't be charged (ever)
                         </div>
+                        <div id="clear-dates-right-side">{clearDates}</div>
                     </div>
-                    <div id="clear-dates-right-side">{clearDates}</div>
                     </div>
                 </div>
             </div>
