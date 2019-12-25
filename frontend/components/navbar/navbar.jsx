@@ -7,7 +7,9 @@ class Navbar extends React.Component {
 
         this.state = {
             dropdownOpen: false,
-            justLoggedOut: false
+            justLoggedOut: false,
+            redirectToSearchIdx: false,
+            searchTerm: ''
         }
 
         this.profileCircleNode = React.createRef();
@@ -16,11 +18,10 @@ class Navbar extends React.Component {
         this.closeDropdown = this.closeDropdown.bind(this);
         this.navbarHandleClick = this.navbarHandleClick.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
+        this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+        this.handleSearchUpdate = this.handleSearchUpdate.bind(this);
+        this.renderNavbarSearchField = this.renderNavbarSearchField.bind(this);
     }
-
-    // componentWillMount() {
-    //     document.addEventListener('mousedown', this.handleClick, false);
-    // }
 
     componentDidMount() {
         document.addEventListener('mousedown', this.navbarHandleClick, false);
@@ -56,6 +57,57 @@ class Navbar extends React.Component {
         this.setState({
             justLoggedOut: true
         });
+    }
+
+    handleSearchSubmit(e) {
+        e.preventDefault();
+        this.props.fetchTreehouseSearchResults(this.state.searchTerm);
+        this.setState({ redirectToSearchIdx: true })
+    }
+
+    handleSearchUpdate() {
+        return (e) => {
+            this.setState({
+                searchTerm: e.currentTarget.value
+            });
+        };
+    }
+
+    renderLogo() {
+        if (this.props.navbarType === 'With search') {
+            return (
+                <div>
+
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                    
+                </div>
+            )
+        }
+    }
+
+    renderNavbarSearchField() {
+        if (this.props.navbarType === 'With search') {
+            return (
+                <div className="navbar-search-form-container" >
+                    <i class="fas fa-search"></i>
+                    <form className="navbar-search-form" onSubmit={this.handleSearchSubmit}>
+                        <div className="navbar-search-input-container">
+                            <input
+                                className="navbar-search-input"
+                                type="text"
+                                placeholder="Search"
+                                value={this.state.searchTerm}
+                                onChange={this.handleSearchUpdate()}
+                                />
+                        </div>
+                    </form>
+                </div>
+            )
+        }
     }
 
     render() {
@@ -97,9 +149,6 @@ class Navbar extends React.Component {
                 <li 
                     ref={this.profileCircleNode}
                     id="profile-image-circle"
-                    // onFocus={() => this.toggleDropdown()}
-                    // onBlur={() => this.toggleDropdown()}
-                    // tabIndex="0"
                     >
                 </li>
                 <div
@@ -119,6 +168,7 @@ class Navbar extends React.Component {
                         <span id="treebnb-word">treebnb</span>
                     </div>
                 </Link>
+                {this.renderNavbarSearchField()}
                 {linksToRender}
             </nav>
         )

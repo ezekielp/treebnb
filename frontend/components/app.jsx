@@ -1,5 +1,6 @@
 import React from 'react';
 import NavbarContainer from './navbar/navbar_container';
+import NavbarWithSearchContainer from './navbar/navbar_with_search_container';
 import Modal from './modal';
 import SearchBoxContainer from './forms/search_box_container';
 // import SearchBox from './forms/search_box';
@@ -14,23 +15,31 @@ const App = (props) => {
     return (
         <div className="app-container">
             <Modal />
-            <header>
-                <NavbarContainer />
-            </header>
             <Switch>
-                <Route
-                    exact path="/treehouses"
-                    component={ TreehouseIndexContainer } />
-                <Route
-                    exact path="/treehouses/search"
-                    component={ TreehouseSearchIndexContainer } />
-                <Route
-                    exact path="/treehouses/:treehouseId"
-                    component={ TreehouseShowContainer } />
+                <Route exact path="/treehouses">
+                    <TreehouseIndexContainer />
+                </Route>
+                <Route exact path="/treehouses/search">
+                    <NavbarWithSearchContainer />
+                    <TreehouseSearchIndexContainer />
+                </Route>
+                <Route exact path="/treehouses/:treehouseId" render={(routeProps) => {
+                    return (
+                        <div>
+                            <NavbarWithSearchContainer />
+                            <TreehouseShowContainer {...routeProps} />
+                        </div>
+                    );
+                }} />
+                {/* <Route exact path="/treehouses/:treehouseId">
+                    <NavbarWithSearchContainer />
+                    <TreehouseShowContainer />
+                </Route> */}
                 <AuthRoute
                     exact path="/trips"
                     component={ UserBookingsContainer } />
                 <Route path="/">
+                    <NavbarContainer />
                     <SearchBoxContainer />
                     <TreehouseIndexContainer />
                     <Redirect to="/" />

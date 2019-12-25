@@ -72,11 +72,6 @@ class SearchBox extends React.Component {
     }
 
     toggleDropdown() {
-        // if (this.state.dropdownOpen === false) {
-        //     this.openDropdown();
-        // } else {
-        //     this.closeDropdown();
-        // }
         this.setState({ dropdownOpen: !this.state.dropdownOpen});
     }
 
