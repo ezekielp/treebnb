@@ -6,6 +6,7 @@
         json.endDateMonth booking.end_date.strftime("%B")
         json.endDateDay booking.end_date.strftime("%e")
         json.endDateYear booking.end_date.strftime("%Y")
+        json.location booking.treehouse.address
         json.dates booking.dates
         json.photos booking.treehouse.photos.map { |photo| url_for(photo) }
     end

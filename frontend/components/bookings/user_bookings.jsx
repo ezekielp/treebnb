@@ -24,6 +24,22 @@ class UserBookings extends React.Component {
         this.props.fetchCurrentUserBookings();
     }
 
+    componentDidUpdate() {
+        if (this.props.success[0]) {
+            window.setTimeout(() => {
+                this.setState({
+                    successMessageClasses: ['reservation-successful-msg-visible', 'reservation-successful-msg-hidden']
+                })
+            }, 2000)
+            window.setTimeout(() => {
+                this.props.removeBookingSuccessMessage();
+                this.setState({
+                    successMessageClasses: ['reservation-successful-msg-visible']
+                })
+            }, 5000)
+        }
+    }
+
     componentWillUnmount() {
         // this.props.removeBookingSuccessMessage();
     }
@@ -38,21 +54,21 @@ class UserBookings extends React.Component {
         if (success[0]) {
             successMessage = 
                 <div className={this.state.successMessageClasses.join(' ')}>{success[0]}</div>;
-            window.setTimeout(() => {
-                this.props.removeBookingSuccessMessage();
-                this.setState({
-                    successMessageClasses: ['reservation-successful-msg-visible']
-                })
-            }, 5000)
+            // window.setTimeout(() => {
+            //     this.props.removeBookingSuccessMessage();
+            //     this.setState({
+            //         successMessageClasses: ['reservation-successful-msg-visible']
+            //     })
+            // }, 5000)
         } else {
             successMessage = <div className="empty-success-msg-div"></div>;
         }
 
-        if (this.props.success[0]) {
-            window.setTimeout(() => {
-                this.setState({ successMessageClasses: ['reservation-successful-msg-visible', 'reservation-successful-msg-hidden'] })
-            }, 2000);
-        }
+        // if (success[0]) {
+        //     window.setTimeout(() => {
+        //         this.setState({ successMessageClasses: ['reservation-successful-msg-visible', 'reservation-successful-msg-hidden'] })
+        //     }, 2000);
+        // }
 
         // debugger;
         let { bookings } = this.props;
