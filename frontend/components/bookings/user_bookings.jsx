@@ -14,11 +14,14 @@ class UserBookings extends React.Component {
     }
 
     componentDidMount() {
-        this.props.clearBookingsState();
         let { currentUser, fetchBooking } = this.props;
-        currentUser.bookingIds.forEach(bookingId => {
-            fetchBooking(bookingId);
+
+        this.props.bookings.forEach(booking => {
+            if (booking.guest_id === currentUser.id) {
+                fetchBooking(booking.id);
+            }
         });
+        this.props.fetchCurrentUserBookings();
     }
 
     componentWillUnmount() {
@@ -28,14 +31,6 @@ class UserBookings extends React.Component {
     render() {
         // Return null before bookings have loaded
         if (!this.props.bookings) return null;
-        // if (this.props.bookings && (this.props.bookings.length === this.props.currentUser.bookingIds.length)) {
-        //     this.setState({
-        //         bookings: this.props.bookings.filter(booking => {
-        //             return this.props.currentUser.bookingIds.includes(booking["id"]);
-        //         })
-        //     })
-        // }
-
 
         // Conditional for the success message when having made a booking
         let successMessage;

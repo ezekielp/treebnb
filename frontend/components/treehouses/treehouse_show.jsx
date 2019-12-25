@@ -322,7 +322,6 @@ class TreehouseShow extends React.Component {
                         <div className="treehouse-photo-child" style={{backgroundImage: `url(${treehouse.photoUrls[0]})`}}>
                         </div>
                     </div>
-                    {/* <div className="treehouse-right-side-photos-container"> */}
                         <div className="treehouse-photo-parent photo-2">
                             <div className="treehouse-photo-child treehouse-photo-2">
                             </div>
@@ -338,30 +337,7 @@ class TreehouseShow extends React.Component {
                     <div className="treehouse-photo-parent photo-5">
                             <div className="treehouse-photo-child treehouse-photo-5">
                             </div>
-                        {/* </div> */}
                     </div>
-                    {/* <div className="treehouse-photo-1">
-                        <div className="treehouse-photo-child" style={{backgroundImage: `url(${treehouse.photoUrls[0]})`}}>
-                        </div>
-                    </div>
-                    <div className="treehouse-right-side-photos-container">
-                        <div className="treehouse-photo-parent">
-                            <div className="treehouse-photo-child treehouse-photo-2">
-                            </div>
-                        </div>
-                        <div className="treehouse-photo-parent">
-                            <div className="treehouse-photo-child treehouse-photo-3">
-                            </div>
-                        </div>
-                        <div className="treehouse-photo-parent">
-                            <div className="treehouse-photo-child treehouse-photo-4">
-                            </div>
-                        </div>
-                        <div className="treehouse-photo-parent">
-                            <div className="treehouse-photo-child treehouse-photo-5">
-                            </div>
-                        </div>
-                    </div> */}
                 </div>
                 <div className="treehouse-show-container">
                     <div className="treehouse-show-left-side">

@@ -5,6 +5,13 @@ export const fetchBooking = bookingId => {
     })
 }
 
+export const fetchCurrentUserBookings = () => {
+    return $.ajax({
+        type: 'GET',
+        url: `api/bookings`
+    })
+}
+
 export const createBooking = booking => {
     // debugger;
     return $.ajax({

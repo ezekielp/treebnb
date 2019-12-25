@@ -1,10 +1,17 @@
 import * as BookingsApiUtil from '../util/bookings_api_util';
 
+export const RECEIVE_BOOKINGS = "RECEIVE_BOOKINGS";
 export const RECEIVE_BOOKING = "RECEIVE_BOOKING";
 export const RECEIVE_BOOKING_SUCCESS_MESSAGE = 'RECEIVE_BOOKING_SUCCESS_MESSAGE';
 export const REMOVE_BOOKING_SUCCESS_MESSAGE = 'REMOVE_BOOKING_SUCCESS_MESSAGE';
 export const CLEAR_BOOKINGS_STATE = 'CLEAR_BOOKINGS_STATE';
 export const REMOVE_BOOKING = 'REMOVE_BOOKING';
+
+
+export const receiveBookings = bookings => ({
+    type: RECEIVE_BOOKINGS,
+    bookings
+})
 
 export const receiveBooking = booking => ({
     type: RECEIVE_BOOKING,
@@ -28,6 +35,11 @@ export const removeBooking = bookingId => ({
 export const clearBookingsState = () => ({
     type: CLEAR_BOOKINGS_STATE
 })
+
+export const fetchCurrentUserBookings = () => dispatch => {
+    return BookingsApiUtil.fetchCurrentUserBookings()
+        .then(bookings => dispatch(receiveBookings(bookings)))
+}
 
 export const fetchBooking = bookingId => dispatch => {
     return BookingsApiUtil.fetchBooking(bookingId)
