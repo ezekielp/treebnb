@@ -67,7 +67,13 @@ class SearchBox extends React.Component {
 
     handleSearchSubmit(e) {
         e.preventDefault();
-        this.props.fetchTreehouseSearchResults(this.state.searchTerm, this.state.startDate, this.state.endDate);
+        let startDate = null;
+        let endDate = null;
+        if (this.state.startDate && this.state.endDate) {
+            startDate = this.state.startDate.format('YYYY/MM/DD');
+            endDate = this.state.endDate.format('YYYY/MM/DD');
+        }
+        this.props.fetchTreehouseSearchResults(this.state.searchTerm, startDate, endDate);
         this.setState({ redirectToSearchIdx: true })
     }
 

@@ -7,7 +7,8 @@ class Api::TreehousesController < ApplicationController
 
     def search
         keyword_result = Treehouse.search_by_keyword(params[:search_term])
-        if params[:start_date] && params[:end_date]
+        # debugger
+        if (params[:start_date] != "") && (params[:end_date] != "")
             start_date = params[:start_date]
             end_date = params[:end_date]
             @treehouses = Treehouse.search_by_dates(keyword_result, start_date, end_date)

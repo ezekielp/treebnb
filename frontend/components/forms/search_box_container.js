@@ -10,7 +10,7 @@ const msp = state => {
 
 const mdp = dispatch => {
     return {
-        fetchTreehouseSearchResults: searchTerm => dispatch(fetchTreehouseSearchResults(searchTerm)),
+        fetchTreehouseSearchResults: (searchTerm, startDate, endDate) => dispatch(fetchTreehouseSearchResults(searchTerm, startDate, endDate)),
         clearTreehouseState: () => dispatch(clearTreehouseState())
     }
 }
