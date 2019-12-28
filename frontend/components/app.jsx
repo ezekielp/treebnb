@@ -17,6 +17,7 @@ const App = (props) => {
             <Modal />
             <Switch>
                 <Route exact path="/treehouses">
+                    <NavbarWithSearchContainer />
                     <TreehouseIndexContainer />
                 </Route>
                 <Route exact path="/treehouses/search">
@@ -31,10 +32,6 @@ const App = (props) => {
                         </div>
                     );
                 }} />
-                {/* <Route exact path="/treehouses/:treehouseId">
-                    <NavbarWithSearchContainer />
-                    <TreehouseShowContainer />
-                </Route> */}
                 <AuthRoute
                     exact path="/trips"
                     component={ UserBookingsContainer } />

@@ -73,12 +73,24 @@ input {
     z-index: 10;
 }
 
-.treebnb-logo {
+.nav-logo-and-search-container {
+    display: flex;
+}
+
+.treebnb-logo-with-word {
     color: #484848;
     display: flex;
     font-size: 24px;
     margin-left: 102px;
     margin-top: 8px;
+}
+
+.treebnb-logo-alone {
+    color: #484848;
+    display: flex;
+    font-size: 24px;
+    margin-left: 25px;
+    margin-top: 13px;
 }
 
 #treebnb-word {
@@ -96,6 +108,7 @@ input {
     transform-origin: left;
     position: relative;
     display: flex;
+    margin-left: 25px;
 }
 
 .navbar-search-form-container:before {
@@ -112,6 +125,7 @@ input {
     left: 0;
     top: 0;
     display: flex;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .fa-search {
@@ -140,13 +154,13 @@ input {
     // transform-origin: left;
 }
 
-.navbar-search-form-container:hover:before {
+.navbar-search-form-container-long:before {
   animation: scaleX 0.5s;
   transform: scaleX(1.33);
   transform-origin: left;    
 }
 
-// .navbar-search-form-container:before {
+// .navbar-search-form-container:hover:before {
 //   animation: scaleX 0.5s;
 //   transform: scaleX(1.33);
 //   transform-origin: left;    

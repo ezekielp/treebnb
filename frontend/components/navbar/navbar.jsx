@@ -9,7 +9,8 @@ class Navbar extends React.Component {
             dropdownOpen: false,
             justLoggedOut: false,
             redirectToSearchIdx: false,
-            searchTerm: ''
+            searchTerm: '',
+            searchFormClasses: ['navbar-search-form-container']
         }
 
         this.profileCircleNode = React.createRef();
@@ -21,6 +22,8 @@ class Navbar extends React.Component {
         this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
         this.handleSearchUpdate = this.handleSearchUpdate.bind(this);
         this.renderNavbarSearchField = this.renderNavbarSearchField.bind(this);
+        this.renderLogo = this.renderLogo.bind(this);
+        this.toggleSearchBarLength = this.toggleSearchBarLength.bind(this);
     }
 
     componentDidMount() {
@@ -76,15 +79,20 @@ class Navbar extends React.Component {
     renderLogo() {
         if (this.props.navbarType === 'With search') {
             return (
-                <div>
-
-                </div>
+                <Link to="/">
+                    <div className="treebnb-logo-alone">
+                        <i className="fas fa-tree"></i>
+                    </div>
+                </Link>
             )
         } else {
             return (
-                <div>
-                    
-                </div>
+                <Link to="/">
+                    <div className="treebnb-logo-with-word">
+                        <i className="fas fa-tree"></i>
+                        <span id="treebnb-word">treebnb</span>
+                    </div>
+                </Link>
             )
         }
     }
@@ -92,8 +100,8 @@ class Navbar extends React.Component {
     renderNavbarSearchField() {
         if (this.props.navbarType === 'With search') {
             return (
-                <div className="navbar-search-form-container" >
-                    <i class="fas fa-search"></i>
+                <div className={this.state.searchFormClasses.join(' ')}>
+                    <i className="fas fa-search"></i>
                     <form className="navbar-search-form" onSubmit={this.handleSearchSubmit}>
                         <div className="navbar-search-input-container">
                             <input
@@ -102,11 +110,25 @@ class Navbar extends React.Component {
                                 placeholder="Search"
                                 value={this.state.searchTerm}
                                 onChange={this.handleSearchUpdate()}
+                                onFocus={this.toggleSearchBarLength}
+                                onBlur={this.toggleSearchBarLength}
                                 />
                         </div>
                     </form>
                 </div>
             )
+        }
+    }
+
+    toggleSearchBarLength() {
+        if (!this.state.searchFormClasses[1]) {
+            this.setState({
+                searchFormClasses: ['navbar-search-form-container', 'navbar-search-form-container-long']
+            });
+        } else {
+            this.setState({
+                searchFormClasses: ['navbar-search-form-container']
+            });
         }
     }
 
@@ -162,13 +184,10 @@ class Navbar extends React.Component {
     
         return (
             <nav className="nav-container">
-                <Link to="/">
-                    <div className="treebnb-logo">
-                        <i className="fas fa-tree"></i>
-                        <span id="treebnb-word">treebnb</span>
-                    </div>
-                </Link>
-                {this.renderNavbarSearchField()}
+                <div className="nav-logo-and-search-container">
+                    {this.renderLogo()}
+                    {this.renderNavbarSearchField()}
+                </div>
                 {linksToRender}
             </nav>
         )
