@@ -138,7 +138,12 @@ class Navbar extends React.Component {
             return <Redirect to="/" />;
         }
 
-        let { currentUser, openModal, logoutUser } = this.props;
+        if (this.state.redirectToSearchIdx) {
+            this.setState({ redirectToSearchIdx: false })
+            return <Redirect to="/treehouses/search" />
+        }
+
+        let { currentUser, openModal } = this.props;
 
         const sessionLinks = (
             <ul className="nav-links">

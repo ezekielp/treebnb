@@ -46,15 +46,10 @@
 }
 
 .user-bookings-li {
-    padding: 8px 16px 8px 16px;
+    padding: 8px 16px 8px 0;
     box-sizing: border-box;
     width: 21vw;
     min-width: 250px;    
-}
-
-.user-bookings-li:first-child {
-    // padding: 8px 16px 8px 0;
-    margin-left: -15px;
 }
 
 .booking-idx-item-month-year-container {

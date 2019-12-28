@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import NavbarWithSearchContainer from '../navbar/navbar_with_search_container';
 import UserBookingsItem from './user_bookings_item';
 
 class UserBookings extends React.Component {
@@ -98,6 +99,7 @@ class UserBookings extends React.Component {
         
         return (
             <div className="outer-user-bookings-container">
+                <NavbarWithSearchContainer />
                 {successMessage}
                 <div className="inner-user-bookings-container">
                     <h1 className="user-bookings-header">
