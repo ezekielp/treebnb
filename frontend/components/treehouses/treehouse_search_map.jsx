@@ -11,7 +11,7 @@ class TreehouseSearchMap extends React.Component {
     componentDidMount() {
 
         let startingLocation;
-        if (this.props.treehouses.length === 0) {
+        if (this.props.treehouses.length !== 0) {
             // this.props.fetchAllTreehouses();
             startingLocation = {
                 lat: this.props.treehouses[0].lat,
@@ -26,10 +26,10 @@ class TreehouseSearchMap extends React.Component {
 
         const mapOptions = {
             center: startingLocation,
-            zoom: 13
+            zoom: 4
         };
 
-        this.map = new google.maps.Map(this.mapNode);
+        this.map = new google.maps.Map(this.mapNode, mapOptions);
         this.MarkerManager = new MarkerManager(this.map);
         this.MarkerManager.updateMarkers(this.props.treehouses)
 
