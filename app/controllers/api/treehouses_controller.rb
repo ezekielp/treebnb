@@ -6,7 +6,14 @@ class Api::TreehousesController < ApplicationController
     end
 
     def search
-        @treehouses = Treehouse.search_by_keyword(params[:search_term])
+        keyword_result = Treehouse.search_by_keyword(params[:search_term])
+        if params[:start_date] && params[:end_date]
+            start_date = params[:start_date]
+            end_date = params[:end_date]
+            @treehouses = Treehouse.search_by_dates(keyword_result, start_date, end_date)
+        else
+            @treehouses = keyword_result
+        end
         # debugger;
         render :index
     end
@@ -18,7 +25,7 @@ class Api::TreehousesController < ApplicationController
 
     private
     def treehouse_params
-        params.require(:treehouse).permit(:name, :description, :owner_id, :address, :lat, :lng, :price, :search_term, photos: [])
+        params.require(:treehouse).permit(:name, :description, :owner_id, :address, :lat, :lng, :price, :search_term, :start_date, :end_date, photos: [])
     end
 
 end

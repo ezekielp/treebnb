@@ -39,9 +39,9 @@ class TreehouseShow extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    componentWillMount() {
-        document.addEventListener('mousedown', this.handleClick, false);
-    }
+    // componentWillMount() {
+    //     document.addEventListener('mousedown', this.handleClick, false);
+    // }
 
     loadData() {
         let promise = new Promise((resolve, reject) => {

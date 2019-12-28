@@ -34,7 +34,7 @@ export const fetchTreehouse = treehouseId => dispatch => {
         });
 };
 
-export const fetchTreehouseSearchResults = searchTerm => dispatch => {
-    return TreehousesAPIUtil.fetchSearchResults(searchTerm)
+export const fetchTreehouseSearchResults = (searchTerm, startDate, endDate) => dispatch => {
+    return TreehousesAPIUtil.fetchSearchResults(searchTerm, startDate, endDate)
         .then(treehouses => dispatch(receiveTreehouses(treehouses)));
 };

@@ -33,9 +33,9 @@ class SearchBox extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    componentWillMount() {
-        document.addEventListener('mousedown', this.handleClick, false)
-    }
+    // componentWillMount() {
+    //     document.addEventListener('mousedown', this.handleClick, false)
+    // }
     
     componentDidMount() {
         document.addEventListener('mousedown', this.handleClick, false)
@@ -67,7 +67,7 @@ class SearchBox extends React.Component {
 
     handleSearchSubmit(e) {
         e.preventDefault();
-        this.props.fetchTreehouseSearchResults(this.state.searchTerm);
+        this.props.fetchTreehouseSearchResults(this.state.searchTerm, this.state.startDate, this.state.endDate);
         this.setState({ redirectToSearchIdx: true })
     }
 

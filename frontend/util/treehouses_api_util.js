@@ -12,10 +12,14 @@ export const fetchTreehouse = treehouseId => {
     })
 }
 
-export const fetchSearchResults = searchTerm => {
+export const fetchSearchResults = (searchTerm, startDate, endDate) => {
     return $.ajax({
         type: "GET",
         url: `/api/search`,
-        data: { search_term: searchTerm }
+        data: { 
+            search_term: searchTerm,
+            start_date: startDate,
+            end_date: endDate
+        }
     })
 }
