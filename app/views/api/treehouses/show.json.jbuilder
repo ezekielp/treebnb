@@ -7,4 +7,5 @@ json.location_rating @treehouse.average_location_rating
 json.communication_rating @treehouse.average_communication_rating
 json.value_rating @treehouse.average_value_rating
 json.bookingIds @treehouse.bookings.map { |booking| booking.id }
+json.reviewIds @treehouse.reviews.map { |review| review.id }
 json.photoUrls @treehouse.photos.map { |photo| url_for(photo) }
