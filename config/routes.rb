@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :treehouses, only: [:index, :show]
     resources :bookings, only: [:index, :show, :create, :update, :destroy]
+    resources :reviews, only: [:index, :show, :create, :update, :destroy]
     get '/search', to: 'treehouses#search'
   end
 

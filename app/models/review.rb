@@ -21,7 +21,7 @@ class Review < ApplicationRecord
     validates :cleanliness_rating, :check_in_rating, :accuracy_rating, :location_rating, :communication_rating, :value_rating, presence: true, inclusion: { in: [1, 2, 3, 4, 5] }
 
     belongs_to :treehouse
-    belongs_to :user,
+    belongs_to :reviewer,
         class_name: :User,
         foreign_key: :reviewer_id
 
