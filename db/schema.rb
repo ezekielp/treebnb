@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_14_224917) do
+ActiveRecord::Schema.define(version: 2019_12_29_020104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,22 @@ ActiveRecord::Schema.define(version: 2019_12_14_224917) do
     t.string "status", default: "PENDING", null: false
     t.index ["guest_id"], name: "index_bookings_on_guest_id"
     t.index ["treehouse_id"], name: "index_bookings_on_treehouse_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "body", null: false
+    t.integer "treehouse_id", null: false
+    t.integer "reviewer_id", null: false
+    t.integer "cleanliness_rating", null: false
+    t.integer "check_in_rating", null: false
+    t.integer "accuracy_rating", null: false
+    t.integer "location_rating", null: false
+    t.integer "communication_rating", null: false
+    t.integer "value_rating", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reviewer_id"], name: "index_reviews_on_reviewer_id"
+    t.index ["treehouse_id"], name: "index_reviews_on_treehouse_id"
   end
 
   create_table "treehouses", force: :cascade do |t|

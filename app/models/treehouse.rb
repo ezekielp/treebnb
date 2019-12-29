@@ -23,6 +23,8 @@ class Treehouse < ApplicationRecord
 
     has_many :bookings
 
+    has_many :reviews
+
     has_many_attached :photos
 
     def self.search_by_keyword(keyword)
@@ -54,23 +56,36 @@ class Treehouse < ApplicationRecord
                 result << treehouse
             end
         end
-        # result = keyword_search_result.select do |treehouse|
-        #     all_booked_dates = []
-        #     treehouse.bookings.each do |booking|
-        #         all_booked_dates += booking.dates
-        #     end
-
-        #     inclusion_flag = true
-        #     searched_dates.each do |date|
-        #         if all_booked_dates.include?(date)
-        #             inclusion_flag = false
-        #         end
-        #     end
-        #     inclusion_flag
-        #     debugger
-        # end
 
         result
+    end
+
+    def average_overall_rating
+        [self.average_cleanliness_rating, self.average_check_in_rating, self.average_accuracy_rating, self.average_location_rating, self.average_communication_rating, self.average_value_rating].sum / 6
+    end
+
+    def average_cleanliness_rating
+        self.reviews.inject(sum, review) { sum + review.cleanliness_rating} / self.reviews.count * 1.0
+    end
+
+    def average_check_in_rating
+        self.reviews.inject(sum, review) { sum + review.check_in_rating} / self.reviews.count * 1.0
+    end
+
+    def average_accuracy_rating
+        self.reviews.inject(sum, review) { sum + review.accuracy_rating} / self.reviews.count * 1.0
+    end
+
+    def average_location_rating
+        self.reviews.inject(sum, review) { sum + review.location_rating} / self.reviews.count * 1.0
+    end
+
+    def average_communication_rating
+        self.reviews.inject(sum, review) { sum + review.communication_rating} / self.reviews.count * 1.0
+    end
+
+    def average_value_rating
+        self.reviews.inject(sum, review) { sum + review.value_rating} / self.reviews.count * 1.0
     end
     
 end
