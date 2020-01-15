@@ -640,3 +640,47 @@ input {
     font-size: 13px;
     margin-top: 6px;
 }
+
+
+
+
+
+// FOOTER
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-top: 1px solid black;
+    padding: 14px 0;
+}
+
+.attribution-container {
+    display: flex;
+    align-items: center;
+}
+
+.attribution {
+
+}
+
+.logos-bar {
+    display: flex;
+    width: 150px;
+    height: 25px;
+    list-style: none;
+    padding: 0;
+    margin-left: 100px;
+}
+
+.logo-li {
+    width: 25px;
+    margin-right: 30px;
+}
+
+.logo-li a img {
+    height: 100%;
+    width: auto;
+}
+
+

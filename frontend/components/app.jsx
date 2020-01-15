@@ -10,6 +10,7 @@ import TreehouseShowContainer from './treehouses/treehouse_show_container';
 import UserBookingsContainer from './bookings/user_bookings_container';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { AuthRoute } from '../util/route_util';
+import Footer from './footer';
 
 const App = (props) => {
     return (
@@ -42,6 +43,7 @@ const App = (props) => {
                     <Redirect to="/" />
                 </Route>
             </Switch>
+            <Footer />
         </div>
     );
 }
