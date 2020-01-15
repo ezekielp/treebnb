@@ -4,7 +4,7 @@ import merge from 'lodash/merge';
 const ReviewsReducer = (state = {}, action) => {
     Object.freeze(state);
     switch(action.type) {
-        case REMOVE_REVIEWS:
+        case RECEIVE_REVIEWS:
             return merge({}, state, action.reviews)
         case RECEIVE_REVIEW:
             return merge({}, state, { [action.review.id]: action.review })

@@ -65,27 +65,51 @@ class Treehouse < ApplicationRecord
     end
 
     def average_cleanliness_rating
-        self.reviews.inject(sum, review) { sum + review.cleanliness_rating} / self.reviews.count * 1.0
+        rating = 0
+        if self.reviews.length > 0
+            self.reviews.inject { |sum, review| sum + review.cleanliness_rating} / self.reviews.count * 1.0
+        end
+        rating
     end
 
     def average_check_in_rating
-        self.reviews.inject(sum, review) { sum + review.check_in_rating} / self.reviews.count * 1.0
+        rating = 0
+        if self.reviews.length > 0
+            self.reviews.inject  { |sum, review| sum + review.check_in_rating} / self.reviews.count * 1.0
+        end
+        rating
     end
 
     def average_accuracy_rating
-        self.reviews.inject(sum, review) { sum + review.accuracy_rating} / self.reviews.count * 1.0
+        rating = 0
+        if self.reviews.length > 0
+            self.reviews.inject  { |sum, review| sum + review.accuracy_rating} / self.reviews.count * 1.0
+        end
+        rating
     end
 
     def average_location_rating
-        self.reviews.inject(sum, review) { sum + review.location_rating} / self.reviews.count * 1.0
+        rating = 0
+        if self.reviews.length > 0
+            self.reviews.inject  { |sum, review| sum + review.location_rating} / self.reviews.count * 1.0
+        end
+        rating
     end
 
     def average_communication_rating
-        self.reviews.inject(sum, review) { sum + review.communication_rating} / self.reviews.count * 1.0
+        rating = 0
+        if self.reviews.length > 0
+            self.reviews.inject  { |sum, review| sum + review.communication_rating} / self.reviews.count * 1.0
+        end
+        rating
     end
 
     def average_value_rating
-        self.reviews.inject(sum, review) { sum + review.value_rating} / self.reviews.count * 1.0
+        rating = 0
+        if self.reviews.length > 0
+            self.reviews.inject  { |sum, review| sum + review.value_rating} / self.reviews.count * 1.0
+        end
+        rating
     end
     
 end
