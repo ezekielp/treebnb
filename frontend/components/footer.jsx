@@ -5,7 +5,7 @@ class Footer extends React.Component {
 
     render() {
         return (
-            <div class="footer-container">
+            <div className="footer-container">
                 <Link to="/">
                     <div className="treebnb-logo-with-word">
                         <i className="fas fa-tree"></i>

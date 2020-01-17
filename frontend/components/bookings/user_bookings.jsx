@@ -9,20 +9,14 @@ class UserBookings extends React.Component {
 
         this.state = {
             success: this.props.success,
-            successMessageClasses: ['reservation-successful-msg-visible'],
-            // bookings: []
+            successMessageClasses: ['reservation-successful-msg-visible']
         }
     }
 
     componentDidMount() {
-        let { currentUser, fetchBooking } = this.props;
+        let { fetchCurrentUserBookings } = this.props;
 
-        this.props.bookings.forEach(booking => {
-            if (booking.guest_id === currentUser.id) {
-                fetchBooking(booking.id);
-            }
-        });
-        this.props.fetchCurrentUserBookings();
+        fetchCurrentUserBookings();
     }
 
     componentDidUpdate() {
@@ -41,10 +35,6 @@ class UserBookings extends React.Component {
         }
     }
 
-    componentWillUnmount() {
-        // this.props.removeBookingSuccessMessage();
-    }
-    
     render() {
         // Return null before bookings have loaded
         if (!this.props.bookings) return null;
@@ -55,23 +45,10 @@ class UserBookings extends React.Component {
         if (success[0]) {
             successMessage = 
                 <div className={this.state.successMessageClasses.join(' ')}>{success[0]}</div>;
-            // window.setTimeout(() => {
-            //     this.props.removeBookingSuccessMessage();
-            //     this.setState({
-            //         successMessageClasses: ['reservation-successful-msg-visible']
-            //     })
-            // }, 5000)
         } else {
             successMessage = <div className="empty-success-msg-div"></div>;
         }
 
-        // if (success[0]) {
-        //     window.setTimeout(() => {
-        //         this.setState({ successMessageClasses: ['reservation-successful-msg-visible', 'reservation-successful-msg-hidden'] })
-        //     }, 2000);
-        // }
-
-        // debugger;
         let { bookings } = this.props;
         let bookingsLis, noBookingsmessage;
         if (bookings[0] === undefined) {

@@ -6,15 +6,14 @@ import UserBookings from './user_bookings';
 const msp = state => {
     let { session, entities } = state;
     let currentUser = session.currentUser ? entities.users[session.currentUser.id] : {};
-    // let userBookings;
-    // if (currentUser.id) {
-    //     userBookings = Object.values(entities.bookings).filter(booking => currentUser.bookingIds.includes(booking.id))
-    // } else {
-    //     userBookings = [];
-    // }
+
+    let bookings = Object.values(entities.bookings).filter(booking => {
+        return booking.guest_id === currentUser.id;
+    })
 
     return {
-        bookings: Object.values(entities.bookings),
+        // bookings: Object.values(entities.bookings),
+        bookings,
         success: state.ui.success,
         currentUser
     }
