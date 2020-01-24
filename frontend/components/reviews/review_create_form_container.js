@@ -1,17 +1,20 @@
-import React from 'react';
 import { connect } from 'react-redux';
-import TreehouseReviewForm from './review_form';
+import ReviewForm from './review_form';
+import { createReview } from '../../actions/review_actions';
 
 const mapStateToProps = state => {
     return {
-
+        review: {
+            body: ''
+        },
+        formType: 'Create'
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-
+        action: review => dispatch(createReview(review))
     }
 }
 
-return connect(mapStateToProps, mapDispatchToProps)(TreehouseReviewForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewForm);

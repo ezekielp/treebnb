@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import ReviewForm from './review_form';
 
@@ -14,4 +13,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-return connect(mapStateToProps, mapDispatchToProps)(TreehouseReviewForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewForm);
