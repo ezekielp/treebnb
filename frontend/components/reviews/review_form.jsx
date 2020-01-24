@@ -12,7 +12,38 @@ class ReviewForm extends React.Component {
             locationRating: null,
             valueRating: null,
             body: this.props.body,
-            emptyStarClass: "far"
+            emptyStarClass: "far fa-star",
+            filledStarClass: "fas fa-star",
+            accuracyStar1Active: false,
+            accuracyStar2Active: false,
+            accuracyStar3Active: false,
+            accuracyStar4Active: false,
+            accuracyStar5Active: false,
+            checkInStar1Active: false,
+            checkInStar2Active: false,
+            checkInStar3Active: false,
+            checkInStar4Active: false,
+            checkInStar5Active: false,
+            cleanlinessStar1Active: false,
+            cleanlinessStar2Active: false,
+            cleanlinessStar3Active: false,
+            cleanlinessStar4Active: false,
+            cleanlinessStar5Active: false,
+            communicationStar1Active: false,
+            communicationStar2Active: false,
+            communicationStar3Active: false,
+            communicationStar4Active: false,
+            communicationStar5Active: false,
+            locationStar1Active: false,
+            locationStar2Active: false,
+            locationStar3Active: false,
+            locationStar4Active: false,
+            locationStar5Active: false,
+            valueStar1Active: false,
+            valueStar2Active: false,
+            valueStar3Active: false,
+            valueStar4Active: false,
+            valueStar5Active: false,
         };
 
         this.renderStars = this.renderStars.bind(this);
@@ -50,20 +81,34 @@ class ReviewForm extends React.Component {
     }
 
     renderStars(scoreName) {
+        let { emptyStarClass } = this.state;
+
+        // I think you probably move this to become another component method??
         const updateScore = score => {
             return e => {
                 this.setState({[scoreName]: score })
             }
         }
 
+        // You want to check whether the star with the given scoreName and idx
+        // is active — if it is, give it the filled-star class; if not, give it
+        // the empty star class
+        let idxs = [1, 2, 3, 4, 5];
+        let starLis = idxs.map(idx => {
+            return <li>
+
+            </li>
+        })
+
+        // Revise the below the rener the starLis inside the container ul
         const stars = (
-            <div className={`review-score-stars-container`}>
-                <i className="far fa-star star-1" onClick={updateScore(1)}></i>
-                <i className="far fa-star star-2" onClick={updateScore(2)}></i>
-                <i className="far fa-star star-3" onClick={updateScore(3)}></i>
-                <i className="far fa-star star-4" onClick={updateScore(4)}></i>
-                <i className="far fa-star star-5" onClick={updateScore(5)}></i>
-            </div>
+            <ul className={`review-score-stars-container`}>
+                <i id={`${scoreName}-star-1`} className={emptyStarClass} onClick={updateScore(1)}></i>
+                <i id={`${scoreName}-star-2`} className={emptyStarClass} onClick={updateScore(2)}></i>
+                <i id={`${scoreName}-star-3`} className={emptyStarClass} onClick={updateScore(3)}></i>
+                <i id={`${scoreName}-star-4`} className={emptyStarClass} onClick={updateScore(4)}></i>
+                <i id={`${scoreName}-star-5`} className={emptyStarClass} onClick={updateScore(5)}></i>
+            </ul>
         )
         return stars;
     }
@@ -84,29 +129,29 @@ class ReviewForm extends React.Component {
                         <div className="review-create-scores-container-left-side">
                             <div className="review-score-container">
                                 <div className="review-score-label">Location</div>
-                                {this.renderStars()}
+                                {this.renderStars('location')}
                             </div>
                             <div className="review-score-container">
                                 <div className="review-score-label">Check-in</div>
-                                {this.renderStars()}
+                                {this.renderStars('checkin')}
                             </div>
                             <div className="review-score-container">
                                 <div className="review-score-label">Value</div>
-                                {this.renderStars()}
+                                {this.renderStars('value')}
                             </div>
                         </div>
                         <div className="review-create-scores-container-right-side">
                             <div className="review-score-container">
                                 <div className="review-score-label">Communication</div>
-                                {this.renderStars()}
+                                {this.renderStars('communication')}
                             </div>
                             <div className="review-score-container">
                                 <div className="review-score-label">Accuracy</div>
-                                {this.renderStars()}
+                                {this.renderStars('accuracy')}
                             </div>
                             <div className="review-score-container">
                                 <div className="review-score-label">Cleanliness</div>
-                                {this.renderStars()}
+                                {this.renderStars('cleanliness')}
                             </div>
                         </div>
                     </div>
