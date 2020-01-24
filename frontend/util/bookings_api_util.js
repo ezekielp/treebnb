@@ -13,7 +13,6 @@ export const fetchCurrentUserBookings = () => {
 }
 
 export const createBooking = booking => {
-    // debugger;
     return $.ajax({
         type: "POST",
         url: `/api/bookings`,
