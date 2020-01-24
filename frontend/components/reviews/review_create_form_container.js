@@ -3,10 +3,11 @@ import ReviewForm from './review_form';
 import { createReview } from '../../actions/review_actions';
 
 const mapStateToProps = state => {
+    let currentUser = state.session.currentUser ? entities.users[session.currentUser.id] : {};
+
     return {
-        review: {
-            body: ''
-        },
+        body: '',
+        currentUser,
         formType: 'Create'
     }
 }
