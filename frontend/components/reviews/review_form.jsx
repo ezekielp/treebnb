@@ -11,8 +11,11 @@ class ReviewForm extends React.Component {
             communicationRating: null,
             locationRating: null,
             valueRating: null,
-            body: this.props.body
+            body: this.props.body,
+            emptyStarClass: "far"
         };
+
+        this.renderStars = this.renderStars.bind(this);
     }
 
     handleSubmit(e) {
@@ -24,7 +27,7 @@ class ReviewForm extends React.Component {
         if (!currentUser.id) {
             let message = (
                 <div>
-                    <div id="sign-up-to-review">Sign up or log in to leave a review</div>
+                    <div id="sign-in-to-review">Sign up or log in to leave a review</div>
                 </div>
             );
             this.props.openModal('Sign up', message)
@@ -32,6 +35,14 @@ class ReviewForm extends React.Component {
             // If all fields are filled out and user is logged in, send the booking request
             let treehouse_id = this.props.match.params.treehouseId;
             let newReview = {
+                reviewer_id: currentUser.id,
+                treehouse_id,
+                accuracy_rating: this.state.accuracyRating,
+                check_in_rating: this.state.checkInRating,
+                cleanliness_rating: this.state.cleanlinessRating,
+                communication_rating: this.state.communicationRating,
+                location_rating: this.state.locationRating,
+                value_rating: this.state.valueRating,
             };
             this.props.action(newReview);
         };
@@ -45,16 +56,16 @@ class ReviewForm extends React.Component {
             }
         }
 
-        const emptyStars = (
+        const stars = (
             <div className={`review-score-stars-container`}>
-                <i class="far fa-star star-1" onClick={updateScore(1)}></i>
-                <i class="far fa-star star-2" onClick={updateScore(2)}></i>
-                <i class="far fa-star star-3" onClick={updateScore(3)}></i>
-                <i class="far fa-star star-4" onClick={updateScore(4)}></i>
-                <i class="far fa-star star-5" onClick={updateScore(5)}></i>
+                <i className="far fa-star star-1" onClick={updateScore(1)}></i>
+                <i className="far fa-star star-2" onClick={updateScore(2)}></i>
+                <i className="far fa-star star-3" onClick={updateScore(3)}></i>
+                <i className="far fa-star star-4" onClick={updateScore(4)}></i>
+                <i className="far fa-star star-5" onClick={updateScore(5)}></i>
             </div>
         )
-        return emptyStars;
+        return stars;
     }
 
     updateBody() {
@@ -64,15 +75,6 @@ class ReviewForm extends React.Component {
     }
 
     render() {
-        const emptyStars = (
-            <div className="review-score-stars-container">
-                <i class="far fa-star star-1"></i>
-                <i class="far fa-star star-2"></i>
-                <i class="far fa-star star-3"></i>
-                <i class="far fa-star star-4"></i>
-                <i class="far fa-star star-5"></i>
-            </div>
-        )
 
         return (
             <div className="review-form-container">
@@ -82,29 +84,29 @@ class ReviewForm extends React.Component {
                         <div className="review-create-scores-container-left-side">
                             <div className="review-score-container">
                                 <div className="review-score-label">Location</div>
-                                {emptyStars}
+                                {this.renderStars()}
                             </div>
                             <div className="review-score-container">
                                 <div className="review-score-label">Check-in</div>
-                                {emptyStars}
+                                {this.renderStars()}
                             </div>
                             <div className="review-score-container">
                                 <div className="review-score-label">Value</div>
-                                {emptyStars}
+                                {this.renderStars()}
                             </div>
                         </div>
                         <div className="review-create-scores-container-right-side">
                             <div className="review-score-container">
                                 <div className="review-score-label">Communication</div>
-                                {emptyStars}
+                                {this.renderStars()}
                             </div>
                             <div className="review-score-container">
                                 <div className="review-score-label">Accuracy</div>
-                                {emptyStars}
+                                {this.renderStars()}
                             </div>
                             <div className="review-score-container">
                                 <div className="review-score-label">Cleanliness</div>
-                                {emptyStars}
+                                {this.renderStars()}
                             </div>
                         </div>
                     </div>
