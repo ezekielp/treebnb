@@ -39,10 +39,6 @@ class TreehouseShow extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    // componentWillMount() {
-    //     document.addEventListener('mousedown', this.handleClick, false);
-    // }
-
     // MAYBE THIS IS HOW TO DO THE ASYNC DATA FETCHING PROPERLY?
     // async asyncLoadData() {
     //     await this.props.fetchTreehouse(this.props.match.params.treehouseId);
@@ -58,31 +54,13 @@ class TreehouseShow extends React.Component {
     //     // })
     // }
 
-    loadData() {
-        this.props.fetchTreehouse(this.props.match.params.treehouseId)
-            .then(res => {
-                let bookingIds = this.props.treehouse.bookingIds;
-                for (let i = 0; i < bookingIds.length; i++) {
-                    this.props.fetchBooking(bookingIds[i]);
-                    console.log("I fetched a booking!");
-                }
-            });
-        // let promise = new Promise((resolve, reject) => {
-        //     this.props.fetchTreehouse(this.props.match.params.treehouseId);
-        // });
-        // return promise;
-    }
-
     componentDidMount() {
-        // this.asyncLoadData();
-        // this.loadData();
         this.props
             .fetchTreehouse(this.props.match.params.treehouseId)
             .then(res => {
             let bookingIds = this.props.treehouse.bookingIds;
             for (let i = 0; i < bookingIds.length; i++) {
                 this.props.fetchBooking(bookingIds[i]);
-                console.log("I fetched a booking!");
             }
             });
 
