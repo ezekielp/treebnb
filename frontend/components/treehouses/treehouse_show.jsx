@@ -58,10 +58,10 @@ class TreehouseShow extends React.Component {
         this.props
             .fetchTreehouse(this.props.match.params.treehouseId)
             .then(res => {
-            let bookingIds = this.props.treehouse.bookingIds;
-            for (let i = 0; i < bookingIds.length; i++) {
-                this.props.fetchBooking(bookingIds[i]);
-            }
+                let bookingIds = this.props.treehouse.bookingIds;
+                for (let i = 0; i < bookingIds.length; i++) {
+                    this.props.fetchBooking(bookingIds[i]);
+                }
             });
 
         document.addEventListener('mousedown', this.handleClick, false);

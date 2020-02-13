@@ -6,7 +6,6 @@ import TreehouseShow from './treehouse_show';
 
 const msp = ({ entities, session }, ownProps) => {
     let currentUser = session.currentUser ? entities.users[session.currentUser.id] : {};
-    // debugger;
 
     return {
         treehouse: entities.treehouses[ownProps.match.params.treehouseId],
