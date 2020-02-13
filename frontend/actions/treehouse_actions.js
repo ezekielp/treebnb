@@ -28,9 +28,9 @@ export const fetchTreehouse = treehouseId => dispatch => {
     return TreehousesAPIUtil.fetchTreehouse(treehouseId)
         .then(treehouse => {
             dispatch(receiveTreehouse(treehouse));
-            treehouse.bookingIds.forEach(bookingId => {
-                dispatch(fetchBooking(bookingId));
-            });
+            // treehouse.bookingIds.forEach(bookingId => {
+            //     dispatch(fetchBooking(bookingId));
+            // });
         });
 };
 

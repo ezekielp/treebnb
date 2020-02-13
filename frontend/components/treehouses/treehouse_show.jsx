@@ -44,25 +44,48 @@ class TreehouseShow extends React.Component {
     // }
 
     // MAYBE THIS IS HOW TO DO THE ASYNC DATA FETCHING PROPERLY?
-    async asyncLoadData() {
-        await this.props.fetchTreehouse(this.props.match.params.treehouseId);
-        // Actually instead of the loop below, better to create a new action
-        // that fetches all the bookings at once, to avoid hitting the
-        // database multiple times
-        this.props.treehouse.bookingIds.forEach(bookingId => {
-            await this.props.fetchBooking(bookingId);
-        })
-    }
+    // async asyncLoadData() {
+    //     await this.props.fetchTreehouse(this.props.match.params.treehouseId);
+    //     // Actually instead of the loop below, better to create a new action
+    //     // that fetches all the bookings at once, to avoid hitting the
+    //     // database multiple times
+    //     let bookingIds = this.props.treehouse.bookingIds;
+    //     for (let i = 0; i < bookingIds.length; i++) {
+    //         await this.props.fetchBooking(bookingIds[i]);
+    //     }
+    //     // this.props.treehouse.bookingIds.forEach(bookingId => {
+    //     //     await this.props.fetchBooking(bookingId);
+    //     // })
+    // }
 
     loadData() {
-        let promise = new Promise((resolve, reject) => {
-            this.props.fetchTreehouse(this.props.match.params.treehouseId);
-        });
-        return promise;
+        this.props.fetchTreehouse(this.props.match.params.treehouseId)
+            .then(res => {
+                let bookingIds = this.props.treehouse.bookingIds;
+                for (let i = 0; i < bookingIds.length; i++) {
+                    this.props.fetchBooking(bookingIds[i]);
+                    console.log("I fetched a booking!");
+                }
+            });
+        // let promise = new Promise((resolve, reject) => {
+        //     this.props.fetchTreehouse(this.props.match.params.treehouseId);
+        // });
+        // return promise;
     }
 
     componentDidMount() {
-        this.loadData();
+        // this.asyncLoadData();
+        // this.loadData();
+        this.props
+            .fetchTreehouse(this.props.match.params.treehouseId)
+            .then(res => {
+            let bookingIds = this.props.treehouse.bookingIds;
+            for (let i = 0; i < bookingIds.length; i++) {
+                this.props.fetchBooking(bookingIds[i]);
+                console.log("I fetched a booking!");
+            }
+            });
+
         document.addEventListener('mousedown', this.handleClick, false);
     }
 
