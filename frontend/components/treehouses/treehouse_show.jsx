@@ -43,6 +43,17 @@ class TreehouseShow extends React.Component {
     //     document.addEventListener('mousedown', this.handleClick, false);
     // }
 
+    // MAYBE THIS IS HOW TO DO THE ASYNC DATA FETCHING PROPERLY?
+    async asyncLoadData() {
+        await this.props.fetchTreehouse(this.props.match.params.treehouseId);
+        // Actually instead of the loop below, better to create a new action
+        // that fetches all the bookings at once, to avoid hitting the
+        // database multiple times
+        this.props.treehouse.bookingIds.forEach(bookingId => {
+            await this.props.fetchBooking(bookingId);
+        })
+    }
+
     loadData() {
         let promise = new Promise((resolve, reject) => {
             this.props.fetchTreehouse(this.props.match.params.treehouseId);
