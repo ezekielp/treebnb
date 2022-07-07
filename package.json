@@ -8,7 +8,7 @@
     "@babel/runtime": "^7.7.6",
     "@fortawesome/fontawesome-free": "^5.11.2",
     "babel-loader": "^8.0.6",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "react": "^16.12.0",
     "react-dates": "^21.5.1",
     "react-dom": "^16.12.0",
