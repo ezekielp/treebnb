@@ -20,7 +20,7 @@
     "redux-thunk": "^2.3.0",
     "style-loader": "^1.0.1",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.12"
   },
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
   "version": "1.0.0",
